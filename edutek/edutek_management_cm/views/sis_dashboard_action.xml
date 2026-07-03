@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_sis_dashboard" model="ir.actions.client">
+        <field name="name">Tableau de bord</field>
+        <field name="tag">edutek_management_cm.dashboard</field>
+    </record>
+
+    <!-- Le tableau de bord devient le premier ecran affiche en ouvrant
+         l'application EduTek, les sous-menus existants restant accessibles
+         normalement depuis le menu deroulant. -->
+    <record id="edutek_core.menu_op_school_root" model="ir.ui.menu">
+        <field name="action" ref="action_sis_dashboard"/>
+    </record>
+
+</odoo>

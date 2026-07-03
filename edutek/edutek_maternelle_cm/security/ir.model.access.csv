@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_op_student_skill_faculty,op.student.skill.faculty,model_op_student_skill,edutek_core.group_op_faculty,1,1,1,1
+access_op_student_skill_admin,op.student.skill.admin,model_op_student_skill,edutek_core.group_op_back_office_admin,1,1,1,1
+access_op_carnet_faculty,op.carnet.faculty,model_op_carnet,edutek_core.group_op_faculty,1,0,0,0
+access_op_carnet_admin,op.carnet.admin,model_op_carnet,edutek_core.group_op_back_office_admin,1,1,1,1
+access_op_carnet_line_faculty,op.carnet.line.faculty,model_op_carnet_line,edutek_core.group_op_faculty,1,0,0,0
+access_op_carnet_line_admin,op.carnet.line.admin,model_op_carnet_line,edutek_core.group_op_back_office_admin,1,1,1,1
+access_op_student_skill_generate_wizard,op.student.skill.generate.wizard,model_op_student_skill_generate_wizard,edutek_core.group_op_faculty,1,1,1,1
+access_op_carnet_generate_wizard,op.carnet.generate.wizard,model_op_carnet_generate_wizard,edutek_core.group_op_back_office_admin,1,1,1,1

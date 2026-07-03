@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_op_cash_collection_daily" model="ir.actions.report">
+        <field name="name">Encaissements par jour</field>
+        <field name="model">op.cash.collection.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">edutek_primaire_cm.report_cash_daily</field>
+        <field name="report_file">edutek_primaire_cm.report_cash_daily</field>
+        <field name="print_report_name">'Encaissements par jour'</field>
+        <field name="paperformat_id" ref="paperformat_school_document"/>
+    </record>
+
+    <template id="report_cash_daily">
+        <t t-call="web.html_container">
+            <div class="page">
+                <t t-call="edutek_primaire_cm.report_school_letterhead"/>
+
+                <t t-set="doc_title" t-value="'Encaissements sur Frais exigibles par jour'"/>
+                <t t-call="edutek_primaire_cm.report_school_doc_title"/>
+                <p style="text-align: center;">
+                    Allant du <strong t-esc="docs.date_from" t-options='{"widget": "date"}'/>
+                    au <strong t-esc="docs.date_to" t-options='{"widget": "date"}'/>
+                </p>
+
+                <table style="width: 100%; border-collapse: collapse; font-size: 11px;">
+                    <t t-set="table_headers" t-value="['Date versement', 'Montant encaisse']"/>
+                    <t t-call="edutek_primaire_cm.report_school_table_head"/>
+                    <tbody>
+                        <t t-foreach="summary.get('by_day', [])" t-as="day_amount">
+                            <tr>
+                                <td style="border: 1px solid #999; padding: 4px 6px;" t-esc="day_amount[0]" t-options='{"widget": "date"}'/>
+                                <td style="border: 1px solid #999; padding: 4px 6px; text-align: right;" t-esc="'{:,.0f}'.format(day_amount[1]).replace(',', ' ')"/>
+                            </tr>
+                        </t>
+                    </tbody>
+                    <tfoot>
+                        <tr style="background:#eee; font-weight: bold;">
+                            <td style="border: 1px solid #999; padding: 4px 6px; text-align: right;">Nb jours : <span t-esc="summary.get('nb_jours', 0)"/></td>
+                            <td style="border: 1px solid #999; padding: 4px 6px; text-align: right;" t-esc="'{:,.0f}'.format(summary.get('total_amount', 0)).replace(',', ' ')"/>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
+                    <tr>
+                        <td style="width: 50%; vertical-align: top; padding-right: 8px;">
+                            <div style="color: #2a5db0; font-weight: bold; font-size: 11px; margin-bottom: 4px;">Repartition par frais exigibles</div>
+                            <table style="width: 100%; border-collapse: collapse; font-size: 10px;">
+                                <t t-foreach="summary.get('by_category', {}).items()" t-as="cat">
+                                    <tr>
+                                        <td style="border: 1px solid #999; padding: 3px 5px;" t-esc="cat[0]"/>
+                                        <td style="border: 1px solid #999; padding: 3px 5px; text-align: right;" t-esc="'{:,.0f}'.format(cat[1]).replace(',', ' ')"/>
+                                    </tr>
+                                </t>
+                            </table>
+                        </td>
+                        <td style="width: 50%; vertical-align: top; padding-left: 8px;">
+                            <div style="color: #2a5db0; font-weight: bold; font-size: 11px; margin-bottom: 4px;">Repartition par caisse</div>
+                            <table style="width: 100%; border-collapse: collapse; font-size: 10px;">
+                                <t t-foreach="summary.get('by_journal', {}).items()" t-as="jrn">
+                                    <tr>
+                                        <td style="border: 1px solid #999; padding: 3px 5px;" t-esc="jrn[0]"/>
+                                        <td style="border: 1px solid #999; padding: 3px 5px; text-align: right;" t-esc="'{:,.0f}'.format(jrn[1]).replace(',', ' ')"/>
+                                    </tr>
+                                </t>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+                <t t-call="edutek_primaire_cm.report_school_footer"/>
+            </div>
+        </t>
+    </template>
+
+</odoo>

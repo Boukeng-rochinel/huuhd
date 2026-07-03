@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <!-- ══════════════════════════════════════════
+         Niveaux de la maternelle (francophone + anglophone).
+         Codes identiques aux valeurs deja stockees sur les
+         classes existantes - aucune migration necessaire.
+         Noms courts (PS/MS/GS), coherents avec les autres
+         niveaux (CP, CE1...) et avec l'heuristique de
+         devinette de niveau du wizard d'import (qui matche
+         sur le debut du nom de la classe, ex: "PS A").
+    ══════════════════════════════════════════ -->
+    <record id="op_education_level_ps" model="op.education.level">
+        <field name="name">PS</field>
+        <field name="code">ps</field>
+        <field name="sequence">1</field>
+        <field name="cycle_id" ref="edutek_primaire_cm.op_education_cycle_maternelle"/>
+        <field name="section_id" ref="edutek_primaire_cm.op_education_section_francophone"/>
+    </record>
+    <record id="op_education_level_ms" model="op.education.level">
+        <field name="name">MS</field>
+        <field name="code">ms</field>
+        <field name="sequence">2</field>
+        <field name="cycle_id" ref="edutek_primaire_cm.op_education_cycle_maternelle"/>
+        <field name="section_id" ref="edutek_primaire_cm.op_education_section_francophone"/>
+    </record>
+    <record id="op_education_level_gs" model="op.education.level">
+        <field name="name">GS</field>
+        <field name="code">gs</field>
+        <field name="sequence">3</field>
+        <field name="cycle_id" ref="edutek_primaire_cm.op_education_cycle_maternelle"/>
+        <field name="section_id" ref="edutek_primaire_cm.op_education_section_francophone"/>
+    </record>
+    <record id="op_education_level_pre_nursery" model="op.education.level">
+        <field name="name">Pre-Nursery</field>
+        <field name="code">pre_nursery</field>
+        <field name="sequence">1</field>
+        <field name="cycle_id" ref="edutek_primaire_cm.op_education_cycle_maternelle"/>
+        <field name="section_id" ref="edutek_primaire_cm.op_education_section_anglophone"/>
+    </record>
+    <record id="op_education_level_nursery1" model="op.education.level">
+        <field name="name">Nursery 1</field>
+        <field name="code">nursery1</field>
+        <field name="sequence">2</field>
+        <field name="cycle_id" ref="edutek_primaire_cm.op_education_cycle_maternelle"/>
+        <field name="section_id" ref="edutek_primaire_cm.op_education_section_anglophone"/>
+    </record>
+    <record id="op_education_level_nursery2" model="op.education.level">
+        <field name="name">Nursery 2</field>
+        <field name="code">nursery2</field>
+        <field name="sequence">3</field>
+        <field name="cycle_id" ref="edutek_primaire_cm.op_education_cycle_maternelle"/>
+        <field name="section_id" ref="edutek_primaire_cm.op_education_section_anglophone"/>
+    </record>
+
+</odoo>

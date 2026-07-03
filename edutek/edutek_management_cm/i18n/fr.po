@@ -1,0 +1,203 @@
+# Traduction française d'EduTek Management CM.
+# Ce fichier corrige les accents sur les termes-clés dont le msgid source
+# est écrit sans accent (convention Odoo pour les chaînes Python).
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: edutek_management_cm
+msgid "Candidature / demande d'admission"
+msgstr "Candidature / demande d'admission"
+
+#. module: edutek_management_cm
+msgid "Candidatures"
+msgstr "Candidatures"
+
+#. module: edutek_management_cm
+msgid "Nom du candidat"
+msgstr "Nom du candidat"
+
+#. module: edutek_management_cm
+msgid "Sexe"
+msgstr "Sexe"
+
+#. module: edutek_management_cm
+msgid "Masculin"
+msgstr "Masculin"
+
+#. module: edutek_management_cm
+msgid "Feminin"
+msgstr "Féminin"
+
+#. module: edutek_management_cm
+msgid "Classe souhaitee"
+msgstr "Classe souhaitée"
+
+#. module: edutek_management_cm
+msgid "Acceptee"
+msgstr "Acceptée"
+
+#. module: edutek_management_cm
+msgid "Rejetee"
+msgstr "Rejetée"
+
+#. module: edutek_management_cm
+msgid "Eleve cree"
+msgstr "Élève créé"
+
+#. module: edutek_management_cm
+msgid "Bourse scolaire"
+msgstr "Bourse scolaire"
+
+#. module: edutek_management_cm
+msgid "Bourses scolaires"
+msgstr "Bourses scolaires"
+
+#. module: edutek_management_cm
+msgid "Type de bourse"
+msgstr "Type de bourse"
+
+#. module: edutek_management_cm
+msgid "Totale"
+msgstr "Totale"
+
+#. module: edutek_management_cm
+msgid "Partielle"
+msgstr "Partielle"
+
+#. module: edutek_management_cm
+msgid "Terminee"
+msgstr "Terminée"
+
+#. module: edutek_management_cm
+msgid "Moratoire de paiement"
+msgstr "Moratoire de paiement"
+
+#. module: edutek_management_cm
+msgid "Moratoires de paiement"
+msgstr "Moratoires de paiement"
+
+#. module: edutek_management_cm
+msgid "Nouvelle echeance"
+msgstr "Nouvelle échéance"
+
+#. module: edutek_management_cm
+msgid ""
+"Echeance du moratoire si un moratoire a ete accorde, sinon la date limite "
+"configuree sur le type de frais, sinon la date du frais."
+msgstr ""
+"Échéance du moratoire si un moratoire a été accordé, sinon la date limite "
+"configurée sur le type de frais, sinon la date du frais."
+
+#. module: edutek_management_cm
+msgid "Approuve"
+msgstr "Approuvé"
+
+#. module: edutek_management_cm
+msgid "Cloture"
+msgstr "Clôture"
+
+#. module: edutek_management_cm
+msgid "Cloturer"
+msgstr "Clôturer"
+
+#. module: edutek_management_cm
+msgid "Certificat / attestation de promotion"
+msgstr "Certificat / attestation de promotion"
+
+#. module: edutek_management_cm
+msgid "Classe d'origine"
+msgstr "Classe d'origine"
+
+#. module: edutek_management_cm
+msgid "Cycle de destination"
+msgstr "Cycle de destination"
+
+#. module: edutek_management_cm
+msgid "Maternelle"
+msgstr "Maternelle"
+
+#. module: edutek_management_cm
+msgid "Fin de cycle"
+msgstr "Fin de cycle"
+
+#. module: edutek_management_cm
+msgid "Date de delivrance"
+msgstr "Date de délivrance"
+
+#. module: edutek_management_cm
+msgid "Cloture d'annee academique"
+msgstr "Clôture d'année académique"
+
+#. module: edutek_management_cm
+msgid "Annee a cloturer"
+msgstr "Année à clôturer"
+
+#. module: edutek_management_cm
+msgid "Confirmer la cloture"
+msgstr "Confirmer la clôture"
+
+#. module: edutek_management_cm
+msgid "Cloturer une annee academique"
+msgstr "Clôturer une année académique"
+
+#. module: edutek_management_cm
+msgid "Annee cloturee"
+msgstr "Année clôturée"
+
+#. module: edutek_management_cm
+msgid "Tableau de bord"
+msgstr "Tableau de bord"
+
+#. module: edutek_management_cm
+msgid "Etablissement"
+msgstr "Établissement"
+
+#. module: edutek_management_cm
+msgid "Etats generaux"
+msgstr "États généraux"
+
+#. module: edutek_management_cm
+msgid "Passage d'annee"
+msgstr "Passage d'année"
+
+#. module: edutek_management_cm
+msgid "Structure pedagogique"
+msgstr "Structure pédagogique"
+
+#. module: edutek_management_cm
+msgid "Parametres generaux"
+msgstr "Paramètres généraux"
+
+#. module: edutek_management_cm
+msgid "Apercu"
+msgstr "Aperçu"
+
+#. module: edutek_management_cm
+msgid "Generer et imprimer"
+msgstr "Générer et imprimer"
+
+#. module: edutek_management_cm
+msgid "Generer et imprimer (2 par page)"
+msgstr "Générer et imprimer (2 par page)"
+
+#. module: edutek_management_cm
+msgid "Reparer"
+msgstr "Réparer"
+
+#. module: edutek_management_cm
+msgid "Analyser (sans rien modifier)"
+msgstr "Analyser (sans rien modifier)"
+
+#. module: edutek_management_cm
+msgid "Diagnostiquer"
+msgstr "Diagnostiquer"

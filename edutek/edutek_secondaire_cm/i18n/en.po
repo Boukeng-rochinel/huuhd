@@ -1,0 +1,110 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* openeducat_secondaire_cm
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: openeducat_secondaire_cm
+#: model:ir.model.fields,field_description:openeducat_secondaire_cm.field_op_classe__sous_systeme
+msgid "Sous-systeme"
+msgstr "Sub-system"
+
+#. module: openeducat_secondaire_cm
+#: model:ir.model.fields,field_description:openeducat_secondaire_cm.field_op_classe__serie
+msgid "Serie"
+msgstr "Series"
+
+#. module: openeducat_secondaire_cm
+#: model:ir.ui.view,arch_db:openeducat_secondaire_cm.view_op_classe_form_inherit_secondaire
+msgid "Ex: A4, C, D, TI, Arts, Science"
+msgstr "E.g. A4, C, D, TI, Arts, Science"
+
+#. module: openeducat_secondaire_cm
+msgid "francophone"
+msgstr "Francophone"
+
+#. module: openeducat_secondaire_cm
+msgid "anglophone"
+msgstr "Anglophone"
+
+#. module: openeducat_secondaire_cm
+msgid "6eme"
+msgstr "Form 1"
+
+#. module: openeducat_secondaire_cm
+msgid "5eme"
+msgstr "Form 2"
+
+#. module: openeducat_secondaire_cm
+msgid "4eme"
+msgstr "Form 3"
+
+#. module: openeducat_secondaire_cm
+msgid "3eme"
+msgstr "Form 4"
+
+#. module: openeducat_secondaire_cm
+msgid "2nde"
+msgstr "Form 5"
+
+#. module: openeducat_secondaire_cm
+msgid "1ere"
+msgstr "Lower Sixth"
+
+#. module: openeducat_secondaire_cm
+msgid "Terminale"
+msgstr "Upper Sixth / Final Year"
+
+#. module: openeducat_secondaire_cm
+msgid "Form 1"
+msgstr "Form 1"
+
+#. module: openeducat_secondaire_cm
+msgid "Form 2"
+msgstr "Form 2"
+
+#. module: openeducat_secondaire_cm
+msgid "Form 3"
+msgstr "Form 3"
+
+#. module: openeducat_secondaire_cm
+msgid "Form 4"
+msgstr "Form 4"
+
+#. module: openeducat_secondaire_cm
+msgid "Form 5"
+msgstr "Form 5"
+
+#. module: openeducat_secondaire_cm
+msgid "Lower Sixth"
+msgstr "Lower Sixth"
+
+#. module: openeducat_secondaire_cm
+msgid "Upper Sixth"
+msgstr "Upper Sixth"
+
+#. module: openeducat_secondaire_cm
+msgid "Secondaire"
+msgstr "Secondary"
+
+#. module: openeducat_secondaire_cm
+msgid "Classes secondaires"
+msgstr "Secondary Classes"
+
+#. module: openeducat_secondaire_cm
+msgid "Secondaire (Francophone)"
+msgstr "Secondary (Francophone)"
+
+#. module: openeducat_secondaire_cm
+msgid "Secondaire (Anglophone)"
+msgstr "Secondary (Anglophone)"

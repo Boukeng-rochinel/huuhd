@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_op_cash_collection_wizard_form" model="ir.ui.view">
+        <field name="name">op.cash.collection.wizard.form</field>
+        <field name="model">op.cash.collection.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Etat des encaissements">
+                <header>
+                    <button name="action_print_daily" type="object"
+                            string="Etat par jour (PDF)" class="btn-primary"/>
+                    <button name="action_print_ledger" type="object"
+                            string="Toutes (PDF)" class="btn-secondary"/>
+                    <button name="action_export_xlsx" type="object"
+                            string="Exporter en Excel" class="btn-secondary"/>
+                </header>
+                <sheet>
+                    <p class="text-muted">
+                        Etat des encaissements sur frais exigibles : sommes
+                        effectivement encaissees (paiements rapproches des
+                        factures de frais scolaires), sur la periode choisie.
+                    </p>
+                    <group>
+                        <group>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="preview_count" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="classe_ids" widget="many2many_tags"
+                                   options="{'no_create': True}"
+                                   placeholder="Toutes les salles si vide"/>
+                            <field name="journal_ids" widget="many2many_tags"
+                                   options="{'no_create': True}"
+                                   placeholder="Toutes les caisses si vide"/>
+                            <field name="created_by_id" options="{'no_create': True}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_op_cash_collection_wizard" model="ir.actions.act_window">
+        <field name="name">Etat des encaissements</field>
+        <field name="res_model">op.cash.collection.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+    </record>
+
+    <menuitem id="menu_op_cash_collection_wizard"
+              name="Etat des encaissements"
+              parent="edutek_primaire_cm.menu_op_frais"
+              action="action_op_cash_collection_wizard"
+              sequence="60"
+              groups="edutek_core.group_op_back_office_admin"/>
+
+</odoo>

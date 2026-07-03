@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_op_carnet" model="ir.actions.report">
+        <field name="name">Carnet de suivi</field>
+        <field name="model">op.carnet</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">edutek_maternelle_cm.report_carnet_document</field>
+        <field name="report_file">edutek_maternelle_cm.report_carnet_document</field>
+        <field name="print_report_name">'Carnet de suivi - %s - %s' % (object.student_id.name, object.academic_term_id.name)</field>
+        <field name="binding_model_id" ref="model_op_carnet"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="edutek_primaire_cm.paperformat_school_document"/>
+    </record>
+
+    <template id="report_carnet_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div class="page">
+                    <t t-call="edutek_primaire_cm.report_school_letterhead"/>
+
+                    <h2 class="text-center mt-3">Carnet de suivi</h2>
+                    <div class="row mt-4">
+                        <div class="col-6">
+                            <strong>Eleve :</strong> <span t-field="o.student_id.name"/><br/>
+                            <strong>Classe :</strong> <span t-field="o.classe_id.name"/><br/>
+                        </div>
+                        <div class="col-6">
+                            <strong>Annee academique :</strong> <span t-field="o.academic_year_id.name"/><br/>
+                            <strong>Periode :</strong> <span t-field="o.academic_term_id.name"/><br/>
+                        </div>
+                    </div>
+
+                    <table class="table table-bordered mt-4">
+                        <thead>
+                            <tr>
+                                <th>Domaine</th>
+                                <th class="text-center">Niveau</th>
+                                <th>Observation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="o.line_ids" t-as="line">
+                                <td><span t-field="line.subject_id.name"/></td>
+                                <td class="text-center">
+                                    <span t-attf-class="badge {{ 'text-bg-success' if line.niveau == 'acquis' else 'text-bg-warning' if line.niveau == 'en_cours' else 'text-bg-danger' if line.niveau == 'non_acquis' else 'text-bg-secondary' }}">
+                                        <t t-if="line.niveau == 'acquis'">Acquis</t>
+                                        <t t-elif="line.niveau == 'en_cours'">En cours d'acquisition</t>
+                                        <t t-elif="line.niveau == 'non_acquis'">Non acquis</t>
+                                        <t t-else="">-</t>
+                                    </span>
+                                </td>
+                                <td><span t-field="line.observation"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="row mt-4">
+                        <div class="col-6">
+                            <strong>Assiduite :</strong> <span t-field="o.assiduite"/><br/>
+                            <strong>Absences justifiees :</strong> <span t-field="o.absences_justifiees"/><br/>
+                            <strong>Absences injustifiees :</strong> <span t-field="o.absences_injustifiees"/><br/>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <strong>Observation generale :</strong><br/>
+                        <span t-field="o.observation_generale"/>
+                    </div>
+
+                    <div class="row" style="margin-top: 60px;">
+                        <div class="col-4 text-center">
+                            L'Enseignant(e)
+                        </div>
+                        <div class="col-4 text-center">
+                            Le Directeur
+                        </div>
+                        <div class="col-4 text-center">
+                            Le Parent
+                        </div>
+                    </div>
+
+                    <t t-call="edutek_primaire_cm.report_school_footer"/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

@@ -1,0 +1,81 @@
+# -*- coding: utf-8 -*-
+{
+    "name": "EduTek - Gestion (Cameroun)",
+    "version": "19.0.1.14.0",
+    "author": "Custom",
+    "category": "Education",
+    "summary": "Ecrans de gestion EduTek : verrouillage, tableau de bord, configuration des classes, "
+               "modeles de documents et etats generaux des eleves",
+    "description": (
+        "Regroupe les ecrans de gestion EduTek qui reproduisent les ecrans historiques de "
+        "l'application SISCO sous forme de composants OWL dedies : ecran de verrouillage par "
+        "code PIN, tableau de bord d'accueil (effectifs, classes, caisse, evenements), fiche de "
+        "configuration des classes et suivi des examens/concours, bibliotheque de modeles de "
+        "documents/courriers/SMS avec generation de bourses, parchemins, moratoires, certificats "
+        "de travail, attestations de stage et lettres d'admission, et le registre general des "
+        "eleves avec filtres et pieces scolaires."
+    ),
+    "depends": ["edutek_secondaire_cm", "hr", "web", "mail", "sms"],
+    "data": [
+        "security/groups.xml",
+        "security/ir.model.access.csv",
+        "data/sequence.xml",
+        "data/op_document_type_data.xml",
+        "data/op_school_document_type_data.xml",
+        "views/hr_employee_views.xml",
+        "views/res_users_views.xml",
+        "views/res_company_views.xml",
+        "views/sis_dashboard_action.xml",
+        "views/classe_config_action.xml",
+        "views/op_exam_views.xml",
+        "views/op_scholarship_views.xml",
+        "views/op_fee_reduction_views.xml",
+        "views/res_config_settings_views.xml",
+        "views/op_end_cycle_certificate_views.xml",
+        "views/op_end_cycle_certificate_generate_wizard_views.xml",
+        "views/op_academic_year_close_wizard_views.xml",
+        "views/op_history_repair_wizard_views.xml",
+        "views/op_closure_diagnostic_wizard_views.xml",
+        "views/op_payment_moratorium_views.xml",
+        "views/op_student_fee_views.xml",
+        "views/op_work_certificate_views.xml",
+        "views/op_internship_views.xml",
+        "views/op_admission_application_views.xml",
+        "views/op_school_document_type_views.xml",
+        "views/student_registry_action.xml",
+        "views/edutek_modules_info_action.xml",
+        "views/menu_restructure.xml",
+        "report/op_end_cycle_certificate_report.xml",
+        "report/op_scholarship_report.xml",
+    ],
+    "assets": {
+        "web.assets_backend": [
+            "edutek_management_cm/static/src/lock_state.js",
+            "edutek_management_cm/static/src/idle_lock.js",
+            "edutek_management_cm/static/src/lock_screen.js",
+            "edutek_management_cm/static/src/lock_screen.xml",
+            "edutek_management_cm/static/src/lock_button.js",
+            "edutek_management_cm/static/src/lock_button.xml",
+            "edutek_management_cm/static/src/lock_screen.scss",
+            "edutek_management_cm/static/src/sis_dashboard.scss",
+            "edutek_management_cm/static/src/sis_dashboard.js",
+            "edutek_management_cm/static/src/sis_dashboard.xml",
+            "edutek_management_cm/static/src/classe_config.scss",
+            "edutek_management_cm/static/src/classe_config.js",
+            "edutek_management_cm/static/src/classe_config.xml",
+            "edutek_management_cm/static/src/doc_templates.scss",
+            "edutek_management_cm/static/src/doc_templates.js",
+            "edutek_management_cm/static/src/doc_templates.xml",
+            "edutek_management_cm/static/src/registry.scss",
+            "edutek_management_cm/static/src/registry.js",
+            "edutek_management_cm/static/src/registry.xml",
+            "edutek_management_cm/static/src/edutek_modules_info.scss",
+            "edutek_management_cm/static/src/edutek_modules_info.js",
+            "edutek_management_cm/static/src/edutek_modules_info.xml",
+        ],
+    },
+    "installable": True,
+    "application": False,
+    "auto_install": True,
+    "license": "LGPL-3",
+}

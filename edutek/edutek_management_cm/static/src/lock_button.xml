@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+
+<t t-name="edutek_management_cm.SisLockButton">
+    <li class="o_nav_entry sis-lock-btn" t-on-click="lock" title="Verrouiller l'ecran EduTek">
+        <i class="fa fa-lock fa-fw"/>
+    </li>
+</t>
+
+</templates>

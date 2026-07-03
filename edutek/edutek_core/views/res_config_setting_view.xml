@@ -1,0 +1,27 @@
+<odoo>
+    <record id="res_config_settings_view_form_core" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.core</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="40" />
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="EduTek" string="EduTek"
+                    name="edutek_core"
+                    groups="edutek_core.group_op_back_office_admin"
+                    id="edutek_core_setting">
+                    <div name="edutek_core">
+                    </div>
+                </app>
+            </xpath>
+        </field>
+    </record>
+    <record id="edutek_config_settings_core_action" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_id" ref="res_config_settings_view_form_core" />
+        <field name="view_mode">form</field>
+        <field name="context">{'module' : 'edutek_core'}</field>
+    </record>
+</odoo>

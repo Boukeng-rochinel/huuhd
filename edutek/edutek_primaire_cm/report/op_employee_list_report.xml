@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_op_employee_list" model="ir.actions.report">
+        <field name="name">Liste du personnel</field>
+        <field name="model">op.employee.list.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">edutek_primaire_cm.report_employee_list_document</field>
+        <field name="report_file">edutek_primaire_cm.report_employee_list_document</field>
+        <field name="print_report_name">'Liste du personnel'</field>
+        <field name="paperformat_id" ref="paperformat_school_document"/>
+    </record>
+
+    <template id="report_employee_list_document">
+        <t t-call="web.html_container">
+            <div class="page">
+                <t t-call="edutek_primaire_cm.report_school_letterhead"/>
+
+                <t t-set="doc_title" t-value="'LISTE DU PERSONNEL'"/>
+                <t t-call="edutek_primaire_cm.report_school_doc_title"/>
+
+                <table style="width: 100%; border-collapse: collapse; font-size: 11px;">
+                    <t t-set="table_headers" t-value="['N°', 'Matricule', 'Nom', 'Fonction', 'Departement', 'Grade', 'Type de personnel']"/>
+                    <t t-call="edutek_primaire_cm.report_school_table_head"/>
+                    <tbody>
+                        <t t-foreach="employees" t-as="employee" t-key="employee.id">
+                            <tr t-att-style="'background: #f5f5f5;' if employee_index % 2 else ''">
+                                <td style="border: 1px solid #999; padding: 4px 6px; text-align: center;" t-esc="employee_index + 1"/>
+                                <td style="border: 1px solid #999; padding: 4px 6px;" t-esc="employee.matricule or ''"/>
+                                <td style="border: 1px solid #999; padding: 4px 6px;" t-esc="employee.name"/>
+                                <td style="border: 1px solid #999; padding: 4px 6px;" t-esc="employee.job_title or ''"/>
+                                <td style="border: 1px solid #999; padding: 4px 6px;" t-esc="employee.department_id.name or ''"/>
+                                <td style="border: 1px solid #999; padding: 4px 6px;" t-esc="employee.grade or ''"/>
+                                <td style="border: 1px solid #999; padding: 4px 6px;" t-esc="staff_type_labels.get(employee.staff_type, '')"/>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+
+                <p t-if="not employees" style="text-align: center; color: #6c757d; margin-top: 16px;">
+                    Aucun employe ne correspond a ces criteres.
+                </p>
+                <div t-else="" style="margin-top: 12px; font-size: 11px;">
+                    <strong>Effectif :</strong> <span t-esc="len(employees)"/>
+                </div>
+
+                <t t-call="edutek_primaire_cm.report_school_footer"/>
+            </div>
+        </t>
+    </template>
+
+</odoo>

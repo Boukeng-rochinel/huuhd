@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_op_student_list_wizard_form" model="ir.ui.view">
+        <field name="name">op.student.list.wizard.form</field>
+        <field name="model">op.student.list.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Liste des eleves">
+                <header>
+                    <button name="action_print_pdf" type="object"
+                            string="Imprimer (PDF)" class="btn-primary"/>
+                    <button name="action_export_xlsx" type="object"
+                            string="Exporter en Excel" class="btn-secondary"/>
+                </header>
+                <sheet>
+                    <div class="row">
+                        <div class="col-12 col-lg-5">
+                            <p class="text-muted">
+                                Imprime ou exporte la liste des eleves selon les criteres choisis.
+                            </p>
+                            <group string="Filtres">
+                                <field name="academic_year_id" options="{'no_create': True}"/>
+                                <field name="classe_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                                <field name="inscription_state"/>
+                                <field name="enrollment_type"/>
+                                <field name="teacher_id" options="{'no_create': True}"/>
+                            </group>
+                            <group string="Periode et responsable">
+                                <field name="date_from"/>
+                                <field name="date_to"/>
+                                <field name="created_by_id" options="{'no_create': True}"/>
+                            </group>
+                            <group string="Presentation">
+                                <field name="list_type"/>
+                            </group>
+                            <group string="Colonnes a inclure">
+                                <group>
+                                    <field name="show_matricule"/>
+                                    <field name="show_classe"/>
+                                    <field name="show_genre"/>
+                                </group>
+                                <group>
+                                    <field name="show_naissance"/>
+                                    <field name="show_age"/>
+                                    <field name="show_lieu_naissance"/>
+                                </group>
+                            </group>
+                        </div>
+                        <div class="col-12 col-lg-7">
+                            <h5>
+                                Apercu
+                                <span class="text-muted">
+                                    (<field name="preview_count" nolabel="1" class="d-inline"/> eleve(s))
+                                </span>
+                            </h5>
+                            <field name="preview_student_ids" nolabel="1">
+                                <list>
+                                    <field name="gr_no" string="Matricule"/>
+                                    <field name="name"/>
+                                    <field name="classe_id"/>
+                                    <field name="gender"/>
+                                </list>
+                            </field>
+                        </div>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_op_student_list_wizard" model="ir.actions.act_window">
+        <field name="name">Listes des eleves</field>
+        <field name="res_model">op.student.list.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+    </record>
+
+    <!-- Menu : EduTek > Reporting > Listes des eleves -->
+    <menuitem id="menu_op_student_list_wizard"
+              name="Listes des eleves"
+              parent="edutek_core.menu_op_report_main"
+              action="action_op_student_list_wizard"
+              sequence="10"
+              groups="edutek_core.group_op_faculty"/>
+
+</odoo>

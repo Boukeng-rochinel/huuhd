@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_op_academic_year_close_wizard_form" model="ir.ui.view">
+        <field name="name">op.academic.year.close.wizard.form</field>
+        <field name="model">op.academic.year.close.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Cloture d'annee academique">
+                <header>
+                    <button name="action_confirm" string="Confirmer la cloture" type="object"
+                            class="btn-primary"
+                            confirm="Cette operation va creer l'annee suivante, promouvoir tous les eleves actifs et generer leurs frais. Continuer ?"/>
+                </header>
+                <sheet>
+                    <p class="text-muted">
+                        Cree l'annee suivante (si elle n'existe pas) et, pour chaque eleve actif
+                        de l'annee choisie, CLONE son dossier sur un nouveau dossier (nouvelle
+                        classe de niveau superieur, nouveau matricule - les redoublants restent
+                        au meme niveau, dans une classe partagee) : le dossier de cette annee
+                        n'est jamais modifie (classe, frais, notes, bulletins inchanges) et reste
+                        consultable tel quel en basculant sur cette annee academique. Les frais de
+                        la nouvelle annee sont generes automatiquement sur le nouveau dossier (via
+                        les memes regles que d'habitude), et ses termes academiques sont crees.
+                    </p>
+                    <group>
+                        <group>
+                            <field name="academic_year_id" options="{'no_create': True}"/>
+                        </group>
+                        <group>
+                            <field name="next_year_name"/>
+                            <field name="next_year_start_date"/>
+                            <field name="next_year_end_date"/>
+                        </group>
+                    </group>
+                    <separator string="Apercu"/>
+                    <field name="preview" widget="text" readonly="1" nolabel="1"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_op_academic_year_close_wizard" model="ir.actions.act_window">
+        <field name="name">Cloturer une annee academique</field>
+        <field name="res_model">op.academic.year.close.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_op_academic_year_close_wizard"
+              name="Cloturer une annee academique"
+              parent="edutek_core.menu_op_general_main"
+              sequence="52"
+              action="action_op_academic_year_close_wizard"
+              groups="edutek_core.group_op_back_office_admin"/>
+
+</odoo>

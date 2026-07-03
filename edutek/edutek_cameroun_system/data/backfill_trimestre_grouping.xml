@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Rejoue a chaque mise a jour du module : regroupe par 2 sous 3
+         nouveaux Trimestres toute annee academique encore au format "6
+         Sequences a plat" (cree par une version anterieure de ce module,
+         avant l'introduction de la hierarchie Trimestre/Sequence).
+         Idempotent - ignore toute annee deja regroupee ou de structure
+         differente. -->
+    <function model="op.academic.year" name="_backfill_trimestre_grouping"/>
+
+</odoo>

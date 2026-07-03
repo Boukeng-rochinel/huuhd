@@ -1,0 +1,335 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* openeducat_maternelle_cm
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+"Language: en_US\n"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model.fields.selection,name:openeducat_maternelle_cm.selection__op_classe__level__ps
+msgid "Petite Section"
+msgstr "Nursery Section"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model.fields.selection,name:openeducat_maternelle_cm.selection__op_classe__level__ms
+msgid "Moyenne Section"
+msgstr "Middle Section"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model.fields.selection,name:openeducat_maternelle_cm.selection__op_classe__level__gs
+msgid "Grande Section"
+msgstr "Senior Section"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_classe__skill_count
+msgid "Nb evaluations"
+msgstr "Number of Assessments"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_classe__carnet_count
+msgid "Nb carnets"
+msgstr "Number of Progress Books"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model,name:openeducat_maternelle_cm.model_op_student_skill
+msgid "Evaluation par competences (maternelle)"
+msgstr "Skills assessment (nursery)"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_student_skill__student_id
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_carnet__student_id
+msgid "Eleve"
+msgstr "Student"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_student_skill__classe_id
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_carnet__classe_id
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_student_skill_generate_wizard__classe_id
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_carnet_generate_wizard__classe_id
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.view_op_student_skill_search
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.view_op_carnet_search
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.report_carnet_document
+msgid "Classe"
+msgstr "Class"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_student_skill__academic_term_id
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_carnet__academic_term_id
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_student_skill_generate_wizard__academic_term_id
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_carnet_generate_wizard__academic_term_id
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.view_op_student_skill_search
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.view_op_carnet_search
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.report_carnet_document
+msgid "Trimestre"
+msgstr "Term"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_student_skill__academic_year_id
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_carnet__academic_year_id
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.report_carnet_document
+msgid "Annee academique"
+msgstr "Academic Year"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_student_skill__classe_subject_id
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_student_skill_generate_wizard__classe_subject_id
+msgid "Domaine d'apprentissage"
+msgstr "Learning Area"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_student_skill__subject_id
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_carnet_line__subject_id
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.view_op_student_skill_search
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.report_carnet_document
+msgid "Domaine"
+msgstr "Learning Area"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_student_skill__niveau
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_carnet_line__niveau
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.report_carnet_document
+msgid "Niveau"
+msgstr "Level"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model.fields.selection,name:openeducat_maternelle_cm.selection__op_student_skill__niveau__acquis
+#: model:ir.model.fields.selection,name:openeducat_maternelle_cm.selection__op_carnet_line__niveau__acquis
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.report_carnet_document
+msgid "Acquis"
+msgstr "Mastered"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model.fields.selection,name:openeducat_maternelle_cm.selection__op_student_skill__niveau__en_cours
+#: model:ir.model.fields.selection,name:openeducat_maternelle_cm.selection__op_carnet_line__niveau__en_cours
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.report_carnet_document
+msgid "En cours d'acquisition"
+msgstr "In Progress"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model.fields.selection,name:openeducat_maternelle_cm.selection__op_student_skill__niveau__non_acquis
+#: model:ir.model.fields.selection,name:openeducat_maternelle_cm.selection__op_carnet_line__niveau__non_acquis
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.report_carnet_document
+msgid "Non acquis"
+msgstr "Not Mastered"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_student_skill__observation
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_carnet_line__observation
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.report_carnet_document
+msgid "Observation"
+msgstr "Comment"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model,name:openeducat_maternelle_cm.model_op_carnet
+msgid "Carnet de suivi (maternelle)"
+msgstr "Progress book (nursery)"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_carnet__line_ids
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.view_op_carnet_form
+msgid "Domaines evalues"
+msgstr "Assessed Learning Areas"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_carnet__assiduite
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.report_carnet_document
+msgid "Assiduite :"
+msgstr "Attendance:"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_carnet__assiduite
+msgid "Assiduite"
+msgstr "Attendance"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model.fields.selection,name:openeducat_maternelle_cm.selection__op_carnet__assiduite__tres_bonne
+msgid "Tres bonne"
+msgstr "Very Good"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model.fields.selection,name:openeducat_maternelle_cm.selection__op_carnet__assiduite__bonne
+msgid "Bonne"
+msgstr "Good"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model.fields.selection,name:openeducat_maternelle_cm.selection__op_carnet__assiduite__irreguliere
+msgid "Irreguliere"
+msgstr "Irregular"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_carnet__absences_justifiees
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.report_carnet_document
+msgid "Absences justifiees :"
+msgstr "Excused Absences:"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_carnet__absences_justifiees
+msgid "Absences justifiees"
+msgstr "Excused Absences"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_carnet__absences_injustifiees
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.report_carnet_document
+msgid "Absences injustifiees :"
+msgstr "Unexcused Absences:"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_carnet__absences_injustifiees
+msgid "Absences injustifiees"
+msgstr "Unexcused Absences"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_carnet__observation_generale
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.view_op_carnet_form
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.report_carnet_document
+msgid "Observation generale :"
+msgstr "General Remarks:"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_carnet__observation_generale
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.view_op_carnet_form
+msgid "Observation generale"
+msgstr "General Remarks"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_carnet__date_generation
+msgid "Date de generation"
+msgstr "Generation Date"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model,name:openeducat_maternelle_cm.model_op_carnet_line
+msgid "Ligne de carnet (evaluation par domaine)"
+msgstr "Progress book line (assessment by learning area)"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_carnet_line__carnet_id
+msgid "Carnet"
+msgstr "Progress Book"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model.fields,field_description:openeducat_maternelle_cm.field_op_carnet_line__sequence
+msgid "Sequence"
+msgstr "Sequence"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model,name:openeducat_maternelle_cm.model_op_student_skill_generate_wizard
+msgid "Preparer l'evaluation des acquis pour une classe"
+msgstr "Prepare skills assessment for a class"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.model,name:openeducat_maternelle_cm.model_op_carnet_generate_wizard
+msgid "Generer les carnets de suivi d'une classe"
+msgstr "Generate progress books for a class"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.actions.act_window,name:openeducat_maternelle_cm.action_view_skills
+#: model:ir.actions.act_window,name:openeducat_maternelle_cm.action_op_student_skill
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.view_op_student_skill_list
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.view_op_student_skill_search
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.view_op_classe_form_inherit_maternelle
+#: model:ir.ui.menu,name:openeducat_maternelle_cm.menu_op_student_skill
+msgid "Evaluations"
+msgstr "Assessments"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.actions.act_window,name:openeducat_maternelle_cm.action_view_carnets
+#: model:ir.actions.act_window,name:openeducat_maternelle_cm.action_op_carnet
+#: model:ir.actions.report,name:openeducat_maternelle_cm.action_report_op_carnet
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.view_op_carnet_list
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.view_op_carnet_search
+#: model:ir.ui.menu,name:openeducat_maternelle_cm.menu_op_carnet
+msgid "Carnets de suivi"
+msgstr "Progress Books"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.view_op_classe_form_inherit_maternelle
+msgid "Carnets"
+msgstr "Progress Books"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.actions.act_window,name:openeducat_maternelle_cm.action_open_skill_generate_wizard
+#: model:ir.actions.act_window,name:openeducat_maternelle_cm.action_op_student_skill_generate_wizard
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.view_op_classe_form_inherit_maternelle
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.view_op_student_skill_generate_wizard_form
+#: model:ir.ui.menu,name:openeducat_maternelle_cm.menu_op_student_skill_generate
+msgid "Evaluer les acquis"
+msgstr "Assess Skills"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.actions.act_window,name:openeducat_maternelle_cm.action_open_carnet_generate_wizard
+#: model:ir.actions.act_window,name:openeducat_maternelle_cm.action_op_carnet_generate_wizard
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.view_op_classe_form_inherit_maternelle
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.view_op_carnet_generate_wizard_form
+#: model:ir.ui.menu,name:openeducat_maternelle_cm.menu_op_carnet_generate
+msgid "Generer les carnets"
+msgstr "Generate Progress Books"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.view_op_student_skill_generate_wizard_form
+msgid "Preparer l'evaluation"
+msgstr "Prepare Assessment"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.view_op_carnet_generate_wizard_form
+msgid "Generer"
+msgstr "Generate"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.view_op_student_skill_generate_wizard_form
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.view_op_carnet_generate_wizard_form
+msgid "Annuler"
+msgstr "Cancel"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.view_op_carnet_form
+msgid "Carnet de suivi"
+msgstr "Progress Book"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.view_op_carnet_form
+msgid "Imprimer"
+msgstr "Print"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.report_carnet_document
+msgid "Eleve :"
+msgstr "Student:"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.report_carnet_document
+msgid "Classe :"
+msgstr "Class:"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.report_carnet_document
+msgid "Annee academique :"
+msgstr "Academic Year:"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.report_carnet_document
+msgid "Trimestre :"
+msgstr "Term:"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.report_carnet_document
+msgid "L'Enseignant(e)"
+msgstr "The Teacher"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.report_carnet_document
+msgid "Le Directeur"
+msgstr "The Headteacher"
+
+#. module: openeducat_maternelle_cm
+#: model:ir.ui.view,arch_db:openeducat_maternelle_cm.report_carnet_document
+msgid "Le Parent"
+msgstr "Parent"

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_op_student_insolvable_wizard_form" model="ir.ui.view">
+        <field name="name">op.student.insolvable.wizard.form</field>
+        <field name="model">op.student.insolvable.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Etat des insolvables">
+                <header>
+                    <button name="action_print_pdf" type="object"
+                            string="Imprimer (PDF)" class="btn-primary"/>
+                    <button name="action_export_xlsx" type="object"
+                            string="Exporter en Excel" class="btn-secondary"/>
+                </header>
+                <sheet>
+                    <div class="row">
+                        <div class="col-12 col-lg-5">
+                            <p class="text-muted">
+                                Liste les eleves ayant un reste a payer sur leurs
+                                frais scolaires, selon les criteres choisis.
+                            </p>
+                            <group string="Filtres">
+                                <field name="academic_year_id" options="{'no_create': True}"/>
+                                <field name="classe_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                                <field name="currency_id" invisible="1"/>
+                                <field name="montant_seuil"/>
+                            </group>
+                            <group string="Portee">
+                                <field name="scope"/>
+                                <field name="academic_term_id" options="{'no_create': True}"
+                                       invisible="scope == 'annee'"
+                                       required="scope != 'annee'"/>
+                            </group>
+                        </div>
+                        <div class="col-12 col-lg-7">
+                            <h5>
+                                Apercu
+                                <span class="text-muted">
+                                    (<field name="preview_count" nolabel="1" class="d-inline"/> eleve(s))
+                                </span>
+                            </h5>
+                            <field name="preview_html" nolabel="1"/>
+                        </div>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_op_student_insolvable_wizard" model="ir.actions.act_window">
+        <field name="name">Etat des insolvables</field>
+        <field name="res_model">op.student.insolvable.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+    </record>
+
+    <menuitem id="menu_op_student_insolvable"
+              name="Etat des insolvables"
+              parent="edutek_primaire_cm.menu_op_frais"
+              action="action_op_student_insolvable_wizard"
+              sequence="50"/>
+
+</odoo>

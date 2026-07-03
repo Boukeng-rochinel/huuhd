@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_op_end_cycle_certificate" model="ir.actions.report">
+        <field name="name">Certificat de promotion</field>
+        <field name="model">op.end.cycle.certificate</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">edutek_management_cm.report_promotion_cert</field>
+        <field name="report_file">edutek_management_cm.report_promotion_cert</field>
+        <field name="print_report_name">'Certificat - %s' % (object.student_id.name)</field>
+        <field name="paperformat_id" ref="edutek_primaire_cm.paperformat_school_certificate"/>
+    </record>
+
+    <!-- Contenu d'un certificat de promotion, partage entre la variante
+         "1 par page" (report_promotion_cert) et "2 par page"
+         (report_promotion_cert_2up) - seul le cadre qui l'entoure differe. -->
+    <template id="report_promotion_cert_body">
+        <h5 class="text-center" style="color: #1b5e20; margin-top: -4px;"
+            t-esc="cycle_label_en.get(o.classe_origine_id.cycle, '') if is_en else cycle_label_fr.get(o.classe_origine_id.cycle, '')"/>
+
+        <div class="text-center mt-4" style="margin: 14px 0 4px;">
+            <span style="font-family: 'Brush Script MT', 'Lucida Handwriting', cursive;
+                         font-size: 2.2em; font-weight: 600; color: #6a1b9a;
+                         letter-spacing: 0.5px; border-bottom: 1px dotted #999;
+                         display: inline-block; padding: 0 40px 4px;"
+                  t-esc="' '.join((o.student_id.name or '').split())"/>
+        </div>
+
+        <t t-if="not is_en">
+            <p class="text-center">
+                Ne(e), le
+                <strong t-if="o.student_id.birth_date" t-esc="o.student_id.birth_date" t-options='{"widget": "date"}'/>
+                a <strong t-esc="o.student_id.birth_place or ''"/>
+            </p>
+            <p class="text-center">
+                Eleve inscrit(e) en classe de <strong t-esc="o.classe_origine_id.display_name"/>
+                pour le compte de l'annee scolaire <strong t-esc="o.academic_year_id.name"/>,
+            </p>
+            <p class="text-center" t-if="o.is_cycle_end">
+                a termine avec brio le cycle
+                <strong t-esc="cycle_label_fr.get(o.classe_origine_id.cycle, '')"/>
+                et est admis(e) au cycle
+                <strong t-esc="o.classe_destination_id.display_name or cycle_label_fr.get(o.cycle_destination, '')"/>.
+            </p>
+            <p class="text-center" t-else="">
+                a termine avec brio cette classe et est admis(e) en classe de
+                <strong t-esc="o.classe_destination_id.display_name or ''"/>.
+            </p>
+            <p class="text-center">
+                Le present document lui est delivre pour servir et valoir ce que de droit.
+            </p>
+        </t>
+        <t t-else="">
+            <p class="text-center">
+                Born on
+                <strong t-if="o.student_id.birth_date" t-esc="o.student_id.birth_date" t-options='{"widget": "date"}'/>
+                at <strong t-esc="o.student_id.birth_place or ''"/>
+            </p>
+            <p class="text-center">
+                Registered in <strong t-esc="o.classe_origine_id.display_name"/>
+                during the <strong t-esc="o.academic_year_id.name"/> school year,
+            </p>
+            <p class="text-center" t-if="o.is_cycle_end">
+                Has successfully completed
+                <strong t-esc="cycle_label_en.get(o.classe_origine_id.cycle, '')"/> School
+                and is admitted in
+                <strong t-esc="o.classe_destination_id.display_name or cycle_label_en.get(o.cycle_destination, '')"/>.
+            </p>
+            <p class="text-center" t-else="">
+                Has successfully completed this class and is admitted in
+                <strong t-esc="o.classe_destination_id.display_name or ''"/>.
+            </p>
+            <p class="text-center">
+                This attestation is issued to serve the purpose for which it is intended.
+            </p>
+        </t>
+
+        <div class="d-flex justify-content-between mt-5">
+            <div>
+                <t t-if="not is_en">Fait a <span t-esc="company.city or ''"/>, le</t>
+                <t t-else=""><span t-esc="company.city or ''"/>, the</t>
+                <strong t-esc="o.date_delivrance" t-options='{"widget": "date"}'/>
+            </div>
+            <div class="text-center">
+                <strong t-esc="'LA DIRECTION' if not is_en else 'THE HEADTEACHER'"/>
+            </div>
+        </div>
+    </template>
+
+    <template id="report_promotion_cert">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="is_en" t-value="o.classe_origine_id.is_anglophone"/>
+                <t t-set="doc_title" t-value="'ATTESTATION OF END OF STUDIES' if is_en else 'CERTIFICAT DE PROMOTION'"/>
+                <t t-call="edutek_primaire_cm.report_school_certificate_frame_ornate">
+                    <t t-call="edutek_management_cm.report_promotion_cert_body"/>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <!-- Variante "2 par page" : meme contenu, cadre plus compact, deux
+         certificats par feuille A4 portrait (cf. action ci-dessous). -->
+    <record id="action_report_op_end_cycle_certificate_2up" model="ir.actions.report">
+        <field name="name">Certificat de promotion (2 par page)</field>
+        <field name="model">op.end.cycle.certificate</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">edutek_management_cm.report_promotion_cert_2up</field>
+        <field name="report_file">edutek_management_cm.report_promotion_cert_2up</field>
+        <field name="print_report_name">'Certificats (2 par page)'</field>
+        <field name="paperformat_id" ref="edutek_primaire_cm.paperformat_school_certificate_2up"/>
+    </record>
+
+    <template id="report_promotion_cert_2up">
+        <t t-call="web.html_container">
+            <t t-foreach="pairs" t-as="pair">
+                <div class="page" style="page-break-after: always;">
+                    <t t-foreach="pair" t-as="o">
+                        <t t-if="o">
+                            <t t-set="is_en" t-value="o.classe_origine_id.is_anglophone"/>
+                            <t t-set="doc_title" t-value="'ATTESTATION OF END OF STUDIES' if is_en else 'CERTIFICAT DE PROMOTION'"/>
+                            <t t-call="edutek_primaire_cm.report_school_certificate_frame_ornate_2up">
+                                <t t-call="edutek_management_cm.report_promotion_cert_body"/>
+                            </t>
+                        </t>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

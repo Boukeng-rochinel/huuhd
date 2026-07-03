@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Rejoue a chaque mise a jour du module : cree les types de frais
+         standards manquants (Inscription Scolarite, Premiere/Deuxieme
+         Tranche Pension) et pre-remplit toute classe qui n'a pas encore
+         ces lignes. Idempotent - ne duplique jamais une ligne existante. -->
+    <function model="op.classe" name="_ensure_default_fee_lines_all_classes"/>
+
+</odoo>

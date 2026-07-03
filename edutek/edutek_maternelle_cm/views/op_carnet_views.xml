@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ══════════════════════════════════════════
+         KANBAN VIEW
+    ══════════════════════════════════════════ -->
+    <record id="view_op_carnet_kanban" model="ir.ui.view">
+        <field name="name">op.carnet.kanban</field>
+        <field name="model">op.carnet</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="assiduite"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_global_click p-2">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <strong class="o_kanban_record_title">
+                                    <field name="student_id"/>
+                                </strong>
+                                <span class="badge text-bg-primary">
+                                    <field name="assiduite"/>
+                                </span>
+                            </div>
+                            <div class="text-muted">
+                                <field name="classe_id"/> - <field name="academic_term_id"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- ══════════════════════════════════════════
+         LIST VIEW
+    ══════════════════════════════════════════ -->
+    <record id="view_op_carnet_list" model="ir.ui.view">
+        <field name="name">op.carnet.list</field>
+        <field name="model">op.carnet</field>
+        <field name="arch" type="xml">
+            <list string="Carnets de suivi">
+                <field name="classe_id" optional="show"/>
+                <field name="academic_term_id"/>
+                <field name="student_id"/>
+                <field name="assiduite"/>
+                <field name="absences_justifiees" optional="hide"/>
+                <field name="absences_injustifiees" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_op_carnet_search" model="ir.ui.view">
+        <field name="name">op.carnet.search</field>
+        <field name="model">op.carnet</field>
+        <field name="arch" type="xml">
+            <search string="Carnets de suivi">
+                <field name="student_id"/>
+                <field name="classe_id"/>
+                <field name="academic_term_id"/>
+                <separator/>
+                <filter name="filter_term1" string="Periode 1"
+                        domain="[('academic_term_id.sequence','=',1)]"/>
+                <filter name="filter_term2" string="Periode 2"
+                        domain="[('academic_term_id.sequence','=',2)]"/>
+                <filter name="filter_term3" string="Periode 3"
+                        domain="[('academic_term_id.sequence','=',3)]"/>
+                <filter name="filter_term4" string="Periode 4"
+                        domain="[('academic_term_id.sequence','=',4)]"/>
+                <filter name="filter_term5" string="Periode 5"
+                        domain="[('academic_term_id.sequence','=',5)]"/>
+                <filter name="filter_term6" string="Periode 6"
+                        domain="[('academic_term_id.sequence','=',6)]"/>
+                <group>
+                    <filter name="group_classe" string="Classe" context="{'group_by': 'classe_id'}"/>
+                    <filter name="group_term" string="Periode" context="{'group_by': 'academic_term_id'}"/>
+                    <filter name="group_assiduite" string="Assiduite" context="{'group_by': 'assiduite'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ══════════════════════════════════════════
+         FORM VIEW
+    ══════════════════════════════════════════ -->
+    <record id="view_op_carnet_form" model="ir.ui.view">
+        <field name="name">op.carnet.form</field>
+        <field name="model">op.carnet</field>
+        <field name="arch" type="xml">
+            <form string="Carnet de suivi">
+                <header>
+                    <button name="action_print_carnet" string="Imprimer"
+                            type="object" class="btn-primary"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="student_id" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="classe_id" readonly="1"/>
+                            <field name="academic_term_id" readonly="1"/>
+                            <field name="academic_year_id" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="assiduite"/>
+                            <field name="absences_justifiees"/>
+                            <field name="absences_injustifiees"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Domaines evalues" name="domaines">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="subject_id"/>
+                                    <field name="niveau"/>
+                                    <field name="observation"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Observation generale" name="observation">
+                            <field name="observation_generale" nolabel="1"/>
+                            <field name="date_generation" readonly="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ══════════════════════════════════════════
+         WIZARD : Generer les carnets
+    ══════════════════════════════════════════ -->
+    <record id="view_op_carnet_generate_wizard_form" model="ir.ui.view">
+        <field name="name">op.carnet.generate.wizard.form</field>
+        <field name="model">op.carnet.generate.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Generer les carnets">
+                <group>
+                    <field name="classe_id" options="{'no_create': True}"/>
+                    <field name="academic_year_id" invisible="1"/>
+                    <field name="academic_term_id" options="{'no_create': True}"/>
+                </group>
+                <footer>
+                    <button name="action_generate" type="object"
+                            string="Generer" class="btn-primary"/>
+                    <button string="Annuler" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_op_carnet_generate_wizard" model="ir.actions.act_window">
+        <field name="name">Generer les carnets</field>
+        <field name="res_model">op.carnet.generate.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- ══════════════════════════════════════════
+         ACTION
+    ══════════════════════════════════════════ -->
+    <record id="action_op_carnet" model="ir.actions.act_window">
+        <field name="name">Carnets de suivi</field>
+        <field name="res_model">op.carnet</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="view_op_carnet_search"/>
+        <field name="context">{'search_default_group_classe': 1, 'search_default_group_term': 1}</field>
+    </record>
+
+    <!-- ══════════════════════════════════════════
+         MENUS
+    ══════════════════════════════════════════ -->
+    <menuitem id="menu_op_carnet_generate"
+              name="Generer les carnets (Maternelle)"
+              parent="edutek_primaire_cm.menu_op_pedagogie"
+              action="action_op_carnet_generate_wizard"
+              sequence="70"
+              groups="edutek_core.group_op_back_office_admin"/>
+
+    <menuitem id="menu_op_carnet"
+              name="Carnets de suivi (Maternelle)"
+              parent="edutek_primaire_cm.menu_op_pedagogie"
+              action="action_op_carnet"
+              sequence="80"
+              groups="edutek_core.group_op_faculty"/>
+
+</odoo>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+
+<t t-name="edutek_management_cm.DocTemplates">
+    <div class="dt-root">
+        <div t-if="state.loading" class="dt-loading">
+            <i class="fa fa-spinner fa-spin fa-2x"/>
+        </div>
+        <div t-else="" class="dt-layout">
+
+            <div class="dt-list-pane">
+                <div class="dt-list-header">Type de message / document</div>
+                <div class="dt-list">
+                    <t t-foreach="state.types" t-as="docType" t-key="docType.id">
+                        <div class="dt-list-row"
+                             t-att-class="docType.id === state.selectedTypeId ? 'dt-list-row--active' : ''"
+                             t-on-click="() => this.selectType(docType.id)">
+                            <span t-esc="docType.name"/>
+                            <span t-if="docType.channel === 'sms'" class="dt-sms-badge">SMS</span>
+                        </div>
+                    </t>
+                </div>
+            </div>
+
+            <div class="dt-detail-pane">
+                <div t-if="!selectedType" class="dt-empty dt-empty--detail">
+                    Selectionnez un type de document a gauche.
+                </div>
+                <t t-else="">
+                    <div class="dt-detail-title">
+                        Modele pour : <strong t-esc="selectedType.name"/>
+                    </div>
+
+                    <div class="dt-section">
+                        <div class="dt-section-title">Modele initial</div>
+                        <div class="dt-initial-buttons">
+                            <button class="btn btn-sm btn-primary" t-on-click="() => this.showPreview('fr')">
+                                Afficher le modele initial en Francais
+                            </button>
+                            <button class="btn btn-sm btn-primary" t-on-click="() => this.showPreview('en')">
+                                Afficher le modele initial en Anglais
+                            </button>
+                        </div>
+                        <div t-if="state.previewLang === 'fr'" class="dt-preview" t-out="selectedType.default_body_fr"/>
+                        <div t-if="state.previewLang === 'en'" class="dt-preview" t-out="selectedType.default_body_en"/>
+                    </div>
+
+                    <div class="dt-section">
+                        <div class="dt-section-header">
+                            <div class="dt-section-title">Modeles personnalises</div>
+                            <button class="dt-btn-new" t-on-click="createTemplate">
+                                <i class="fa fa-plus"/> Nouveau
+                            </button>
+                        </div>
+
+                        <table t-if="templatesForSelectedType.length" class="dt-template-table">
+                            <thead>
+                                <tr>
+                                    <th>Intitule du modele personnalise</th>
+                                    <th>Langue</th>
+                                    <th/>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="templatesForSelectedType" t-as="tmpl" t-key="tmpl.id">
+                                    <tr>
+                                        <td t-esc="tmpl.name"/>
+                                        <td t-esc="tmpl.lang || '-'"/>
+                                        <td class="dt-template-actions">
+                                            <button title="Editer le modele" t-on-click="() => this.openTemplateForm(tmpl.id, tmpl.is_sms)">
+                                                <i class="fa fa-pencil"/>
+                                            </button>
+                                            <button title="Dupliquer le modele" t-on-click="() => this.duplicateTemplate(tmpl)">
+                                                <i class="fa fa-copy"/>
+                                            </button>
+                                            <button title="Utiliser ce modele" t-on-click="() => this.useTemplate(tmpl)">
+                                                <i class="fa fa-paper-plane"/>
+                                            </button>
+                                            <button title="Supprimer le modele" class="dt-btn-danger" t-on-click="() => this.deleteTemplate(tmpl)">
+                                                <i class="fa fa-trash"/>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                        <div t-else="" class="dt-empty">Aucun modele personnalise pour ce type.</div>
+                    </div>
+                </t>
+            </div>
+
+        </div>
+    </div>
+</t>
+
+</templates>

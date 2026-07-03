@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_op_classe_fee_bilan_wizard_form" model="ir.ui.view">
+        <field name="name">op.classe.fee.bilan.wizard.form</field>
+        <field name="model">op.classe.fee.bilan.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Bilan des frais par classe">
+                <sheet>
+                    <p class="text-muted">
+                        Génère un tableau récapitulatif des frais par classe :
+                        montant dû, déjà payé, reste à payer et taux de
+                        recouvrement, avec optionnellement le détail par type
+                        de frais.
+                    </p>
+                    <group>
+                        <group string="Filtres">
+                            <field name="academic_year_id" options="{'no_create': True}"/>
+                            <field name="classe_ids" widget="many2many_tags"
+                                   options="{'no_create': True}"
+                                   placeholder="Toutes les classes si vide"/>
+                            <field name="fee_type_ids" widget="many2many_tags"
+                                   options="{'no_create': True}"
+                                   placeholder="Tous les types si vide"/>
+                        </group>
+                        <group string="Options">
+                            <field name="show_detail_by_type"/>
+                            <field name="show_insolvable_only"/>
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_print_pdf" type="object"
+                            string="Imprimer (PDF)" class="btn-primary"/>
+                    <button string="Annuler" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_op_classe_fee_bilan_wizard" model="ir.actions.act_window">
+        <field name="name">Bilan des frais par classe</field>
+        <field name="res_model">op.classe.fee.bilan.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_op_classe_fee_bilan"
+              name="Bilan des frais par classe"
+              parent="menu_op_frais"
+              action="action_op_classe_fee_bilan_wizard"
+              sequence="50"
+              groups="edutek_core.group_op_back_office_admin"/>
+
+</odoo>

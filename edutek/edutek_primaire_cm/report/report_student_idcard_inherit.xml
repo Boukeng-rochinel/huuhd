@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- La carte est un petit format fixe (440x320px) imprime sans en-tete
+         maison : les marges par defaut de base.paperformat_euro (40mm/32mm,
+         prevues pour l'en-tete/pied de page standard d'Odoo) la repoussaient
+         tres bas sur une page A4 par ailleurs vide. -->
+    <record id="edutek_core.action_report_student_idcard" model="ir.actions.report">
+        <field name="paperformat_id" ref="paperformat_school_document"/>
+    </record>
+
+    <template id="report_student_idcard_inherit_cameroun"
+              inherit_id="edutek_core.report_student_idcard">
+        <xpath expr="//img[@t-if='o.image_1920']" position="attributes">
+            <attribute name="t-if">o.image_1920 and show_photo</attribute>
+        </xpath>
+    </template>
+
+</odoo>

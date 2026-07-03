@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_op_history_repair_wizard_form" model="ir.ui.view">
+        <field name="name">op.history.repair.wizard.form</field>
+        <field name="model">op.history.repair.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Reparation des references de classe historiques">
+                <header>
+                    <button name="action_analyze" string="Analyser (sans rien modifier)"
+                            type="object" class="btn-secondary"/>
+                    <button name="action_repair" string="Reparer" type="object"
+                            class="btn-primary"
+                            confirm="Cette action va corriger en base le champ Classe de tous les frais/bulletins/notes/carnets/evaluations dont l'historique a ete altere (d'apres l'historique d'inscription de chaque eleve). Continuer ?"/>
+                </header>
+                <sheet>
+                    <p class="text-muted">
+                        Outil de reparation ponctuel : certains frais, bulletins, notes,
+                        carnets et evaluations avaient leur champ "Classe" lie en direct a
+                        la classe ACTUELLE de l'eleve plutot qu'a sa classe au moment de
+                        leur creation. Tout changement de classe (notamment lors d'une
+                        cloture d'annee academique) reecrivait alors silencieusement cette
+                        information pour les enregistrements passes. Cet outil restaure la
+                        bonne classe historique a partir de l'historique d'inscription de
+                        chaque eleve (lui, jamais affecte par ce probleme).
+                        Cliquez d'abord sur "Analyser" pour voir l'ampleur du probleme sans
+                        rien modifier, puis "Reparer" pour appliquer la correction.
+                    </p>
+                    <field name="report" widget="text" readonly="1" nolabel="1"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_op_history_repair_wizard" model="ir.actions.act_window">
+        <field name="name">Reparer l'historique des classes</field>
+        <field name="res_model">op.history.repair.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_op_history_repair_wizard"
+              name="Reparer l'historique des classes"
+              parent="edutek_core.menu_op_general_main"
+              sequence="53"
+              action="action_op_history_repair_wizard"
+              groups="edutek_core.group_op_back_office_admin,base.group_no_one"/>
+
+</odoo>

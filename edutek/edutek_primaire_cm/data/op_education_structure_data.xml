@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <!-- ══════════════════════════════════════════
+         Cycles (communs a tous les modules SIS, meme
+         si seul edutek_primaire_cm est installe).
+    ══════════════════════════════════════════ -->
+    <record id="op_education_cycle_maternelle" model="op.education.cycle">
+        <field name="name">Maternelle</field>
+        <field name="code">maternelle</field>
+        <field name="sequence">10</field>
+    </record>
+    <record id="op_education_cycle_primaire" model="op.education.cycle">
+        <field name="name">Primaire</field>
+        <field name="code">primaire</field>
+        <field name="sequence">20</field>
+    </record>
+    <record id="op_education_cycle_secondaire" model="op.education.cycle">
+        <field name="name">Secondaire</field>
+        <field name="code">secondaire</field>
+        <field name="sequence">30</field>
+    </record>
+
+    <!-- ══════════════════════════════════════════
+         Sections / sous-systemes.
+    ══════════════════════════════════════════ -->
+    <record id="op_education_section_francophone" model="op.education.section">
+        <field name="name">Francophone</field>
+        <field name="code">francophone</field>
+        <field name="sequence">10</field>
+    </record>
+    <record id="op_education_section_anglophone" model="op.education.section">
+        <field name="name">Anglophone</field>
+        <field name="code">anglophone</field>
+        <field name="sequence">20</field>
+    </record>
+
+    <!-- ══════════════════════════════════════════
+         Niveaux du primaire (francophone + anglophone).
+         Les codes reprennent exactement les valeurs deja
+         stockees sur les classes existantes - aucune
+         migration de donnees necessaire.
+    ══════════════════════════════════════════ -->
+    <record id="op_education_level_sil" model="op.education.level">
+        <field name="name">SIL</field>
+        <field name="code">sil</field>
+        <field name="sequence">10</field>
+        <field name="cycle_id" ref="op_education_cycle_primaire"/>
+        <field name="section_id" ref="op_education_section_francophone"/>
+    </record>
+    <record id="op_education_level_cp" model="op.education.level">
+        <field name="name">CP</field>
+        <field name="code">cp</field>
+        <field name="sequence">11</field>
+        <field name="cycle_id" ref="op_education_cycle_primaire"/>
+        <field name="section_id" ref="op_education_section_francophone"/>
+    </record>
+    <record id="op_education_level_ce1" model="op.education.level">
+        <field name="name">CE1</field>
+        <field name="code">ce1</field>
+        <field name="sequence">12</field>
+        <field name="cycle_id" ref="op_education_cycle_primaire"/>
+        <field name="section_id" ref="op_education_section_francophone"/>
+    </record>
+    <record id="op_education_level_ce2" model="op.education.level">
+        <field name="name">CE2</field>
+        <field name="code">ce2</field>
+        <field name="sequence">13</field>
+        <field name="cycle_id" ref="op_education_cycle_primaire"/>
+        <field name="section_id" ref="op_education_section_francophone"/>
+    </record>
+    <record id="op_education_level_cm1" model="op.education.level">
+        <field name="name">CM1</field>
+        <field name="code">cm1</field>
+        <field name="sequence">14</field>
+        <field name="cycle_id" ref="op_education_cycle_primaire"/>
+        <field name="section_id" ref="op_education_section_francophone"/>
+    </record>
+    <record id="op_education_level_cm2" model="op.education.level">
+        <field name="name">CM2</field>
+        <field name="code">cm2</field>
+        <field name="sequence">15</field>
+        <field name="cycle_id" ref="op_education_cycle_primaire"/>
+        <field name="section_id" ref="op_education_section_francophone"/>
+    </record>
+    <record id="op_education_level_class1" model="op.education.level">
+        <field name="name">Class 1</field>
+        <field name="code">class1</field>
+        <field name="sequence">16</field>
+        <field name="cycle_id" ref="op_education_cycle_primaire"/>
+        <field name="section_id" ref="op_education_section_anglophone"/>
+    </record>
+    <record id="op_education_level_class2" model="op.education.level">
+        <field name="name">Class 2</field>
+        <field name="code">class2</field>
+        <field name="sequence">17</field>
+        <field name="cycle_id" ref="op_education_cycle_primaire"/>
+        <field name="section_id" ref="op_education_section_anglophone"/>
+    </record>
+    <record id="op_education_level_class3" model="op.education.level">
+        <field name="name">Class 3</field>
+        <field name="code">class3</field>
+        <field name="sequence">18</field>
+        <field name="cycle_id" ref="op_education_cycle_primaire"/>
+        <field name="section_id" ref="op_education_section_anglophone"/>
+    </record>
+    <record id="op_education_level_class4" model="op.education.level">
+        <field name="name">Class 4</field>
+        <field name="code">class4</field>
+        <field name="sequence">19</field>
+        <field name="cycle_id" ref="op_education_cycle_primaire"/>
+        <field name="section_id" ref="op_education_section_anglophone"/>
+    </record>
+    <record id="op_education_level_class5" model="op.education.level">
+        <field name="name">Class 5</field>
+        <field name="code">class5</field>
+        <field name="sequence">20</field>
+        <field name="cycle_id" ref="op_education_cycle_primaire"/>
+        <field name="section_id" ref="op_education_section_anglophone"/>
+    </record>
+    <record id="op_education_level_class6" model="op.education.level">
+        <field name="name">Class 6</field>
+        <field name="code">class6</field>
+        <field name="sequence">21</field>
+        <field name="cycle_id" ref="op_education_cycle_primaire"/>
+        <field name="section_id" ref="op_education_section_anglophone"/>
+    </record>
+
+</odoo>

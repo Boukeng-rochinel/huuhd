@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_student_registry" model="ir.actions.client">
+        <field name="name">Etats generaux</field>
+        <field name="tag">edutek_management_cm.student_registry</field>
+    </record>
+
+    <menuitem id="menu_student_registry"
+              name="Etats generaux"
+              parent="edutek_core.menu_op_report_main"
+              sequence="5"
+              action="action_student_registry"
+              groups="edutek_core.group_op_back_office_admin,edutek_core.group_op_faculty"/>
+
+</odoo>

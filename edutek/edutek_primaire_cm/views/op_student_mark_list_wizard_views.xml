@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_op_student_mark_list_wizard_form" model="ir.ui.view">
+        <field name="name">op.student.mark.list.wizard.form</field>
+        <field name="model">op.student.mark.list.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Liste des notes">
+                <header>
+                    <button name="action_print_pdf" type="object"
+                            string="Imprimer (PDF)" class="btn-primary"/>
+                    <button name="action_export_xlsx" type="object"
+                            string="Exporter en Excel" class="btn-secondary"/>
+                </header>
+                <sheet>
+                    <div class="row">
+                        <div class="col-12 col-lg-5">
+                            <p class="text-muted">
+                                Imprime ou exporte la liste des notes selon
+                                les criteres choisis.
+                            </p>
+                            <group string="Filtres">
+                                <field name="academic_year_id" options="{'no_create': True}"/>
+                                <field name="classe_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                                <field name="subject_id" options="{'no_create': True}"/>
+                                <field name="academic_term_id" options="{'no_create': True}"/>
+                                <field name="note_filter"/>
+                                <field name="teacher_id" options="{'no_create': True}"/>
+                            </group>
+                            <group string="Periode et responsable">
+                                <field name="date_from"/>
+                                <field name="date_to"/>
+                                <field name="created_by_id" options="{'no_create': True}"/>
+                            </group>
+                        </div>
+                        <div class="col-12 col-lg-7">
+                            <h5>
+                                Apercu
+                                <span class="text-muted">
+                                    (<field name="preview_count" nolabel="1" class="d-inline"/> note(s))
+                                </span>
+                            </h5>
+                            <field name="preview_mark_ids" nolabel="1">
+                                <list>
+                                    <field name="classe_id"/>
+                                    <field name="student_id"/>
+                                    <field name="subject_id"/>
+                                    <field name="note"/>
+                                </list>
+                            </field>
+                        </div>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_op_student_mark_list_wizard" model="ir.actions.act_window">
+        <field name="name">Liste des notes</field>
+        <field name="res_model">op.student.mark.list.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+    </record>
+
+    <menuitem id="menu_op_student_mark_list_wizard"
+              name="Liste des notes"
+              parent="menu_op_pedagogie"
+              action="action_op_student_mark_list_wizard"
+              sequence="25"
+              groups="edutek_core.group_op_faculty"/>
+
+</odoo>

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="paperformat_classe_fee_bilan" model="report.paperformat">
+        <field name="name">Bilan frais par classe (A4 paysage)</field>
+        <field name="format">A4</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">12</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">8</field>
+        <field name="margin_right">8</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="action_report_classe_fee_bilan" model="ir.actions.report">
+        <field name="name">Bilan des frais par classe</field>
+        <field name="model">op.classe.fee.bilan.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">edutek_primaire_cm.report_classe_fee_bilan_document</field>
+        <field name="report_file">edutek_primaire_cm.report_classe_fee_bilan_document</field>
+        <field name="print_report_name">'Bilan frais par classe - %s' % object.academic_year_id.name</field>
+        <field name="paperformat_id" ref="paperformat_classe_fee_bilan"/>
+    </record>
+
+    <template id="report_classe_fee_bilan_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="company" t-value="env.company"/>
+                <t t-set="bilan_data" t-value="o._get_bilan_data()"/>
+                <t t-set="grand_du" t-value="sum(r['total_du'] for r in bilan_data)"/>
+                <t t-set="grand_paye" t-value="sum(r['total_paye'] for r in bilan_data)"/>
+                <t t-set="grand_reste" t-value="sum(r['total_reste'] for r in bilan_data)"/>
+                <t t-set="grand_taux" t-value="round(grand_paye / grand_du * 100, 1) if grand_du else 0.0"/>
+
+                <div class="page" style="font-family: 'DejaVu Sans', Arial, sans-serif;
+                            font-size: 12px; color: #111; padding: 6px 10px;">
+
+                    <!-- En-tête -->
+                    <table style="width:100%; border-collapse: collapse; margin-bottom: 10px;">
+                        <tr>
+                            <td style="width: 15%; text-align: center; vertical-align: middle;">
+                                <img t-if="company.logo" t-att-src="image_data_uri(company.logo)"
+                                     style="max-height: 55px; max-width: 100px;"/>
+                            </td>
+                            <td style="text-align: center; vertical-align: middle;">
+                                <div style="font-size: 17px; font-weight: bold; text-transform: uppercase;">
+                                    <t t-esc="company.name"/>
+                                </div>
+                                <div style="font-size: 15px; font-weight: bold; margin-top: 4px;">
+                                    BILAN DES FRAIS SCOLAIRES PAR CLASSE
+                                </div>
+                                <div style="font-size: 12px; color: #555; margin-top: 2px;">
+                                    Année académique : <strong><t t-esc="o.academic_year_id.name"/></strong>
+                                    <t t-if="o.fee_type_ids">
+                                        — Types : <t t-esc="', '.join(o.fee_type_ids.mapped('name'))"/>
+                                    </t>
+                                </div>
+                            </td>
+                            <td style="width: 15%; text-align: right; vertical-align: top;
+                                       font-size: 10px; color: #555;">
+                                Édité le <t t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y à %H:%M')"/>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!-- Tableau principal -->
+                    <table style="width: 100%; border-collapse: collapse; font-size: 11px;">
+                        <thead>
+                            <tr style="background: #714B67; color: #fff;">
+                                <th style="border: 1px solid #555; padding: 5px 8px; text-align: left; width: 20%;">
+                                    Classe
+                                </th>
+                                <th style="border: 1px solid #555; padding: 5px 8px; text-align: center; width: 7%;">
+                                    Élèves
+                                </th>
+                                <th style="border: 1px solid #555; padding: 5px 8px; text-align: center; width: 7%;">
+                                    Soldés
+                                </th>
+                                <th style="border: 1px solid #555; padding: 5px 8px; text-align: right; width: 16%;">
+                                    Total dû (F)
+                                </th>
+                                <th style="border: 1px solid #555; padding: 5px 8px; text-align: right; width: 16%;">
+                                    Déjà payé (F)
+                                </th>
+                                <th style="border: 1px solid #555; padding: 5px 8px; text-align: right; width: 16%;">
+                                    Reste à payer (F)
+                                </th>
+                                <th style="border: 1px solid #555; padding: 5px 8px; text-align: center; width: 10%;">
+                                    Taux (%)
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="bilan_data" t-as="row">
+                                <!-- Ligne classe -->
+                                <tr style="background: #f5f0f5; font-weight: bold;">
+                                    <td style="border: 1px solid #bbb; padding: 5px 8px;">
+                                        <t t-esc="row['classe'].display_name"/>
+                                    </td>
+                                    <td style="border: 1px solid #bbb; padding: 5px 8px; text-align: center;">
+                                        <t t-esc="row['effectif']"/>
+                                    </td>
+                                    <td style="border: 1px solid #bbb; padding: 5px 8px; text-align: center;">
+                                        <t t-esc="row['nb_soldes']"/>
+                                    </td>
+                                    <td style="border: 1px solid #bbb; padding: 5px 8px; text-align: right;">
+                                        <t t-esc="'{:,.0f}'.format(row['total_du']).replace(',', ' ')"/>
+                                    </td>
+                                    <td style="border: 1px solid #bbb; padding: 5px 8px; text-align: right; color: #198754;">
+                                        <t t-esc="'{:,.0f}'.format(row['total_paye']).replace(',', ' ')"/>
+                                    </td>
+                                    <td style="border: 1px solid #bbb; padding: 5px 8px; text-align: right; color: #dc3545;">
+                                        <t t-esc="'{:,.0f}'.format(row['total_reste']).replace(',', ' ')"/>
+                                    </td>
+                                    <td style="border: 1px solid #bbb; padding: 5px 8px; text-align: center;">
+                                        <t t-set="taux_color" t-value="'#198754' if row['taux'] >= 80 else ('#fd7e14' if row['taux'] >= 50 else '#dc3545')"/>
+                                        <span t-att-style="'font-weight:bold; color:%s' % taux_color">
+                                            <t t-esc="'%.1f %%' % row['taux']"/>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <!-- Détail par type de frais -->
+                                <t t-if="o.show_detail_by_type and row['detail']">
+                                    <t t-foreach="row['detail']" t-as="d">
+                                        <tr style="background: #fafafa;">
+                                            <td style="border: 1px solid #ddd; padding: 3px 8px 3px 24px;
+                                                       color: #555; font-style: italic;" colspan="2">
+                                                ↳ <t t-esc="d['name']"/>
+                                            </td>
+                                            <td style="border: 1px solid #ddd; padding: 3px 8px;
+                                                       text-align: center; color: #555;">
+                                                <t t-esc="d['count']"/>
+                                            </td>
+                                            <td style="border: 1px solid #ddd; padding: 3px 8px; text-align: right; color: #555;">
+                                                <t t-esc="'{:,.0f}'.format(d['du']).replace(',', ' ')"/>
+                                            </td>
+                                            <td style="border: 1px solid #ddd; padding: 3px 8px; text-align: right; color: #198754;">
+                                                <t t-esc="'{:,.0f}'.format(d['paye']).replace(',', ' ')"/>
+                                            </td>
+                                            <td style="border: 1px solid #ddd; padding: 3px 8px; text-align: right; color: #dc3545;">
+                                                <t t-esc="'{:,.0f}'.format(d['reste']).replace(',', ' ')"/>
+                                            </td>
+                                            <td style="border: 1px solid #ddd; padding: 3px 8px;"></td>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </t>
+
+                            <!-- Totaux généraux -->
+                            <tr style="background: #333; color: #fff; font-weight: bold; font-size: 12px;">
+                                <td style="border: 1px solid #555; padding: 6px 8px;" colspan="3">
+                                    TOTAUX GÉNÉRAUX
+                                </td>
+                                <td style="border: 1px solid #555; padding: 6px 8px; text-align: right;">
+                                    <t t-esc="'{:,.0f}'.format(grand_du).replace(',', ' ')"/>
+                                </td>
+                                <td style="border: 1px solid #555; padding: 6px 8px; text-align: right;">
+                                    <t t-esc="'{:,.0f}'.format(grand_paye).replace(',', ' ')"/>
+                                </td>
+                                <td style="border: 1px solid #555; padding: 6px 8px; text-align: right;">
+                                    <t t-esc="'{:,.0f}'.format(grand_reste).replace(',', ' ')"/>
+                                </td>
+                                <td style="border: 1px solid #555; padding: 6px 8px; text-align: center;">
+                                    <t t-esc="'%.1f %%' % grand_taux"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Légende taux -->
+                    <div style="margin-top: 10px; font-size: 10px; color: #555;">
+                        <strong>Légende taux de recouvrement :</strong>
+                        <span style="color: #198754; margin-left: 8px;">■ ≥ 80 % (bon)</span>
+                        <span style="color: #fd7e14; margin-left: 8px;">■ 50–79 % (moyen)</span>
+                        <span style="color: #dc3545; margin-left: 8px;">■ &lt; 50 % (faible)</span>
+                    </div>
+
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

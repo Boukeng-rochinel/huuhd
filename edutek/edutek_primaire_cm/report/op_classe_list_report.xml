@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_op_classe_list" model="ir.actions.report">
+        <field name="name">Liste des classes</field>
+        <field name="model">op.classe.list.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">edutek_primaire_cm.report_classe_list_document</field>
+        <field name="report_file">edutek_primaire_cm.report_classe_list_document</field>
+        <field name="print_report_name">'Liste des classes'</field>
+        <field name="paperformat_id" ref="paperformat_school_document"/>
+    </record>
+
+    <template id="report_classe_list_document">
+        <t t-call="web.html_container">
+            <div class="page">
+                <t t-call="edutek_primaire_cm.report_school_letterhead"/>
+
+                <t t-set="doc_title" t-value="'LISTE DES CLASSES'"/>
+                <t t-call="edutek_primaire_cm.report_school_doc_title"/>
+
+                <table style="width: 100%; border-collapse: collapse; font-size: 11px;">
+                    <t t-set="table_headers" t-value="['N°', 'Nom', 'Niveau', 'Cycle', 'Enseignant', 'Effectif']"/>
+                    <t t-call="edutek_primaire_cm.report_school_table_head"/>
+                    <tbody>
+                        <t t-foreach="classes" t-as="classe" t-key="classe.id">
+                            <tr t-att-style="'background: #f5f5f5;' if classe_index % 2 else ''">
+                                <td style="border: 1px solid #999; padding: 4px 6px; text-align: center;" t-esc="classe_index + 1"/>
+                                <td style="border: 1px solid #999; padding: 4px 6px;" t-esc="classe.name"/>
+                                <td style="border: 1px solid #999; padding: 4px 6px;" t-esc="level_labels.get(classe.level, classe.level or '')"/>
+                                <td style="border: 1px solid #999; padding: 4px 6px;" t-esc="cycle_labels.get(classe.cycle, classe.cycle or '')"/>
+                                <td style="border: 1px solid #999; padding: 4px 6px;" t-esc="classe.teacher_id.name or ''"/>
+                                <td style="border: 1px solid #999; padding: 4px 6px; text-align: center;" t-esc="classe.student_count"/>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+
+                <p t-if="not classes" style="text-align: center; color: #6c757d; margin-top: 16px;">
+                    Aucune classe ne correspond a ces criteres.
+                </p>
+                <div t-else="" style="margin-top: 12px; font-size: 11px;">
+                    <strong>Nombre de classes :</strong> <span t-esc="len(classes)"/>
+                    <strong style="margin-left: 16px;">Effectif total :</strong>
+                    <span t-esc="sum(classes.mapped('student_count'))"/>
+                </div>
+
+                <t t-call="edutek_primaire_cm.report_school_footer"/>
+            </div>
+        </t>
+    </template>
+
+</odoo>

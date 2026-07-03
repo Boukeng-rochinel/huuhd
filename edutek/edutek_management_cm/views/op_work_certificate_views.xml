@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_op_work_certificate_list" model="ir.ui.view">
+        <field name="name">op.work.certificate.list</field>
+        <field name="model">op.work.certificate</field>
+        <field name="arch" type="xml">
+            <list string="Certificats de travail">
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="job_title"/>
+                <field name="issue_date"/>
+                <field name="purpose"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_op_work_certificate_form" model="ir.ui.view">
+        <field name="name">op.work.certificate.form</field>
+        <field name="model">op.work.certificate</field>
+        <field name="arch" type="xml">
+            <form string="Certificat de travail">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="employee_id" options="{'no_create': True}"/>
+                            <field name="job_title"/>
+                            <field name="date_debut_emploi"/>
+                        </group>
+                        <group>
+                            <field name="issue_date"/>
+                            <field name="purpose"/>
+                        </group>
+                    </group>
+                    <field name="note" placeholder="Note..."/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="act_open_op_work_certificate_view" model="ir.actions.act_window">
+        <field name="name">Certificats de travail</field>
+        <field name="res_model">op.work.certificate</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_op_work_certificate"
+              name="Certificats de travail"
+              parent="edutek_primaire_cm.menu_op_hr_employee"
+              sequence="10"
+              action="act_open_op_work_certificate_view"
+              groups="edutek_core.group_op_back_office_admin"/>
+
+</odoo>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ══════════════════════════════════════════
+         LIST VIEW (evaluation des acquis)
+    ══════════════════════════════════════════ -->
+    <record id="view_op_student_skill_list" model="ir.ui.view">
+        <field name="name">op.student.skill.list</field>
+        <field name="model">op.student.skill</field>
+        <field name="arch" type="xml">
+            <list string="Evaluations" editable="bottom">
+                <field name="classe_id" optional="show" readonly="1"/>
+                <field name="academic_term_id"/>
+                <field name="student_id"/>
+                <field name="classe_subject_id" domain="[('classe_id', '=', classe_id)]"/>
+                <field name="subject_id" optional="hide" readonly="1"/>
+                <field name="niveau"/>
+                <field name="observation"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_op_student_skill_search" model="ir.ui.view">
+        <field name="name">op.student.skill.search</field>
+        <field name="model">op.student.skill</field>
+        <field name="arch" type="xml">
+            <search string="Evaluations">
+                <field name="student_id"/>
+                <field name="classe_id"/>
+                <field name="subject_id"/>
+                <field name="academic_term_id"/>
+                <filter name="filter_non_acquis" string="Non acquis"
+                        domain="[('niveau', '=', 'non_acquis')]"/>
+                <filter name="filter_en_cours" string="En cours d'acquisition"
+                        domain="[('niveau', '=', 'en_cours')]"/>
+                <filter name="filter_acquis" string="Acquis"
+                        domain="[('niveau', '=', 'acquis')]"/>
+                <separator/>
+                <filter name="filter_term1" string="Periode 1"
+                        domain="[('academic_term_id.sequence','=',1)]"/>
+                <filter name="filter_term2" string="Periode 2"
+                        domain="[('academic_term_id.sequence','=',2)]"/>
+                <filter name="filter_term3" string="Periode 3"
+                        domain="[('academic_term_id.sequence','=',3)]"/>
+                <filter name="filter_term4" string="Periode 4"
+                        domain="[('academic_term_id.sequence','=',4)]"/>
+                <filter name="filter_term5" string="Periode 5"
+                        domain="[('academic_term_id.sequence','=',5)]"/>
+                <filter name="filter_term6" string="Periode 6"
+                        domain="[('academic_term_id.sequence','=',6)]"/>
+                <group>
+                    <filter name="group_classe" string="Classe" context="{'group_by': 'classe_id'}"/>
+                    <filter name="group_term" string="Periode" context="{'group_by': 'academic_term_id'}"/>
+                    <filter name="group_subject" string="Domaine" context="{'group_by': 'subject_id'}"/>
+                    <filter name="group_niveau" string="Niveau d'acquisition" context="{'group_by': 'niveau'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ══════════════════════════════════════════
+         WIZARD : Evaluer les acquis
+    ══════════════════════════════════════════ -->
+    <record id="view_op_student_skill_generate_wizard_form" model="ir.ui.view">
+        <field name="name">op.student.skill.generate.wizard.form</field>
+        <field name="model">op.student.skill.generate.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Evaluer les acquis">
+                <group>
+                    <field name="classe_id" options="{'no_create': True}"/>
+                    <field name="academic_year_id" invisible="1"/>
+                    <field name="classe_subject_id" options="{'no_create': True}"/>
+                    <field name="academic_term_id" options="{'no_create': True}"/>
+                </group>
+                <footer>
+                    <button name="action_generate" type="object"
+                            string="Preparer l'evaluation" class="btn-primary"/>
+                    <button string="Annuler" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_op_student_skill_generate_wizard" model="ir.actions.act_window">
+        <field name="name">Evaluer les acquis</field>
+        <field name="res_model">op.student.skill.generate.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- ══════════════════════════════════════════
+         ACTION
+    ══════════════════════════════════════════ -->
+    <record id="action_op_student_skill" model="ir.actions.act_window">
+        <field name="name">Evaluations</field>
+        <field name="res_model">op.student.skill</field>
+        <field name="view_mode">list</field>
+        <field name="search_view_id" ref="view_op_student_skill_search"/>
+        <field name="context">{'search_default_group_classe': 1, 'search_default_group_term': 1}</field>
+    </record>
+
+    <!-- ══════════════════════════════════════════
+         MENUS
+    ══════════════════════════════════════════ -->
+    <menuitem id="menu_op_student_skill_generate"
+              name="Evaluer les acquis (Maternelle)"
+              parent="edutek_primaire_cm.menu_op_pedagogie"
+              action="action_op_student_skill_generate_wizard"
+              sequence="50"
+              groups="edutek_core.group_op_faculty"/>
+
+    <menuitem id="menu_op_student_skill"
+              name="Evaluations (Maternelle)"
+              parent="edutek_primaire_cm.menu_op_pedagogie"
+              action="action_op_student_skill"
+              sequence="60"
+              groups="edutek_core.group_op_faculty"/>
+
+</odoo>

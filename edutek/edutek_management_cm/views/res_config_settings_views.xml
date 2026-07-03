@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form_inherit_management" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.management</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="edutek_core.res_config_settings_view_form_core"/>
+        <field name="arch" type="xml">
+            <div name="edutek_core" position="after">
+                <h2>Fonctionnalités optionnelles</h2>
+                <div class="row mt16 o_settings_container">
+
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="use_scholarships"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="use_scholarships"/>
+                            <div class="text-muted">
+                                Affiche le menu <strong>Bourses scolaires</strong>
+                                dans la section Général.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="use_fee_reductions"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="use_fee_reductions"/>
+                            <div class="text-muted">
+                                Affiche le menu <strong>Réductions de scolarité</strong>
+                                dans la section Général.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="use_moratoriums"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="use_moratoriums"/>
+                            <div class="text-muted">
+                                Affiche le menu <strong>Moratoires de paiement</strong>
+                                dans la section Général.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="use_bank_receipts"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="use_bank_receipts"/>
+                            <div class="text-muted">
+                                Affiche le menu <strong>Reçus bancaires</strong>
+                                (scanner OCR de reçus physiques) dans Finances.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="use_admissions"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="use_admissions"/>
+                            <div class="text-muted">
+                                Affiche le menu <strong>Admissions / Candidatures</strong>
+                                dans la section Général.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_employee_form_inherit_cameroun" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherit.cameroun</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <field name="department_id" position="attributes">
+                <attribute name="string">Section</attribute>
+            </field>
+            <field name="job_title" position="attributes">
+                <attribute name="string">Poste</attribute>
+            </field>
+            <field name="study_field" position="attributes">
+                <attribute name="string">Specialite</attribute>
+            </field>
+            <notebook position="inside">
+                <page name="cameroun_information" string="Informations (Cameroun)">
+                    <group>
+                        <group string="Etat civil et coordonnees">
+                            <field name="title"/>
+                            <field name="adresse"/>
+                            <field name="staff_type" options="{'no_create': True}"/>
+                        </group>
+                        <group string="Fonction publique">
+                            <field name="grade" options="{'no_create': True}"/>
+                            <field name="matricule"/>
+                            <field name="diplome"/>
+                            <field name="lieu_exercice"/>
+                            <field name="acte_nomination"/>
+                            <field name="date_entree_administration"/>
+                            <field name="date_prise_service_annee"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Origine">
+                            <field name="arrondissement_origine"/>
+                            <field name="departement_origine"/>
+                            <field name="region_origine"/>
+                            <field name="tribu"/>
+                        </group>
+                        <group string="Dates de service">
+                            <field name="date_embauche"/>
+                            <field name="date_depart"/>
+                            <field name="debut_stage"/>
+                            <field name="fin_stage"/>
+                        </group>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <record id="action_op_hr_employee" model="ir.actions.act_window">
+        <field name="name">Personnel</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_op_hr_employee"
+              name="Personnel"
+              parent="edutek_core.menu_op_school_root"
+              action="action_op_hr_employee"
+              sequence="25"
+              groups="edutek_core.group_op_back_office_admin"/>
+
+</odoo>

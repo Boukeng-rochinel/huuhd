@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_edutek_modules_info" model="ir.actions.client">
+        <field name="name">Modules EduTek</field>
+        <field name="tag">edutek_management_cm.edutek_modules_info</field>
+    </record>
+
+    <menuitem id="menu_edutek_modules_info"
+              name="Modules EduTek"
+              parent="edutek_core.menu_op_school_config"
+              sequence="2"
+              action="action_edutek_modules_info"
+              groups="edutek_core.group_op_back_office_admin"/>
+
+</odoo>

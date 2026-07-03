@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_op_bulletin_list_wizard_form" model="ir.ui.view">
+        <field name="name">op.bulletin.list.wizard.form</field>
+        <field name="model">op.bulletin.list.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Liste / classement des bulletins">
+                <header>
+                    <button name="action_print_pdf" type="object"
+                            string="Imprimer (PDF)" class="btn-primary"/>
+                    <button name="action_export_xlsx" type="object"
+                            string="Exporter en Excel" class="btn-secondary"/>
+                </header>
+                <sheet>
+                    <div class="row">
+                        <div class="col-12 col-lg-5">
+                            <p class="text-muted">
+                                Imprime ou exporte le classement des
+                                bulletins selon les criteres choisis. Pour
+                                imprimer le bulletin complet d'un eleve,
+                                utiliser le bouton "Imprimer" sur sa fiche.
+                            </p>
+                            <group string="Filtres">
+                                <field name="academic_year_id" options="{'no_create': True}"/>
+                                <field name="classe_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                                <field name="academic_term_id" options="{'no_create': True}"/>
+                                <field name="mention"/>
+                                <field name="teacher_id" options="{'no_create': True}"/>
+                            </group>
+                            <group string="Periode et responsable">
+                                <field name="date_from"/>
+                                <field name="date_to"/>
+                                <field name="created_by_id" options="{'no_create': True}"/>
+                            </group>
+                        </div>
+                        <div class="col-12 col-lg-7">
+                            <h5>
+                                Apercu
+                                <span class="text-muted">
+                                    (<field name="preview_count" nolabel="1" class="d-inline"/> bulletin(s))
+                                </span>
+                            </h5>
+                            <field name="preview_bulletin_ids" nolabel="1">
+                                <list>
+                                    <field name="rang"/>
+                                    <field name="student_id"/>
+                                    <field name="classe_id"/>
+                                    <field name="moyenne_generale"/>
+                                </list>
+                            </field>
+                        </div>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_op_bulletin_list_wizard" model="ir.actions.act_window">
+        <field name="name">Liste / classement des bulletins</field>
+        <field name="res_model">op.bulletin.list.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+    </record>
+
+    <menuitem id="menu_op_bulletin_list_wizard"
+              name="Liste / classement des bulletins"
+              parent="menu_op_pedagogie"
+              action="action_op_bulletin_list_wizard"
+              sequence="45"
+              groups="edutek_core.group_op_faculty"/>
+
+</odoo>

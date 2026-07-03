@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+
+<t t-name="edutek_management_cm.StudentRegistry">
+    <div class="sr-root">
+        <div t-if="state.loading" class="sr-loading">
+            <i class="fa fa-spinner fa-spin fa-2x"/>
+        </div>
+        <t t-else="">
+            <div class="sr-toolbar">
+                <div class="sr-toolbar-row">
+                    <div class="sr-toolbar-left">
+                        <div class="sr-search-wrap">
+                            <i class="fa fa-search sr-search-icon"/>
+                            <input class="sr-search" type="text" placeholder="Rechercher un eleve..."
+                                   t-att-value="state.filters.search" t-on-input="onSearchInput"/>
+                        </div>
+
+                        <div class="sr-toggle-group">
+                            <button t-att-class="state.filters.inscriptionState === 'tous' ? 'sr-toggle--active' : ''"
+                                    t-on-click="() => this.setInscriptionState('tous')">Tous</button>
+                            <button t-att-class="state.filters.inscriptionState === 'inscrit' ? 'sr-toggle--active' : ''"
+                                    t-on-click="() => this.setInscriptionState('inscrit')">Inscrit</button>
+                            <button t-att-class="state.filters.inscriptionState === 'non_inscrit' ? 'sr-toggle--active' : ''"
+                                    t-on-click="() => this.setInscriptionState('non_inscrit')">Non Inscrit</button>
+                        </div>
+
+                        <div class="sr-toggle-group">
+                            <button t-att-class="state.filters.enrollmentType === 'tous' ? 'sr-toggle--active' : ''"
+                                    t-on-click="() => this.setEnrollmentType('tous')">Tous A/N</button>
+                            <button t-att-class="state.filters.enrollmentType === 'ancien' ? 'sr-toggle--active' : ''"
+                                    t-on-click="() => this.setEnrollmentType('ancien')">Ancien</button>
+                            <button t-att-class="state.filters.enrollmentType === 'nouveau' ? 'sr-toggle--active' : ''"
+                                    t-on-click="() => this.setEnrollmentType('nouveau')">Nouveau</button>
+                        </div>
+
+                        <select class="sr-classe-select" t-on-change="onClasseChange">
+                            <option value="">Salle : Toutes</option>
+                            <t t-foreach="state.classes" t-as="classe" t-key="classe.id">
+                                <option t-att-value="classe.id" t-esc="classe.display_name"/>
+                            </t>
+                        </select>
+                    </div>
+
+                    <div class="sr-toolbar-right">
+                        <div class="sr-action-wrap">
+                            <button class="sr-action-btn" t-on-click="toggleActions">
+                                <i class="fa fa-bolt"/> Action <i class="fa fa-caret-down"/>
+                            </button>
+                            <div t-if="state.actionsOpen" class="sr-action-menu">
+                                <div class="sr-action-item" t-on-click="actionEffectif">Effectif Salle/Classe</div>
+                                <div class="sr-action-item" t-on-click="actionEnfantEnseignant">Enfants d'enseignant</div>
+                                <div class="sr-action-item" t-on-click="actionDeficientIntellectuel">Enfants deficient Intel.</div>
+                                <div class="sr-action-item" t-on-click="actionAncienNouveau">Liste Ancien / Nouveau</div>
+                                <div class="sr-action-item" t-on-click="actionPeriode">Inscrit durant la Periode</div>
+                                <div class="sr-action-sep"/>
+                                <div class="sr-action-item sr-action-item--highlight" t-on-click="actionExporter">
+                                    <i class="fa fa-download"/> Exporter / Imprimer...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sr-toolbar-row sr-toolbar-row--meta">
+                    <span class="sr-total"><strong t-esc="state.total"/> eleve(s)</span>
+                    <div t-if="hasExtraFilter" class="sr-extra-filter">
+                        <span>Filtre supplementaire applique</span>
+                        <button t-on-click="clearExtraFilters">Effacer <i class="fa fa-times"/></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sr-grid-wrap">
+                <table class="sr-grid">
+                    <thead>
+                        <tr>
+                            <th>Nom de l'eleve</th>
+                            <th>Matricule</th>
+                            <th>A/N</th>
+                            <th>Salle de classe</th>
+                            <th>Genre</th>
+                            <th>Date de naissance</th>
+                            <th>Age</th>
+                            <th>Lieu de naissance</th>
+                            <th>E.E</th>
+                            <t t-foreach="state.documentTypes" t-as="docType" t-key="docType.id">
+                                <th class="sr-doc-col" t-esc="docType.name"/>
+                            </t>
+                            <th>Commentaire</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="state.students" t-as="student" t-key="student.id">
+                            <tr>
+                                <td t-esc="student.name"/>
+                                <td t-esc="student.gr_no"/>
+                                <td t-esc="student.enrollment_type === 'nouveau' ? 'N' : 'A'"/>
+                                <td t-esc="student.classe_id ? student.classe_id[1] : '-'"/>
+                                <td t-esc="student.gender === 'm' ? 'M' : (student.gender === 'f' ? 'F' : '-')"/>
+                                <td t-esc="student.birth_date || '-'"/>
+                                <td t-esc="student.age"/>
+                                <td t-esc="student.birth_place || '-'"/>
+                                <td>
+                                    <i t-if="student.enfant_enseignant" class="fa fa-check sr-yes"/>
+                                </td>
+                                <t t-foreach="state.documentTypes" t-as="docType" t-key="docType.id">
+                                    <td class="sr-doc-col">
+                                        <input type="checkbox" class="sr-checkbox"
+                                               t-att-checked="isDocProvided(student.id, docType.id)"
+                                               t-on-change="() => this.toggleDocument(student.id, docType.id)"/>
+                                    </td>
+                                </t>
+                                <td t-esc="student.observation || ''"/>
+                            </tr>
+                        </t>
+                        <tr t-if="!state.students.length">
+                            <td colspan="20" class="sr-empty">Aucun eleve ne correspond a ces criteres.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="sr-pagination">
+                <button t-on-click="prevPage" t-att-disabled="state.page === 0">
+                    <i class="fa fa-chevron-left"/>
+                </button>
+                <span>Page <t t-esc="state.page + 1"/> / <t t-esc="totalPages"/></span>
+                <button t-on-click="nextPage" t-att-disabled="state.page >= totalPages - 1">
+                    <i class="fa fa-chevron-right"/>
+                </button>
+            </div>
+
+            <div t-if="state.effectif" class="sr-modal-overlay" t-on-click="closeEffectif">
+                <div class="sr-modal" t-on-click="(ev) => ev.stopPropagation()">
+                    <div class="sr-modal-title">Effectif par Salle / Classe</div>
+                    <table class="sr-modal-table">
+                        <thead><tr><th>Classe</th><th>Effectif</th></tr></thead>
+                        <tbody>
+                            <t t-foreach="state.effectif" t-as="line" t-key="line_index">
+                                <tr><td t-esc="line.classe_name"/><td t-esc="line.count"/></tr>
+                            </t>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-sm btn-primary" t-on-click="closeEffectif">Fermer</button>
+                </div>
+            </div>
+
+            <div t-if="state.periodeDialog" class="sr-modal-overlay" t-on-click="closePeriodeDialog">
+                <div class="sr-modal" t-on-click="(ev) => ev.stopPropagation()">
+                    <div class="sr-modal-title">Inscrit durant la periode</div>
+                    <div class="sr-modal-row">
+                        <label>Du</label>
+                        <input type="date" t-model="state.periodeFrom"/>
+                    </div>
+                    <div class="sr-modal-row">
+                        <label>Au</label>
+                        <input type="date" t-model="state.periodeTo"/>
+                    </div>
+                    <div class="sr-modal-actions">
+                        <button class="btn btn-sm btn-primary" t-on-click="applyPeriode">Appliquer</button>
+                        <button class="btn btn-sm" t-on-click="closePeriodeDialog">Annuler</button>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </div>
+</t>
+
+</templates>

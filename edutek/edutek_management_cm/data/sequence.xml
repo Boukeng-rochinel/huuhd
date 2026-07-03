@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="seq_op_end_cycle_certificate" model="ir.sequence">
+        <field name="name">Parchemin fin de cycle</field>
+        <field name="code">op.end.cycle.certificate</field>
+        <field name="prefix">PARCH-%(year)s-</field>
+        <field name="padding">4</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="seq_op_work_certificate" model="ir.sequence">
+        <field name="name">Certificat de travail</field>
+        <field name="code">op.work.certificate</field>
+        <field name="prefix">CTRAV-%(year)s-</field>
+        <field name="padding">4</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>

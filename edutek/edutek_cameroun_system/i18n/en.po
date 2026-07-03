@@ -1,0 +1,191 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* edutek_cameroun_system
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: edutek_cameroun_system
+msgid "EduTek - Cameroun System"
+msgstr "EduTek - Cameroon System"
+
+#. module: edutek_cameroun_system
+msgid "Trimestre 1"
+msgstr "Term 1"
+
+#. module: edutek_cameroun_system
+msgid "Trimestre 2"
+msgstr "Term 2"
+
+#. module: edutek_cameroun_system
+msgid "Trimestre 3"
+msgstr "Term 3"
+
+#. module: edutek_cameroun_system
+msgid "Sequence 1"
+msgstr "Sequence 1"
+
+#. module: edutek_cameroun_system
+msgid "Sequence 2"
+msgstr "Sequence 2"
+
+#. module: edutek_cameroun_system
+msgid "Sequence 3"
+msgstr "Sequence 3"
+
+#. module: edutek_cameroun_system
+msgid "Sequence 4"
+msgstr "Sequence 4"
+
+#. module: edutek_cameroun_system
+msgid "Sequence 5"
+msgstr "Sequence 5"
+
+#. module: edutek_cameroun_system
+msgid "Sequence 6"
+msgstr "Sequence 6"
+
+#. module: edutek_cameroun_system
+msgid "Petite Section"
+msgstr "Nursery (PS)"
+
+#. module: edutek_cameroun_system
+msgid "Moyenne Section"
+msgstr "Nursery (MS)"
+
+#. module: edutek_cameroun_system
+msgid "Grande Section"
+msgstr "Nursery (GS)"
+
+#. module: edutek_cameroun_system
+msgid "PS"
+msgstr "PS"
+
+#. module: edutek_cameroun_system
+msgid "MS"
+msgstr "MS"
+
+#. module: edutek_cameroun_system
+msgid "GS"
+msgstr "GS"
+
+#. module: edutek_cameroun_system
+msgid "SIL"
+msgstr "Class 1"
+
+#. module: edutek_cameroun_system
+msgid "CP"
+msgstr "Class 2"
+
+#. module: edutek_cameroun_system
+msgid "CE1"
+msgstr "Class 3"
+
+#. module: edutek_cameroun_system
+msgid "CE2"
+msgstr "Class 4"
+
+#. module: edutek_cameroun_system
+msgid "CM1"
+msgstr "Class 5"
+
+#. module: edutek_cameroun_system
+msgid "CM2"
+msgstr "Class 6"
+
+#. module: edutek_cameroun_system
+msgid "6eme"
+msgstr "Form 1"
+
+#. module: edutek_cameroun_system
+msgid "5eme"
+msgstr "Form 2"
+
+#. module: edutek_cameroun_system
+msgid "4eme"
+msgstr "Form 3"
+
+#. module: edutek_cameroun_system
+msgid "3eme"
+msgstr "Form 4"
+
+#. module: edutek_cameroun_system
+msgid "2nde"
+msgstr "Form 5"
+
+#. module: edutek_cameroun_system
+msgid "1ere"
+msgstr "Lower Sixth"
+
+#. module: edutek_cameroun_system
+msgid "Terminale"
+msgstr "Upper Sixth"
+
+#. module: edutek_cameroun_system
+msgid "Francais"
+msgstr "French"
+
+#. module: edutek_cameroun_system
+msgid "Mathematiques"
+msgstr "Mathematics"
+
+#. module: edutek_cameroun_system
+msgid "Sciences d'Observation / SVT"
+msgstr "Natural Sciences / Biology"
+
+#. module: edutek_cameroun_system
+msgid "Histoire - Geographie"
+msgstr "History - Geography"
+
+#. module: edutek_cameroun_system
+msgid "Education Civique et Morale"
+msgstr "Civic and Moral Education"
+
+#. module: edutek_cameroun_system
+msgid "Anglais"
+msgstr "English"
+
+#. module: edutek_cameroun_system
+msgid "Education Physique et Sportive"
+msgstr "Physical Education"
+
+#. module: edutek_cameroun_system
+msgid "Physique - Chimie"
+msgstr "Physics - Chemistry"
+
+#. module: edutek_cameroun_system
+msgid "Philosophie"
+msgstr "Philosophy"
+
+#. module: edutek_cameroun_system
+msgid "Espagnol (LV2)"
+msgstr "Spanish (2nd Language)"
+
+#. module: edutek_cameroun_system
+msgid "Langage"
+msgstr "Language"
+
+#. module: edutek_cameroun_system
+msgid "Decouverte du monde"
+msgstr "World Discovery"
+
+#. module: edutek_cameroun_system
+msgid "Activites artistiques"
+msgstr "Arts and Crafts"
+
+#. module: edutek_cameroun_system
+msgid "Motricite"
+msgstr "Physical Development"
+
+#. module: edutek_cameroun_system
+msgid "Vivre ensemble"
+msgstr "Living Together"

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_op_internship_list" model="ir.ui.view">
+        <field name="name">op.internship.list</field>
+        <field name="model">op.internship</field>
+        <field name="arch" type="xml">
+            <list string="Stages">
+                <field name="student_id"/>
+                <field name="title"/>
+                <field name="host_organization"/>
+                <field name="date_debut"/>
+                <field name="date_fin"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_op_internship_form" model="ir.ui.view">
+        <field name="name">op.internship.form</field>
+        <field name="model">op.internship</field>
+        <field name="arch" type="xml">
+            <form string="Stage">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="student_id" options="{'no_create': True}"/>
+                            <field name="title"/>
+                            <field name="academic_year_id"/>
+                        </group>
+                        <group>
+                            <field name="host_organization"/>
+                            <field name="supervisor_name"/>
+                            <field name="date_debut"/>
+                            <field name="date_fin"/>
+                        </group>
+                    </group>
+                    <field name="note" placeholder="Note..."/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="act_open_op_internship_view" model="ir.actions.act_window">
+        <field name="name">Stages</field>
+        <field name="res_model">op.internship</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_op_internship"
+              name="Stages"
+              parent="edutek_core.menu_op_general_main"
+              sequence="30"
+              action="act_open_op_internship_view"
+              groups="edutek_core.group_op_back_office_admin,edutek_core.group_op_faculty"/>
+
+</odoo>

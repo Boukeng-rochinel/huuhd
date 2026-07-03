@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+
+<t t-name="edutek_management_cm.SisDashboard">
+    <div class="sis-dash">
+        <div t-if="state.loading" class="sis-dash-loading">
+            <i class="fa fa-spinner fa-spin fa-2x"/>
+        </div>
+        <div t-else="" class="sis-dash-grid">
+
+            <!-- ── Col 1 : Etablissement ───────────────────────────── -->
+            <div class="sis-card sis-card--school">
+                <div class="sis-card-label">Etablissement</div>
+                <div class="sis-school-name" t-esc="state.data.company_name"/>
+                <div class="sis-school-country" t-if="state.data.country_name" t-esc="state.data.country_name"/>
+
+                <div class="sis-school-meta">
+                    <div class="sis-meta-row">
+                        <span>Annee scolaire</span>
+                        <strong t-esc="state.data.academic_year_name || '-'"/>
+                    </div>
+                    <div class="sis-meta-row">
+                        <span>Licence</span>
+                        <span class="sis-badge sis-badge--ok">Actif</span>
+                    </div>
+                </div>
+
+                <div class="sis-structure-strip">
+                    <div class="sis-structure-kpi">
+                        <strong t-esc="state.data.classes_count"/>
+                        <span>Classes</span>
+                    </div>
+                    <div class="sis-structure-sep"/>
+                    <div class="sis-structure-kpi">
+                        <strong t-esc="state.data.classroom_count"/>
+                        <span>Salles</span>
+                    </div>
+                </div>
+
+                <div class="sis-school-date">
+                    <span t-esc="clockDayName"/>
+                    <strong><t t-esc="clockDay"/> <t t-esc="clockMonthYear"/></strong>
+                </div>
+            </div>
+
+            <!-- ── Col 2 : Eleves (hero) ──────────────────────────── -->
+            <div class="sis-card sis-card--students">
+                <div class="sis-card-label">Eleves</div>
+                <div class="sis-students-hero">
+                    <span class="sis-students-total" t-esc="state.data.total_students"/>
+                    <span class="sis-students-sublabel">eleves au total</span>
+                </div>
+                <div class="sis-students-stats">
+                    <div class="sis-stat sis-stat--ok">
+                        <strong t-esc="state.data.inscrits"/>
+                        <span>Inscrits</span>
+                    </div>
+                    <div class="sis-stat">
+                        <strong t-esc="state.data.non_inscrits"/>
+                        <span>Non inscrits</span>
+                    </div>
+                    <div class="sis-stat sis-stat--danger">
+                        <strong t-esc="state.data.demission"/>
+                        <span>Demission</span>
+                    </div>
+                    <div class="sis-stat">
+                        <strong t-esc="state.data.staff_child_count"/>
+                        <span>Enfant personnel</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Col 3 : Statut ─────────────────────────────────── -->
+            <div class="sis-card sis-card--status">
+                <div class="sis-card-label">Statut</div>
+                <div class="sis-pie-wrap">
+                    <div class="sis-pie" t-att-style="pieStyle">
+                        <div class="sis-pie-hole">
+                            <span t-esc="nouveauxPct + '%'"/>
+                        </div>
+                    </div>
+                    <div class="sis-pie-legend">
+                        <div class="sis-legend-item">
+                            <span class="sis-dot sis-dot--red"/>
+                            <span>Nouveaux</span>
+                            <strong t-esc="state.data.nouveaux"/>
+                        </div>
+                        <div class="sis-legend-item">
+                            <span class="sis-dot sis-dot--green"/>
+                            <span>Anciens</span>
+                            <strong t-esc="state.data.anciens"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="sis-gender">
+                    <div class="sis-gender-item">
+                        <i class="fa fa-male"/>
+                        <span>Garcons</span>
+                        <strong t-esc="state.data.boys"/>
+                    </div>
+                    <div class="sis-gender-sep"/>
+                    <div class="sis-gender-item">
+                        <i class="fa fa-female"/>
+                        <span>Filles</span>
+                        <strong t-esc="state.data.girls"/>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Row 2 col 1+2 : Operations de caisse ──────────── -->
+            <div class="sis-card sis-card--ops">
+                <div class="sis-card-label">Operations de caisse recentes</div>
+                <table t-if="state.data.recent_ops.length" class="sis-ops-table">
+                    <tbody>
+                        <t t-foreach="state.data.recent_ops" t-as="op" t-key="op_index">
+                            <tr>
+                                <td class="sis-ops-date" t-esc="op.date"/>
+                                <td t-esc="op.label"/>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+                <div t-else="" class="sis-empty">Aucune operation recente.</div>
+            </div>
+
+            <!-- ── Row 2 col 3 : Evenements + SMS ────────────────── -->
+            <div class="sis-card sis-card--side">
+                <div class="sis-card-label">Evenements</div>
+                <div t-if="state.data.birthdays.length" class="sis-events">
+                    <i class="fa fa-birthday-cake"/>
+                    <span>
+                        <t t-esc="state.data.birthdays.length"/> anniversaire(s) dans les 14 prochains jours
+                    </span>
+                </div>
+                <div t-else="" class="sis-empty">Aucun evenement a venir.</div>
+
+                <div class="sis-sms-section">
+                    <div class="sis-card-label">SMS</div>
+                    <div class="sis-sms-row">
+                        <span>Solde disponible</span>
+                        <strong class="sis-sms-value">0</strong>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</t>
+
+</templates>

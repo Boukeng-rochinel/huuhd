@@ -1,0 +1,11 @@
+id,code,department_id/id,name,program_level_id/id
+edutek_core.program_1,BCA-CC,edutek_core.op_department_1,BCA - Cloud Computing,edutek_core.program_level_2
+edutek_core.program_2,MCA-AI,edutek_core.op_department_1,MCA - Big Data Analytics,edutek_core.program_level_1
+edutek_core.program_3,BCOM-AF,edutek_core.op_department_2,B.Com - Accounting and Finance,edutek_core.program_level_2
+edutek_core.program_4,BA-PSC,edutek_core.op_department_4,BA - Psychology,edutek_core.program_level_2
+edutek_core.program_5,BT-CIE,edutek_core.op_department_3,B.Tech - Civil Engineering,edutek_core.program_level_2
+edutek_core.program_6,BT-CHE,edutek_core.op_department_3,B.Tech - Chemical Engineering,edutek_core.program_level_2
+edutek_core.program_7,Diploma-AE,edutek_core.op_department_3,Diploma - Agricultural Engineering,edutek_core.program_level_4
+edutek_core.program_8,DIP-EE,edutek_core.op_department_3,Diploma - Electrical Engineering,edutek_core.program_level_4
+edutek_core.program_9,CTP-CS,edutek_core.op_department_1,Certificate Program - Cyber Security,edutek_core.program_level_3
+edutek_core.program_10,IE-CSE-M,edutek_core.op_department_3,Industry Embedded - B.Tech CSE with Microsoft,edutek_core.program_level_8

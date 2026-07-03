@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <!-- ══════════════════════════════════════════
+         Niveaux du secondaire (francophone + anglophone).
+         Codes identiques aux valeurs deja stockees sur les
+         classes existantes - aucune migration necessaire.
+    ══════════════════════════════════════════ -->
+    <record id="op_education_level_6e" model="op.education.level">
+        <field name="name">6eme</field>
+        <field name="code">6e</field>
+        <field name="sequence">30</field>
+        <field name="cycle_id" ref="edutek_primaire_cm.op_education_cycle_secondaire"/>
+        <field name="section_id" ref="edutek_primaire_cm.op_education_section_francophone"/>
+    </record>
+    <record id="op_education_level_5e" model="op.education.level">
+        <field name="name">5eme</field>
+        <field name="code">5e</field>
+        <field name="sequence">31</field>
+        <field name="cycle_id" ref="edutek_primaire_cm.op_education_cycle_secondaire"/>
+        <field name="section_id" ref="edutek_primaire_cm.op_education_section_francophone"/>
+    </record>
+    <record id="op_education_level_4e" model="op.education.level">
+        <field name="name">4eme</field>
+        <field name="code">4e</field>
+        <field name="sequence">32</field>
+        <field name="cycle_id" ref="edutek_primaire_cm.op_education_cycle_secondaire"/>
+        <field name="section_id" ref="edutek_primaire_cm.op_education_section_francophone"/>
+    </record>
+    <record id="op_education_level_3e" model="op.education.level">
+        <field name="name">3eme</field>
+        <field name="code">3e</field>
+        <field name="sequence">33</field>
+        <field name="cycle_id" ref="edutek_primaire_cm.op_education_cycle_secondaire"/>
+        <field name="section_id" ref="edutek_primaire_cm.op_education_section_francophone"/>
+    </record>
+    <record id="op_education_level_2nde" model="op.education.level">
+        <field name="name">2nde</field>
+        <field name="code">2nde</field>
+        <field name="sequence">34</field>
+        <field name="cycle_id" ref="edutek_primaire_cm.op_education_cycle_secondaire"/>
+        <field name="section_id" ref="edutek_primaire_cm.op_education_section_francophone"/>
+    </record>
+    <record id="op_education_level_1ere" model="op.education.level">
+        <field name="name">1ere</field>
+        <field name="code">1ere</field>
+        <field name="sequence">35</field>
+        <field name="cycle_id" ref="edutek_primaire_cm.op_education_cycle_secondaire"/>
+        <field name="section_id" ref="edutek_primaire_cm.op_education_section_francophone"/>
+    </record>
+    <record id="op_education_level_terminale" model="op.education.level">
+        <field name="name">Terminale</field>
+        <field name="code">terminale</field>
+        <field name="sequence">36</field>
+        <field name="cycle_id" ref="edutek_primaire_cm.op_education_cycle_secondaire"/>
+        <field name="section_id" ref="edutek_primaire_cm.op_education_section_francophone"/>
+    </record>
+    <record id="op_education_level_form1" model="op.education.level">
+        <field name="name">Form 1</field>
+        <field name="code">form1</field>
+        <field name="sequence">40</field>
+        <field name="cycle_id" ref="edutek_primaire_cm.op_education_cycle_secondaire"/>
+        <field name="section_id" ref="edutek_primaire_cm.op_education_section_anglophone"/>
+    </record>
+    <record id="op_education_level_form2" model="op.education.level">
+        <field name="name">Form 2</field>
+        <field name="code">form2</field>
+        <field name="sequence">41</field>
+        <field name="cycle_id" ref="edutek_primaire_cm.op_education_cycle_secondaire"/>
+        <field name="section_id" ref="edutek_primaire_cm.op_education_section_anglophone"/>
+    </record>
+    <record id="op_education_level_form3" model="op.education.level">
+        <field name="name">Form 3</field>
+        <field name="code">form3</field>
+        <field name="sequence">42</field>
+        <field name="cycle_id" ref="edutek_primaire_cm.op_education_cycle_secondaire"/>
+        <field name="section_id" ref="edutek_primaire_cm.op_education_section_anglophone"/>
+    </record>
+    <record id="op_education_level_form4" model="op.education.level">
+        <field name="name">Form 4</field>
+        <field name="code">form4</field>
+        <field name="sequence">43</field>
+        <field name="cycle_id" ref="edutek_primaire_cm.op_education_cycle_secondaire"/>
+        <field name="section_id" ref="edutek_primaire_cm.op_education_section_anglophone"/>
+    </record>
+    <record id="op_education_level_form5" model="op.education.level">
+        <field name="name">Form 5</field>
+        <field name="code">form5</field>
+        <field name="sequence">44</field>
+        <field name="cycle_id" ref="edutek_primaire_cm.op_education_cycle_secondaire"/>
+        <field name="section_id" ref="edutek_primaire_cm.op_education_section_anglophone"/>
+    </record>
+    <record id="op_education_level_lower_sixth" model="op.education.level">
+        <field name="name">Lower Sixth</field>
+        <field name="code">lower_sixth</field>
+        <field name="sequence">45</field>
+        <field name="cycle_id" ref="edutek_primaire_cm.op_education_cycle_secondaire"/>
+        <field name="section_id" ref="edutek_primaire_cm.op_education_section_anglophone"/>
+    </record>
+    <record id="op_education_level_upper_sixth" model="op.education.level">
+        <field name="name">Upper Sixth</field>
+        <field name="code">upper_sixth</field>
+        <field name="sequence">46</field>
+        <field name="cycle_id" ref="edutek_primaire_cm.op_education_cycle_secondaire"/>
+        <field name="section_id" ref="edutek_primaire_cm.op_education_section_anglophone"/>
+    </record>
+
+    <!-- ══════════════════════════════════════════
+         Series (francophone - lycee, anglophone - A Level).
+    ══════════════════════════════════════════ -->
+    <record id="op_education_serie_a4" model="op.education.serie">
+        <field name="name">A4 - Lettres et Langues Modernes</field>
+        <field name="code">a4</field>
+        <field name="sequence">10</field>
+    </record>
+    <record id="op_education_serie_c" model="op.education.serie">
+        <field name="name">C  - Mathematiques et Sciences Physiques</field>
+        <field name="code">c</field>
+        <field name="sequence">20</field>
+    </record>
+    <record id="op_education_serie_d" model="op.education.serie">
+        <field name="name">D  - Mathematiques et Sciences de la Vie</field>
+        <field name="code">d</field>
+        <field name="sequence">30</field>
+    </record>
+    <record id="op_education_serie_ti" model="op.education.serie">
+        <field name="name">TI - Technique Industrielle</field>
+        <field name="code">ti</field>
+        <field name="sequence">40</field>
+    </record>
+    <record id="op_education_serie_esp" model="op.education.serie">
+        <field name="name">ESP - Economie et Sciences de Gestion</field>
+        <field name="code">esp</field>
+        <field name="sequence">50</field>
+    </record>
+    <record id="op_education_serie_arts" model="op.education.serie">
+        <field name="name">Arts</field>
+        <field name="code">arts</field>
+        <field name="sequence">60</field>
+    </record>
+    <record id="op_education_serie_sciences" model="op.education.serie">
+        <field name="name">Sciences</field>
+        <field name="code">sciences</field>
+        <field name="sequence">70</field>
+    </record>
+    <record id="op_education_serie_commercial" model="op.education.serie">
+        <field name="name">Commercial</field>
+        <field name="code">commercial</field>
+        <field name="sequence">80</field>
+    </record>
+
+</odoo>

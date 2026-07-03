@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+
+<t t-name="edutek_management_cm.EdutekModulesInfo">
+    <div class="emi-root">
+        <div class="emi-header">
+            <h3>Modules EduTek</h3>
+            <p class="text-muted">
+                Informations techniques (version, statut) sur les modules EduTek installes sur cette plateforme.
+            </p>
+        </div>
+        <div t-if="state.loading" class="emi-loading">
+            <i class="fa fa-spinner fa-spin fa-2x"/>
+        </div>
+        <t t-else="">
+            <div class="emi-grid">
+                <t t-foreach="state.modules" t-as="mod" t-key="mod.id">
+                    <div class="emi-card">
+                        <div class="emi-card-top">
+                            <img t-if="mod.icon_image" t-att-src="iconSrc(mod)" class="emi-icon"/>
+                            <div t-else="" class="emi-icon emi-icon--placeholder">
+                                <i class="fa fa-puzzle-piece"/>
+                            </div>
+                            <div class="emi-titles">
+                                <div class="emi-title" t-esc="mod.shortdesc or mod.name"/>
+                                <div class="emi-technical" t-esc="mod.name"/>
+                            </div>
+                        </div>
+                        <div class="emi-meta">
+                            <span class="emi-badge" t-esc="'v' + (mod.installed_version or '-')"/>
+                            <span t-attf-class="emi-badge {{ stateClass(mod.state) }}" t-esc="stateLabel(mod.state)"/>
+                        </div>
+                        <p class="emi-summary" t-if="mod.summary" t-esc="mod.summary"/>
+                        <div class="emi-author" t-if="mod.author">
+                            <i class="fa fa-user-o"/> <span t-esc="mod.author"/>
+                        </div>
+                    </div>
+                </t>
+            </div>
+            <div t-if="!state.modules.length" class="emi-empty">
+                Aucun module EduTek trouve.
+            </div>
+        </t>
+    </div>
+</t>
+
+</templates>

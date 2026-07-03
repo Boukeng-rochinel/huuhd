@@ -1,0 +1,211 @@
+// ─── Modeles de documents ───────────────────────────────────────────────────
+
+.dt-root {
+    padding: 16px;
+    height: 100%;
+}
+
+.dt-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    color: #888;
+}
+
+.dt-layout {
+    display: flex;
+    gap: 16px;
+    height: calc(100vh - 140px);
+    min-height: 500px;
+}
+
+// ─── Liste des types (gauche) ───────────────────────────────────────────────
+
+.dt-list-pane {
+    width: 300px;
+    flex-shrink: 0;
+    background: #fff;
+    border: 1px solid #ececec;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.dt-list-header {
+    padding: 12px 14px;
+    border-bottom: 1px solid #eee;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    color: #888;
+}
+
+.dt-list {
+    overflow-y: auto;
+    flex: 1;
+}
+
+.dt-list-row {
+    padding: 10px 14px;
+    border-bottom: 1px solid #f4f4f4;
+    border-left: 3px solid transparent;
+    cursor: pointer;
+    font-size: 13px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+
+    &:hover { background: #fafafa; }
+
+    &--active {
+        background: #eef7ee;
+        border-left-color: #2e7d32;
+        font-weight: 600;
+        color: #222;
+    }
+}
+
+.dt-sms-badge {
+    font-size: 10px;
+    font-weight: 700;
+    color: #2e7d32;
+    border: 1px solid #2e7d32;
+    border-radius: 10px;
+    padding: 1px 6px;
+    flex-shrink: 0;
+}
+
+// ─── Detail (droite) ─────────────────────────────────────────────────────────
+
+.dt-detail-pane {
+    flex: 1;
+    background: #fff;
+    border: 1px solid #ececec;
+    border-radius: 10px;
+    padding: 18px 22px;
+    overflow-y: auto;
+}
+
+.dt-empty {
+    padding: 30px;
+    text-align: center;
+    color: #aaa;
+    font-size: 13px;
+
+    &--detail {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+}
+
+.dt-detail-title {
+    font-size: 15px;
+    color: #666;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #eee;
+
+    strong { color: #222; }
+}
+
+.dt-section {
+    margin-bottom: 24px;
+}
+
+.dt-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.dt-section-title {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.dt-initial-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.dt-preview {
+    background: #fafafa;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 13px;
+    color: #333;
+}
+
+.dt-btn-new {
+    background: #2e7d32;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 12px;
+    cursor: pointer;
+
+    &:hover { background: #26692a; }
+}
+
+// ─── Table des modeles personnalises ────────────────────────────────────────
+
+.dt-template-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+
+    th {
+        text-align: left;
+        color: #888;
+        font-weight: 600;
+        font-size: 11px;
+        text-transform: uppercase;
+        padding: 6px 4px;
+        border-bottom: 1px solid #eee;
+    }
+
+    td {
+        padding: 8px 4px;
+        color: #333;
+        border-bottom: 1px solid #f3f3f3;
+    }
+}
+
+.dt-template-actions {
+    display: flex;
+    gap: 4px;
+    justify-content: flex-end;
+
+    button {
+        background: #f4f4f5;
+        border: none;
+        border-radius: 6px;
+        width: 28px;
+        height: 28px;
+        cursor: pointer;
+        color: #555;
+
+        &:hover { background: #e9e9eb; }
+    }
+}
+
+.dt-btn-danger {
+    color: #c0392b !important;
+
+    &:hover { background: #fdecea !important; }
+}

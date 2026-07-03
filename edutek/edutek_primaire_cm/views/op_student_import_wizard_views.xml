@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_op_student_import_wizard_form" model="ir.ui.view">
+        <field name="name">op.student.import.wizard.form</field>
+        <field name="model">op.student.import.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Import des eleves">
+                <header>
+                    <button name="action_preview" type="object"
+                            string="Previsualiser" class="btn-primary"
+                            invisible="state != 'upload'"/>
+                    <button name="action_import" type="object"
+                            string="Confirmer l'import" class="btn-primary"
+                            invisible="state != 'preview'"
+                            confirm="Cette action va creer/mettre a jour les eleves ci-dessous. Continuer ?"/>
+                    <button name="action_back_to_upload" type="object"
+                            string="Recommencer avec un autre fichier"
+                            invisible="state == 'upload'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="upload,preview,done"/>
+                </header>
+                <sheet>
+                    <div class="row" invisible="state != 'upload'">
+                        <div class="col-12">
+                            <p class="text-muted">
+                                Importe en masse des eleves depuis un fichier Excel
+                                (.xlsx) au format "1.ELEVES" : Matricule, Nom, Prenom,
+                                Sexe, Date/Lieu de naissance, Salle de classe, Est
+                                inscrit, Reduction accordee, Date inscription, Montant
+                                frais exigibles deja paye. Les eleves existants sont
+                                identifies et mis a jour par leur Matricule. Un apercu
+                                modifiable sera affiche avant toute creation/modification.
+                            </p>
+                            <group string="Fichier">
+                                <field name="file_data" filename="file_name"/>
+                                <field name="file_name" invisible="1"/>
+                            </group>
+                        </div>
+                    </div>
+                    <group string="Parametres">
+                        <field name="academic_year_id" options="{'no_create': True}"
+                               readonly="state != 'upload'"/>
+                        <field name="has_payments" invisible="1"/>
+                        <field name="migration_fee_type_id" options="{'no_create': True}"
+                               invisible="not has_payments" required="has_payments"/>
+                        <field name="payment_journal_id" options="{'no_create': True}"
+                               invisible="not has_payments" required="has_payments"/>
+                    </group>
+
+                    <group string="Apercu des eleves a importer" invisible="state == 'upload'">
+                        <field name="preview_line_ids" nolabel="1" readonly="state == 'done'">
+                            <list editable="bottom" decoration-warning="warning">
+                                <field name="row_index" optional="hide"/>
+                                <field name="matricule"/>
+                                <field name="last_name"/>
+                                <field name="first_name"/>
+                                <field name="gender"/>
+                                <field name="birth_date" optional="show"/>
+                                <field name="birth_place" optional="hide"/>
+                                <field name="ecole_origine" optional="hide"/>
+                                <field name="est_inscrit"/>
+                                <field name="classe_id"
+                                       domain="[('academic_year_id', '=', parent.academic_year_id)]"/>
+                                <field name="classe_texte" optional="hide"/>
+                                <field name="reduction" optional="hide"/>
+                                <field name="date_inscription" optional="hide"/>
+                                <field name="montant_paye" optional="show"/>
+                                <field name="warning" optional="show" readonly="1"/>
+                            </list>
+                        </field>
+                    </group>
+
+                    <group string="Resultat" invisible="not result_summary">
+                        <field name="result_summary" nolabel="1" readonly="1" widget="text"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_op_student_import_wizard" model="ir.actions.act_window">
+        <field name="name">Import des eleves (Excel)</field>
+        <field name="res_model">op.student.import.wizard</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <menuitem id="menu_op_student_import_wizard"
+              name="Import des eleves (Excel)"
+              parent="edutek_core.menu_op_school_config"
+              action="action_op_student_import_wizard"
+              sequence="60"
+              groups="edutek_core.group_op_back_office_admin"/>
+
+</odoo>

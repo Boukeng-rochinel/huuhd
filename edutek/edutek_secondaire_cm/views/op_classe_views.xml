@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Action filtree : Secondaire uniquement -->
+    <record id="action_op_classe_secondaire" model="ir.actions.act_window">
+        <field name="name">Secondaire</field>
+        <field name="res_model">op.classe</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="edutek_primaire_cm.view_op_classe_search"/>
+        <field name="domain">[('level', 'in', [
+            '6e','5e','4e','3e','2nde','1ere','terminale',
+            'form1','form2','form3','form4','form5','lower_sixth','upper_sixth'
+        ])]</field>
+    </record>
+
+    <!-- Sous-menu Secondaire -->
+    <menuitem id="menu_op_classe_secondaire"
+              name="Secondaire"
+              parent="edutek_primaire_cm.menu_op_classe_root"
+              action="action_op_classe_secondaire"
+              sequence="30"
+              groups="edutek_core.group_op_faculty"/>
+
+    <record id="view_op_classe_form_inherit_secondaire" model="ir.ui.view">
+        <field name="name">op.classe.form.inherit.secondaire</field>
+        <field name="model">op.classe</field>
+        <field name="inherit_id" ref="edutek_primaire_cm.view_op_classe_form"/>
+        <field name="arch" type="xml">
+            <field name="level" position="after">
+                <field name="sous_systeme"/>
+                <field name="serie"
+                       invisible="level not in ('2nde','1ere','terminale','lower_sixth','upper_sixth')"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_op_classe_list_inherit_secondaire" model="ir.ui.view">
+        <field name="name">op.classe.list.inherit.secondaire</field>
+        <field name="model">op.classe</field>
+        <field name="inherit_id" ref="edutek_primaire_cm.view_op_classe_list"/>
+        <field name="arch" type="xml">
+            <field name="level" position="after">
+                <field name="sous_systeme" optional="show"/>
+                <field name="serie" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_op_classe_search_inherit_secondaire" model="ir.ui.view">
+        <field name="name">op.classe.search.inherit.secondaire</field>
+        <field name="model">op.classe</field>
+        <field name="inherit_id" ref="edutek_primaire_cm.view_op_classe_search"/>
+        <field name="arch" type="xml">
+            <field name="teacher_id" position="after">
+                <field name="sous_systeme"/>
+                <field name="serie"/>
+            </field>
+            <filter name="group_teacher" position="after">
+                <filter name="group_sous_systeme" string="Sous-systeme" context="{'group_by': 'sous_systeme'}"/>
+            </filter>
+        </field>
+    </record>
+
+</odoo>

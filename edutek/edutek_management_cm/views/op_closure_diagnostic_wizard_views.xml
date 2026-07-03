@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_op_closure_diagnostic_wizard_form" model="ir.ui.view">
+        <field name="name">op.closure.diagnostic.wizard.form</field>
+        <field name="model">op.closure.diagnostic.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Diagnostic annees academiques / acces aux classes">
+                <header>
+                    <button name="action_diagnose" string="Diagnostiquer" type="object"
+                            class="btn-primary"/>
+                </header>
+                <sheet>
+                    <p class="text-muted">
+                        Outil de diagnostic en lecture seule (ne modifie rien) : liste les
+                        annees academiques (pour reperer un eventuel doublon de nom), votre
+                        annee courante, et verifie pourquoi une classe precise donne une
+                        erreur d'acces. Recopiez le numero entre parentheses dans le message
+                        d'erreur (ex: "op.classe: 32") dans le champ ci-dessous avant de
+                        cliquer sur "Diagnostiquer".
+                    </p>
+                    <group>
+                        <field name="classe_id_to_check"/>
+                    </group>
+                    <field name="report" widget="text" readonly="1" nolabel="1"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_op_closure_diagnostic_wizard" model="ir.actions.act_window">
+        <field name="name">Diagnostic annees academiques / acces aux classes</field>
+        <field name="res_model">op.closure.diagnostic.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_op_closure_diagnostic_wizard"
+              name="Diagnostic annees academiques / acces aux classes"
+              parent="edutek_core.menu_op_general_main"
+              sequence="54"
+              action="action_op_closure_diagnostic_wizard"
+              groups="edutek_core.group_op_back_office_admin,base.group_no_one"/>
+
+</odoo>

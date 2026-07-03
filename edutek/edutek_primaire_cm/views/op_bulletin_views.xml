@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ══════════════════════════════════════════
+         KANBAN VIEW
+    ══════════════════════════════════════════ -->
+    <record id="view_op_bulletin_kanban" model="ir.ui.view">
+        <field name="name">op.bulletin.kanban</field>
+        <field name="model">op.bulletin</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="moyenne_generale"/>
+                <field name="rang"/>
+                <field name="effectif_classe"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_global_click p-2">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <strong class="o_kanban_record_title">
+                                    <field name="student_id"/>
+                                </strong>
+                                <span t-attf-class="badge {{ record.moyenne_generale.raw_value &gt;= 10 ? 'text-bg-success' : 'text-bg-danger' }}">
+                                    <field name="moyenne_generale" widget="float" options="{'precision': 2}"/> / 20
+                                </span>
+                            </div>
+                            <div class="text-muted d-flex justify-content-between mt-1">
+                                <span>Rang <field name="rang"/> / <field name="effectif_classe"/></span>
+                                <span><field name="appreciation"/></span>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- ══════════════════════════════════════════
+         LIST VIEW
+    ══════════════════════════════════════════ -->
+    <record id="view_op_bulletin_list" model="ir.ui.view">
+        <field name="name">op.bulletin.list</field>
+        <field name="model">op.bulletin</field>
+        <field name="arch" type="xml">
+            <list string="Bulletins" default_order="rang"
+                  decoration-success="moyenne_generale &gt;= 10"
+                  decoration-danger="moyenne_generale &lt; 10"
+                  decoration-bf="rang == 1">
+                <field name="classe_id" optional="show"/>
+                <field name="academic_term_id"/>
+                <field name="student_id"/>
+                <field name="moyenne_generale"/>
+                <field name="rang"/>
+                <field name="effectif_classe" optional="show"/>
+                <field name="moyenne_classe" optional="show"/>
+                <field name="appreciation"/>
+                <field name="conduite" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_op_bulletin_search" model="ir.ui.view">
+        <field name="name">op.bulletin.search</field>
+        <field name="model">op.bulletin</field>
+        <field name="arch" type="xml">
+            <search string="Bulletins">
+                <field name="student_id"/>
+                <field name="classe_id"/>
+                <field name="academic_term_id"/>
+                <field name="academic_year_id"/>
+                <filter name="filter_admis" string="Admis (moyenne &gt;= 10)"
+                        domain="[('moyenne_generale', '&gt;=', 10)]"/>
+                <filter name="filter_insuffisant" string="Insuffisant (moyenne &lt; 10)"
+                        domain="[('moyenne_generale', '&lt;', 10)]"/>
+                <separator/>
+                <filter name="filter_term1" string="Periode 1"
+                        domain="[('academic_term_id.sequence','=',1)]"/>
+                <filter name="filter_term2" string="Periode 2"
+                        domain="[('academic_term_id.sequence','=',2)]"/>
+                <filter name="filter_term3" string="Periode 3"
+                        domain="[('academic_term_id.sequence','=',3)]"/>
+                <filter name="filter_term4" string="Periode 4"
+                        domain="[('academic_term_id.sequence','=',4)]"/>
+                <filter name="filter_term5" string="Periode 5"
+                        domain="[('academic_term_id.sequence','=',5)]"/>
+                <filter name="filter_term6" string="Periode 6"
+                        domain="[('academic_term_id.sequence','=',6)]"/>
+                <separator/>
+                <filter name="filter_trimestriel" string="Bulletins trimestriels"
+                        domain="[('academic_term_id.child_term_ids','!=',False)]"/>
+                <group>
+                    <filter name="group_classe" string="Classe" context="{'group_by': 'classe_id'}"/>
+                    <filter name="group_term" string="Periode" context="{'group_by': 'academic_term_id'}"/>
+                    <filter name="group_year" string="Annee academique" context="{'group_by': 'academic_year_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ══════════════════════════════════════════
+         FORM VIEW
+    ══════════════════════════════════════════ -->
+    <record id="view_op_bulletin_form" model="ir.ui.view">
+        <field name="name">op.bulletin.form</field>
+        <field name="model">op.bulletin</field>
+        <field name="arch" type="xml">
+            <form string="Bulletin">
+                <header>
+                    <button name="action_print_bulletin" string="Imprimer"
+                            type="object" class="btn-primary"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="student_id" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="classe_id" readonly="1"/>
+                            <field name="academic_term_id" readonly="1"/>
+                            <field name="academic_year_id" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="moyenne_generale"/>
+                            <field name="rang"/>
+                            <field name="effectif_classe"/>
+                            <field name="moyenne_classe"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Notes" name="notes">
+                            <field name="line_ids">
+                                <list editable="bottom">
+                                    <field name="sequence" widget="handle"/>
+                                    <field name="subject_id"/>
+                                    <field name="coefficient"/>
+                                    <field name="note"/>
+                                    <field name="note_x_coef" sum="Total"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Conduite et appreciation" name="conduite">
+                            <group>
+                                <group>
+                                    <field name="appreciation"/>
+                                    <field name="conduite"/>
+                                    <field name="decision"/>
+                                </group>
+                                <group>
+                                    <field name="absences_justifiees"/>
+                                    <field name="absences_injustifiees"/>
+                                    <field name="date_generation" readonly="1"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ══════════════════════════════════════════
+         WIZARD : Generer les bulletins
+    ══════════════════════════════════════════ -->
+    <record id="view_op_bulletin_generate_wizard_form" model="ir.ui.view">
+        <field name="name">op.bulletin.generate.wizard.form</field>
+        <field name="model">op.bulletin.generate.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Generer les bulletins">
+                <p>
+                    Genere (ou regenere) les bulletins de la periode choisie pour
+                    les classes selectionnees, avec calcul automatique du rang
+                    et de la moyenne de classe.
+                </p>
+                <group>
+                    <field name="academic_term_id" options="{'no_create': True}"/>
+                    <field name="academic_year_id" readonly="1"/>
+                    <field name="classe_ids" widget="many2many_tags"
+                           options="{'no_create': True}"
+                           placeholder="Toutes les classes de l'annee si vide"/>
+                </group>
+                <footer>
+                    <button name="action_generate" type="object"
+                            string="Generer" class="btn-primary"/>
+                    <button string="Annuler" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_op_bulletin_generate_wizard" model="ir.actions.act_window">
+        <field name="name">Generer les bulletins</field>
+        <field name="res_model">op.bulletin.generate.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- ══════════════════════════════════════════
+         ACTION
+    ══════════════════════════════════════════ -->
+    <record id="action_op_bulletin" model="ir.actions.act_window">
+        <field name="name">Bulletins</field>
+        <field name="res_model">op.bulletin</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="view_op_bulletin_search"/>
+        <field name="context">{'search_default_group_classe': 1, 'search_default_group_term': 1}</field>
+    </record>
+
+    <!-- ══════════════════════════════════════════
+         MENUS
+    ══════════════════════════════════════════ -->
+    <menuitem id="menu_op_bulletin_generate"
+              name="Generer les bulletins"
+              parent="edutek_primaire_cm.menu_op_pedagogie"
+              action="action_op_bulletin_generate_wizard"
+              sequence="30"
+              groups="edutek_core.group_op_back_office_admin"/>
+
+    <menuitem id="menu_op_bulletin"
+              name="Bulletins"
+              parent="edutek_primaire_cm.menu_op_pedagogie"
+              action="action_op_bulletin"
+              sequence="40"
+              groups="edutek_core.group_op_faculty"/>
+
+</odoo>

@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Format A4 partage par tous les documents officiels qui utilisent
+         l'en-tete/pied de page ci-dessous au lieu de web.external_layout :
+         pas besoin des grandes marges reservees de base.paperformat_euro
+         (40mm/32mm, prevues pour l'en-tete/pied de page standard d'Odoo) -
+         elles ne faisaient que reduire la place disponible sur la page. -->
+    <record id="paperformat_school_document" model="report.paperformat">
+        <field name="name">Document scolaire (A4 plein, en-tete maison)</field>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">8</field>
+        <field name="margin_right">8</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <!-- Format paysage pour les certificats/diplomes a cadre dore (bourse,
+         fin de cycle...) - memes marges reduites que le format portrait
+         ci-dessus, simplement en orientation Landscape. -->
+    <record id="paperformat_school_certificate" model="report.paperformat">
+        <field name="name">Certificat scolaire (A4 paysage, cadre dore)</field>
+        <field name="format">A4</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">8</field>
+        <field name="margin_bottom">8</field>
+        <field name="margin_left">8</field>
+        <field name="margin_right">8</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <!-- Cadre dore decoratif (paysage) pour les certificats/diplomes (bourse,
+         fin de cycle, promotion...). Reutilise l'en-tete/pied de page maison
+         a l'interieur du cadre. Chaque certificat doit definir `doc_title`
+         avant l'appel, et place son propre contenu comme enfants du t-call
+         (recupere ici via la variable speciale `0` de QWeb). -->
+    <template id="report_school_certificate_frame">
+        <div class="page" style="page-break-after: always;">
+            <div style="position: relative; border: 1px solid #b08d2b; padding: 6px; height: 100%; box-sizing: border-box;">
+                <div style="position: relative; border: 3px double #b08d2b; padding: 18px 40px; height: 100%; box-sizing: border-box;">
+                    <div style="position: absolute; top: -3px; left: -3px; width: 22px; height: 22px; border-top: 3px solid #b08d2b; border-left: 3px solid #b08d2b;"/>
+                    <div style="position: absolute; top: -3px; right: -3px; width: 22px; height: 22px; border-top: 3px solid #b08d2b; border-right: 3px solid #b08d2b;"/>
+                    <div style="position: absolute; bottom: -3px; left: -3px; width: 22px; height: 22px; border-bottom: 3px solid #b08d2b; border-left: 3px solid #b08d2b;"/>
+                    <div style="position: absolute; bottom: -3px; right: -3px; width: 22px; height: 22px; border-bottom: 3px solid #b08d2b; border-right: 3px solid #b08d2b;"/>
+
+                    <t t-call="edutek_primaire_cm.report_school_letterhead"/>
+
+                    <div style="text-align: center; margin-top: 18px; margin-bottom: 16px;
+                                font-family: 'Times New Roman', serif; font-size: 30px; font-weight: bold;
+                                letter-spacing: 1px; color: #1a1a1a;" t-esc="doc_title"/>
+
+                    <t t-out="0"/>
+
+                    <t t-call="edutek_primaire_cm.report_school_footer"/>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Format paysage pour les certificats avec deux exemplaires par page
+         (variante economique de papier du cadre orne ci-dessous). -->
+    <record id="paperformat_school_certificate_2up" model="report.paperformat">
+        <field name="name">Certificat scolaire (A4 portrait, 2 par page)</field>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">6</field>
+        <field name="margin_bottom">6</field>
+        <field name="margin_left">6</field>
+        <field name="margin_right">6</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <!-- Cadre orne colore (paysage, un certificat par page) pour les
+         documents de promotion (passage de classe/cycle). Si l'ecole a
+         deposit un fond personnalise (Configuration > Fiche de l'ecole >
+         Informations > Modele de fond pour les certificats), celui-ci
+         remplace entierement le cadre genere ci-dessous. Meme contrat que
+         report_school_certificate_frame : definir `doc_title` avant
+         l'appel, contenu du certificat passe en enfant du t-call. -->
+    <template id="report_school_certificate_frame_ornate">
+        <div class="page" style="page-break-after: always;">
+            <t t-if="company.certificate_background">
+                <div style="position: relative; width: 100%; height: 100%; box-sizing: border-box; overflow: hidden;">
+                    <img t-att-src="image_data_uri(company.certificate_background)"
+                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;"/>
+                    <div style="position: relative; z-index: 1; padding: 26px 60px; height: 100%; box-sizing: border-box;">
+                        <t t-call="edutek_primaire_cm.report_school_letterhead"/>
+                        <div style="text-align: center; margin-top: 14px; margin-bottom: 10px;
+                                    font-family: Georgia, 'Times New Roman', serif; font-size: 32px; font-weight: 800;
+                                    color: #1b5e20; text-decoration: underline; letter-spacing: 1px;" t-esc="doc_title"/>
+                        <t t-out="0"/>
+                    </div>
+                </div>
+            </t>
+            <t t-else="">
+                <div style="border: 5px solid #2e7d32; padding: 3px; height: 100%; box-sizing: border-box;">
+                    <div style="border: 4px solid #f9a825; padding: 3px; height: 100%; box-sizing: border-box;">
+                        <div style="border: 4px solid #c62828; padding: 3px; height: 100%; box-sizing: border-box;">
+                            <div style="border: 2px solid #f48fb1; padding: 18px 55px; height: 100%; box-sizing: border-box;">
+                                <t t-call="edutek_primaire_cm.report_school_letterhead"/>
+
+                                <div style="text-align: center; margin-top: 14px; margin-bottom: 6px;
+                                            font-family: Georgia, 'Times New Roman', serif; font-size: 32px; font-weight: 800;
+                                            color: #1b5e20; text-decoration: underline; letter-spacing: 1px;" t-esc="doc_title"/>
+
+                                <t t-out="0"/>
+
+                                <t t-call="edutek_primaire_cm.report_school_footer"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </div>
+    </template>
+
+    <!-- Variante "2 par page" du cadre orne ci-dessus : pas de page-break
+         apres chaque appel (deux t-call consecutifs partagent la meme
+         page A4 portrait), cadre plus fin pour tenir dans la moitie de la
+         page. Le document appelant doit lui-meme inserer un saut de page
+         tous les 2 enregistrements (cf. report_promotion_cert_2up). -->
+    <template id="report_school_certificate_frame_ornate_2up">
+        <div style="height: 140mm; margin-bottom: 4mm; box-sizing: border-box; overflow: hidden;">
+            <div style="border: 3px solid #2e7d32; padding: 2px; height: 100%; box-sizing: border-box;">
+                <div style="border: 3px solid #f9a825; padding: 2px; height: 100%; box-sizing: border-box;">
+                    <div style="border: 2px solid #c62828; padding: 10px 26px; height: 100%; box-sizing: border-box; font-size: 11px;">
+                        <t t-call="edutek_primaire_cm.report_school_letterhead"/>
+
+                        <div style="text-align: center; margin-top: 6px; margin-bottom: 4px;
+                                    font-family: Georgia, 'Times New Roman', serif; font-size: 20px; font-weight: 800;
+                                    color: #1b5e20; text-decoration: underline; letter-spacing: 0.5px;" t-esc="doc_title"/>
+
+                        <t t-out="0"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- En-tete bilingue (Republique du Cameroun / Republic of Cameroon + logo +
+         nom et devise de l'ecole), reutilise par tous les documents officiels
+         (certificats, attestations, listes, etats de caisse...). -->
+    <template id="report_school_letterhead">
+        <div style="text-align: center; font-size: 9.5px; line-height: 1.3;">
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                    <td style="width: 33%; text-align: center; vertical-align: middle;">
+                        <strong>REPUBLIQUE DU CAMEROUN</strong><br/>
+                        Paix - Travail - Patrie<br/>
+                        ----------------<br/>
+                        Ministere de l'Education de base<br/>
+                        <t t-if="company.delegation_regionale">
+                            ---------------<br/>
+                            <span t-esc="company.delegation_regionale"/><br/>
+                        </t>
+                        <t t-if="company.delegation_departementale">
+                            ---------------<br/>
+                            <span t-esc="company.delegation_departementale"/><br/>
+                        </t>
+                    </td>
+                    <td style="width: 34%; text-align: center; vertical-align: middle;">
+                        <img t-if="company.logo" t-att-src="image_data_uri(company.logo)"
+                             style="max-height: 90px; max-width: 90px;"/>
+                    </td>
+                    <td style="width: 33%; text-align: center; vertical-align: middle;">
+                        <strong>REPUBLIC OF CAMEROON</strong><br/>
+                        Peace - Work - Fatherland<br/>
+                        ----------------<br/>
+                        Ministry of Basic Education<br/>
+                        <t t-if="company.delegation_regionale">
+                            ---------------<br/>
+                            <span t-esc="company.delegation_regionale"/><br/>
+                        </t>
+                        <t t-if="company.delegation_departementale">
+                            ---------------<br/>
+                            <span t-esc="company.delegation_departementale"/><br/>
+                        </t>
+                    </td>
+                </tr>
+            </table>
+            <div style="margin-top: 8px; font-size: 18px; font-weight: bold;" t-esc="company.name"/>
+            <div t-if="lang_en and (company.school_motto_en or company.school_motto)"
+                 style="font-style: italic; margin-top: 2px;" t-esc="company.school_motto_en or company.school_motto"/>
+            <div t-elif="not lang_en and company.school_motto"
+                 style="font-style: italic; margin-top: 2px;" t-esc="company.school_motto"/>
+        </div>
+    </template>
+
+    <!-- Pied de page standard (remplace le "Powered by SISCO" de l'ancien systeme) -->
+    <template id="report_school_footer">
+        <div style="text-align: center; color: #6c757d; font-size: 8px; border-top: 1px solid #ddd; padding-top: 4px;">
+            <span t-esc="company.name"/>
+            <t t-if="company.phone"> - Tel: <span t-esc="company.phone"/></t>
+            <t t-if="company.email"> - Email: <span t-esc="company.email"/></t>
+            <t t-if="company.city"> - <span t-esc="company.city"/></t>
+            - Imprime le <span t-esc="now"/>
+        </div>
+    </template>
+
+    <!-- Titre de document centre (LISTE DES ELEVES, ETAT DES INSOLVABLES...) -
+         reutilise par tous les documents officiels pour un rendu coherent qui
+         ne depend pas du chargement du bundle CSS des rapports (cf. classes
+         Bootstrap text-center/h4 qui ne s'appliquaient pas de facon fiable).
+         Passer le libelle dans la variable `doc_title` avant l'appel. -->
+    <template id="report_school_doc_title">
+        <div style="text-align: center; margin-top: 16px; margin-bottom: 10px;
+                    font-size: 16px; font-weight: bold; text-decoration: underline; color: #2a5db0;"
+             t-esc="doc_title"/>
+    </template>
+
+    <!-- En-tete de tableau de donnees (fond bleu, texte blanc, bordures) -
+         reutilise par les listes/etats de caisse pour un style coherent et
+         un seul endroit a modifier. Passer la liste des libelles de colonnes
+         dans la variable `table_headers` avant l'appel ; le corps du tableau
+         (tbody) reste a la charge de chaque rapport, qui garde son propre
+         t-foreach et ses propres widgets (date, conditions...) mais reutilise
+         le meme style de cellule : border: 1px solid #999; padding: 4px 6px; -->
+    <template id="report_school_table_head">
+        <thead>
+            <tr style="background: #2a5db0; color: #fff;">
+                <t t-foreach="table_headers" t-as="th_label">
+                    <th style="border: 1px solid #999; padding: 4px 6px; text-align: center;" t-esc="th_label"/>
+                </t>
+            </tr>
+        </thead>
+    </template>
+
+</odoo>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ══════════════════════════════════════════
+         LIST VIEW (saisie des notes)
+    ══════════════════════════════════════════ -->
+    <record id="view_op_student_mark_list" model="ir.ui.view">
+        <field name="name">op.student.mark.list</field>
+        <field name="model">op.student.mark</field>
+        <field name="arch" type="xml">
+            <list string="Notes" editable="bottom"
+                  decoration-success="note &gt;= 10"
+                  decoration-danger="note &lt; 10">
+                <field name="classe_id" optional="show" readonly="1"/>
+                <field name="academic_term_id"/>
+                <field name="student_id"/>
+                <field name="classe_subject_id" domain="[('classe_id', '=', classe_id)]"/>
+                <field name="subject_id" optional="hide" readonly="1"/>
+                <field name="coefficient" readonly="1"/>
+                <field name="note"/>
+                <field name="note_x_coef" readonly="1" sum="Total"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_op_student_mark_search" model="ir.ui.view">
+        <field name="name">op.student.mark.search</field>
+        <field name="model">op.student.mark</field>
+        <field name="arch" type="xml">
+            <search string="Notes">
+                <field name="student_id"/>
+                <field name="classe_id"/>
+                <field name="subject_id"/>
+                <field name="academic_term_id"/>
+                <field name="academic_year_id"/>
+                <filter name="filter_insuffisant" string="Notes insuffisantes (&lt; 10)"
+                        domain="[('note', '&lt;', 10)]"/>
+                <separator/>
+                <filter name="filter_term1" string="Periode 1"
+                        domain="[('academic_term_id.sequence','=',1)]"/>
+                <filter name="filter_term2" string="Periode 2"
+                        domain="[('academic_term_id.sequence','=',2)]"/>
+                <filter name="filter_term3" string="Periode 3"
+                        domain="[('academic_term_id.sequence','=',3)]"/>
+                <filter name="filter_term4" string="Periode 4"
+                        domain="[('academic_term_id.sequence','=',4)]"/>
+                <filter name="filter_term5" string="Periode 5"
+                        domain="[('academic_term_id.sequence','=',5)]"/>
+                <filter name="filter_term6" string="Periode 6"
+                        domain="[('academic_term_id.sequence','=',6)]"/>
+                <group>
+                    <filter name="group_classe" string="Classe" context="{'group_by': 'classe_id'}"/>
+                    <filter name="group_term" string="Periode" context="{'group_by': 'academic_term_id'}"/>
+                    <filter name="group_year" string="Annee academique" context="{'group_by': 'academic_year_id'}"/>
+                    <filter name="group_subject" string="Matiere" context="{'group_by': 'subject_id'}"/>
+                    <filter name="group_student" string="Eleve" context="{'group_by': 'student_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ══════════════════════════════════════════
+         WIZARD : Preparer la saisie des notes
+    ══════════════════════════════════════════ -->
+    <record id="view_op_student_mark_generate_wizard_form" model="ir.ui.view">
+        <field name="name">op.student.mark.generate.wizard.form</field>
+        <field name="model">op.student.mark.generate.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Saisir les notes">
+                <group>
+                    <field name="classe_id" options="{'no_create': True}"/>
+                    <field name="academic_year_id" invisible="1"/>
+                    <field name="classe_subject_id" options="{'no_create': True}"/>
+                    <field name="academic_term_id" options="{'no_create': True}"/>
+                </group>
+                <footer>
+                    <button name="action_generate" type="object"
+                            string="Preparer la saisie" class="btn-primary"/>
+                    <button string="Annuler" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_op_student_mark_generate_wizard" model="ir.actions.act_window">
+        <field name="name">Saisir les notes</field>
+        <field name="res_model">op.student.mark.generate.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- ══════════════════════════════════════════
+         ACTION
+    ══════════════════════════════════════════ -->
+    <record id="action_op_student_mark" model="ir.actions.act_window">
+        <field name="name">Notes</field>
+        <field name="res_model">op.student.mark</field>
+        <field name="view_mode">list</field>
+        <field name="search_view_id" ref="view_op_student_mark_search"/>
+        <field name="context">{'search_default_group_classe': 1, 'search_default_group_term': 1}</field>
+    </record>
+
+    <!-- ══════════════════════════════════════════
+         MENUS
+    ══════════════════════════════════════════ -->
+    <menuitem id="menu_op_pedagogie"
+              name="Pedagogie"
+              parent="edutek_core.menu_op_school_root"
+              sequence="60"
+              groups="edutek_core.group_op_faculty"/>
+
+    <menuitem id="menu_op_student_mark_generate"
+              name="Saisir les notes"
+              parent="menu_op_pedagogie"
+              action="action_op_student_mark_generate_wizard"
+              sequence="10"
+              groups="edutek_core.group_op_faculty"/>
+
+    <menuitem id="menu_op_student_mark"
+              name="Notes"
+              parent="menu_op_pedagogie"
+              action="action_op_student_mark"
+              sequence="20"
+              groups="edutek_core.group_op_faculty"/>
+
+</odoo>

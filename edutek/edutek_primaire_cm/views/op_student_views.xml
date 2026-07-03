@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_op_student_form_inherit_classe" model="ir.ui.view">
+        <field name="name">op.student.form.inherit.classe</field>
+        <field name="model">op.student</field>
+        <field name="inherit_id" ref="edutek_core.view_op_student_form"/>
+        <field name="arch" type="xml">
+            <field name="category_id" position="after">
+                <field name="classe_id" options="{'no_create': True}"/>
+            </field>
+            <xpath expr="//form/header" position="inside">
+                <button name="action_change_classe"
+                        string="Transférer / Rétrograder"
+                        type="object"
+                        invisible="not classe_id"
+                        groups="edutek_core.group_op_back_office_admin"/>
+            </xpath>
+            <field name="birth_date" position="after">
+                <field name="birth_place"/>
+                <field name="ecole_origine"/>
+            </field>
+            <div name="button_box" position="inside">
+                <field name="currency_id" invisible="1"/>
+                <button class="oe_stat_button" icon="fa-money" type="object" name="action_view_fees">
+                    <div class="o_stat_info">
+                        <span class="o_stat_value"><field name="fee_total_due" nolabel="1"/></span>
+                        <span class="o_stat_text">Net a payer</span>
+                    </div>
+                </button>
+                <button class="oe_stat_button" icon="fa-check" type="object" name="action_view_fees">
+                    <div class="o_stat_info">
+                        <span class="o_stat_value"><field name="fee_total_paid" nolabel="1"/></span>
+                        <span class="o_stat_text">Deja paye</span>
+                    </div>
+                </button>
+                <button class="oe_stat_button" icon="fa-exclamation-triangle" type="object" name="action_view_fees">
+                    <div class="o_stat_info">
+                        <span class="o_stat_value"><field name="fee_total_residual" nolabel="1"/></span>
+                        <span class="o_stat_text">Reste a payer</span>
+                    </div>
+                </button>
+                <button class="oe_stat_button" icon="fa-history" type="object"
+                        name="action_view_previous_student" invisible="not previous_student_id">
+                    <div class="o_stat_info">
+                        <span class="o_stat_value text-danger"
+                              invisible="previous_student_unpaid == 0">
+                            <field name="previous_student_unpaid" nolabel="1"/>
+                        </span>
+                        <span class="o_stat_text">Annee precedente</span>
+                    </div>
+                </button>
+                <button class="oe_stat_button" icon="fa-arrow-right" type="object"
+                        name="action_view_next_students" invisible="not next_student_ids">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Annee suivante</span>
+                    </div>
+                </button>
+                <button class="oe_stat_button" icon="fa-graduation-cap" type="object"
+                        name="action_view_lifecycle" invisible="not gr_no">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Parcours complet</span>
+                    </div>
+                </button>
+            </div>
+            <widget name="web_ribbon" position="after">
+                <widget name="web_ribbon" title="Inscrit" bg_color="bg-success"
+                        invisible="inscription_state != 'inscrit'"/>
+                <widget name="web_ribbon" title="Non Inscrit" bg_color="bg-danger"
+                        invisible="inscription_state != 'non_inscrit'"/>
+                <widget name="web_ribbon" title="Solde" bg_color="bg-success"
+                        invisible="fee_total_residual != 0"/>
+            </widget>
+            <notebook colspan="4" position="before">
+                <group string="Statut">
+                    <group>
+                        <field name="is_new_student"/>
+                        <field name="redoublant"/>
+                        <field name="deficient_intellectuel"/>
+                    </group>
+                    <group>
+                        <field name="demissionnaire"/>
+                        <field name="enfant_enseignant"/>
+                    </group>
+                    <field name="observation" colspan="2"/>
+                </group>
+            </notebook>
+        </field>
+    </record>
+
+    <record id="view_op_student_tree_inherit_classe" model="ir.ui.view">
+        <field name="name">op.student.list.inherit.classe</field>
+        <field name="model">op.student</field>
+        <field name="inherit_id" ref="edutek_core.view_op_student_tree"/>
+        <field name="arch" type="xml">
+            <field name="title" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </field>
+            <field name="title" position="before">
+                <field name="gr_no" string="Matricule" optional="show"/>
+            </field>
+            <field name="name" position="after">
+                <field name="classe_id" optional="show"/>
+                <field name="inscription_state" string="Statut" optional="show"/>
+                <field name="enrollment_type" string="A/N" optional="show"/>
+            </field>
+            <field name="gender" position="after">
+                <field name="age" optional="show"/>
+                <field name="birth_place" string="Lieu de naissance" optional="show"/>
+                <field name="enfant_enseignant" string="E.E" optional="show"/>
+            </field>
+            <field name="nationality" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </field>
+            <field name="lang" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </field>
+            <field name="emergency_contact" position="after">
+                <field name="observation" string="Commentaire" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_op_student_search_inherit_classe" model="ir.ui.view">
+        <field name="name">op.student.search.inherit.classe</field>
+        <field name="model">op.student</field>
+        <field name="inherit_id" ref="edutek_core.view_op_student_search"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="academic_year_id"/>
+            </field>
+            <filter name="inactive" position="after">
+                <separator/>
+                <filter name="filter_all_years" string="Toutes les annees (inscrits et non inscrits)"
+                        domain="[]" context="{'academic_year_all': 1}"/>
+                <separator/>
+                <filter name="filter_inscrit" string="Inscrits"
+                        domain="[('inscription_state', '=', 'inscrit')]"
+                        context="{'academic_year_all': 1}"/>
+                <filter name="filter_non_inscrit" string="Non Inscrits"
+                        domain="[('inscription_state', '=', 'non_inscrit')]"
+                        context="{'academic_year_all': 1}"/>
+                <separator/>
+                <filter name="filter_ancien" string="Anciens eleves"
+                        domain="[('enrollment_type', '=', 'ancien')]"
+                        context="{'academic_year_all': 1}"/>
+                <filter name="filter_nouveau" string="Nouveaux eleves"
+                        domain="[('enrollment_type', '=', 'nouveau')]"
+                        context="{'academic_year_all': 1}"/>
+            </filter>
+        </field>
+    </record>
+
+    <!-- ══════════════════════════════════════════
+         SIMPLIFICATION DU FORMULAIRE ELEVE
+         (champs sans pertinence pour le primaire camerounais)
+    ══════════════════════════════════════════ -->
+    <record id="view_op_student_form_inherit_simplify" model="ir.ui.view">
+        <field name="name">op.student.form.inherit.simplify</field>
+        <field name="model">op.student</field>
+        <field name="inherit_id" ref="edutek_core.view_op_student_form"/>
+        <field name="arch" type="xml">
+            <data>
+                <field name="title" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="middle_name" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <xpath expr="//field[@name='lang'][not(@invisible)]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <field name="visa_info" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="user_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="partner_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <label for="street" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </label>
+                <div name="o_address_format" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </div>
+                <page name="other_information" position="attributes">
+                    <attribute name="string">Parents / Tuteurs</attribute>
+                </page>
+                <field name="child_ids" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <group name="other_info" position="after">
+                    <group string="Parents">
+                        <field name="parent1_name"/>
+                        <field name="parent1_phone"/>
+                        <field name="parent2_name"/>
+                        <field name="parent2_phone"/>
+                    </group>
+                </group>
+                <page name="other_information" position="after">
+                    <page name="historique" string="Historique">
+                        <p class="text-muted">
+                            Classe et annee academique de cet eleve, annee par
+                            annee (figees une fois l'annee terminee). Cliquer
+                            sur une ligne pour voir le detail (notes, bulletins,
+                            frais) de cette annee-la.
+                        </p>
+                        <field name="history_ids" readonly="1">
+                            <list>
+                                <field name="academic_year_id"/>
+                                <field name="classe_id"/>
+                                <field name="date_inscription"/>
+                                <field name="mark_count"/>
+                                <field name="bulletin_count"/>
+                                <field name="fee_count"/>
+                            </list>
+                        </field>
+                    </page>
+                </page>
+            </data>
+        </field>
+    </record>
+
+</odoo>

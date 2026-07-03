@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+
+<t t-name="edutek_primaire_cm.AcademicYearSwitcher">
+    <Dropdown>
+        <button class="dropdown-toggle btn o_nav_entry d-flex align-items-center" type="button"
+                title="Annee academique en cours">
+            <i class="fa fa-calendar me-1"/>
+            <span t-esc="state.currentName"/>
+        </button>
+        <t t-set-slot="content">
+            <t t-foreach="state.years" t-as="year" t-key="year.id">
+                <DropdownItem onSelected="() => this.selectYear(year.id)">
+                    <i class="fa fa-check me-1" t-if="year.id === state.currentId"/>
+                    <i class="me-1" t-else=""/>
+                    <t t-esc="year.name"/>
+                </DropdownItem>
+            </t>
+        </t>
+    </Dropdown>
+</t>
+
+</templates>

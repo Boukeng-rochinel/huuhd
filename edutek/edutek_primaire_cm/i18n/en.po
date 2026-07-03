@@ -1,0 +1,982 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* openeducat_primaire_cm
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model,name:openeducat_primaire_cm.model_op_classe
+msgid "Classe (Ecole Primaire)"
+msgstr "Class (Primary School)"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_classe__name
+msgid "Nom"
+msgstr "Name"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_classe__level
+msgid "Niveau"
+msgstr "Level"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_classe__academic_year_id
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_student_mark__academic_year_id
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_bulletin__academic_year_id
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_student_fee__academic_year_id
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_student_fee_generate_wizard__academic_year_id
+msgid "Annee academique"
+msgstr "Academic Year"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_classe__teacher_id
+msgid "Maitre / Maitresse titulaire"
+msgstr "Class Teacher"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_classe__student_ids
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_classe_form
+msgid "Eleves"
+msgstr "Students"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_classe__student_count
+msgid "Nb eleves"
+msgstr "Number of Students"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_classe__mark_count
+msgid "Nb notes"
+msgstr "Number of Marks"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_classe__bulletin_count
+msgid "Nb bulletins"
+msgstr "Number of Report Cards"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_classe__fee_unpaid_count
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_classe_form
+#: model:ir.actions.act_window,name:openeducat_primaire_cm.action_op_student_fee_unpaid
+#: model:ir.ui.menu,name:openeducat_primaire_cm.menu_op_student_fee_unpaid
+msgid "Frais impayes"
+msgstr "Unpaid Fees"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_classe__subject_line_ids
+msgid "Programme (matieres / coefficients)"
+msgstr "Curriculum (subjects / coefficients)"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model,name:openeducat_primaire_cm.model_op_classe_subject
+msgid "Matiere du programme d'une classe"
+msgstr "Class curriculum subject"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_classe_subject__classe_id
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_student__classe_id
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_student_mark__classe_id
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_bulletin__classe_id
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_student_fee__classe_id
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_student_mark_generate_wizard__classe_id
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_bulletin_generate_wizard__classe_id
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_student_fee_generate_wizard__classe_id
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_classe_form
+msgid "Classe"
+msgstr "Class"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_classe_subject__subject_id
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_student_mark__subject_id
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_bulletin_line__subject_id
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.report_bulletin_document
+msgid "Matiere"
+msgstr "Subject"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_classe_subject__coefficient
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_student_mark__coefficient
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_bulletin_line__coefficient
+msgid "Coefficient"
+msgstr "Coefficient"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_classe_subject__sequence
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_bulletin_line__sequence
+msgid "Sequence"
+msgstr "Sequence"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model,name:openeducat_primaire_cm.model_op_student_mark
+msgid "Note d'un eleve"
+msgstr "Student mark"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_student_mark__student_id
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_bulletin__student_id
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_student_fee__student_id
+msgid "Eleve"
+msgstr "Student"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_student_mark__academic_term_id
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_bulletin__academic_term_id
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_student_fee__academic_term_id
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_student_mark_generate_wizard__academic_term_id
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_bulletin_generate_wizard__academic_term_id
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_student_fee_generate_wizard__academic_term_id
+msgid "Trimestre"
+msgstr "Term"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_student_mark__classe_subject_id
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_student_mark_generate_wizard__classe_subject_id
+msgid "Matiere (programme)"
+msgstr "Subject (curriculum)"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_student_mark__note
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_bulletin_line__note
+msgid "Note / 20"
+msgstr "Mark / 20"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_student_mark__note_x_coef
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_bulletin_line__note_x_coef
+msgid "Note x Coef"
+msgstr "Mark x Coef"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model,name:openeducat_primaire_cm.model_op_bulletin
+#: model:ir.actions.report,name:openeducat_primaire_cm.action_report_op_bulletin
+msgid "Bulletin trimestriel"
+msgstr "Term Report Card"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_bulletin__line_ids
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_classe_form
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_student_mark_list
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_bulletin_form
+#: model:ir.actions.act_window,name:openeducat_primaire_cm.action_op_student_mark
+#: model:ir.ui.menu,name:openeducat_primaire_cm.menu_op_student_mark
+msgid "Notes"
+msgstr "Marks"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_bulletin__total_coef
+msgid "Total coefficients"
+msgstr "Total Coefficients"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_bulletin__total_points
+msgid "Total points"
+msgstr "Total Points"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_bulletin__moyenne_generale
+msgid "Moyenne generale / 20"
+msgstr "Overall Average / 20"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_bulletin__rang
+msgid "Rang"
+msgstr "Rank"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_bulletin__effectif_classe
+msgid "Effectif de la classe"
+msgstr "Class Size"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_bulletin__moyenne_classe
+msgid "Moyenne de la classe"
+msgstr "Class Average"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_bulletin__appreciation
+msgid "Appreciation generale"
+msgstr "Overall Remark"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_bulletin__conduite
+msgid "Conduite"
+msgstr "Conduct"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields.selection,name:openeducat_primaire_cm.selection__op_bulletin__conduite__excellente
+msgid "Excellente"
+msgstr "Excellent"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields.selection,name:openeducat_primaire_cm.selection__op_bulletin__conduite__tres_bonne
+msgid "Tres bonne"
+msgstr "Very Good"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields.selection,name:openeducat_primaire_cm.selection__op_bulletin__conduite__bonne
+msgid "Bonne"
+msgstr "Good"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields.selection,name:openeducat_primaire_cm.selection__op_bulletin__conduite__passable
+msgid "Passable"
+msgstr "Fair"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields.selection,name:openeducat_primaire_cm.selection__op_bulletin__conduite__mediocre
+msgid "Mediocre"
+msgstr "Poor"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_bulletin__absences_justifiees
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.report_bulletin_document
+msgid "Absences justifiees"
+msgstr "Excused Absences"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_bulletin__absences_injustifiees
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.report_bulletin_document
+msgid "Absences injustifiees"
+msgstr "Unexcused Absences"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_bulletin__decision
+msgid "Decision"
+msgstr "Decision"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_bulletin__date_generation
+msgid "Date de generation"
+msgstr "Generation Date"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model,name:openeducat_primaire_cm.model_op_bulletin_line
+msgid "Ligne de bulletin (note par matiere)"
+msgstr "Report card line (mark by subject)"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_bulletin_line__bulletin_id
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_bulletin_form
+msgid "Bulletin"
+msgstr "Report Card"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model,name:openeducat_primaire_cm.model_op_fee_type
+msgid "Type de frais scolaire"
+msgstr "School fee type"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_fee_type__name
+msgid "Libelle"
+msgstr "Label"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_fee_type__amount
+msgid "Montant par defaut"
+msgstr "Default Amount"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_fee_type__account_id
+msgid "Compte de produit"
+msgstr "Income Account"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model,name:openeducat_primaire_cm.model_op_student_fee
+msgid "Frais scolaire d'un eleve"
+msgstr "Student school fee"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_student_fee__partner_id
+msgid "Tiers (facturation)"
+msgstr "Customer (Invoicing)"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_student_fee__fee_type_id
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_student_fee_generate_wizard__fee_type_id
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_fee_type_form
+msgid "Type de frais"
+msgstr "Fee Type"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_student_fee__amount
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_student_fee_generate_wizard__amount
+msgid "Montant"
+msgstr "Amount"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_student_fee__journal_id
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_student_fee_generate_wizard__journal_id
+msgid "Journal de facturation"
+msgstr "Invoicing Journal"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_student_fee__move_id
+msgid "Facture"
+msgstr "Invoice"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_student_fee__amount_residual
+msgid "Reste a payer"
+msgstr "Amount Due"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields,field_description:openeducat_primaire_cm.field_op_student_fee__payment_state
+msgid "Statut paiement"
+msgstr "Payment Status"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields.selection,name:openeducat_primaire_cm.selection__op_student_fee__state__draft
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_student_fee_kanban
+msgid "Brouillon"
+msgstr "Draft"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields.selection,name:openeducat_primaire_cm.selection__op_student_fee__state__posted
+msgid "Comptabilise"
+msgstr "Posted"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model.fields.selection,name:openeducat_primaire_cm.selection__op_student_fee__state__cancelled
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_student_fee_kanban
+msgid "Annule"
+msgstr "Cancelled"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model,name:openeducat_primaire_cm.model_op_student_mark_generate_wizard
+msgid "Preparer la saisie des notes pour une classe"
+msgstr "Prepare mark entry for a class"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model,name:openeducat_primaire_cm.model_op_bulletin_generate_wizard
+msgid "Generer les bulletins d'une classe"
+msgstr "Generate report cards for a class"
+
+#. module: openeducat_primaire_cm
+#: model:ir.model,name:openeducat_primaire_cm.model_op_student_fee_generate_wizard
+msgid "Generer des frais pour une classe"
+msgstr "Generate fees for a class"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_classe_list
+#: model:ir.actions.act_window,name:openeducat_primaire_cm.action_op_classe
+#: model:ir.ui.menu,name:openeducat_primaire_cm.menu_op_classe
+msgid "Classes"
+msgstr "Classes"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_classe_form
+msgid "Ex: CM2 A"
+msgstr "E.g. CM2 A"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_classe_kanban
+msgid "eleve(s)"
+msgstr "student(s)"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_classe_kanban
+msgid "Enseignant"
+msgstr "Teacher"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_classe_form
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_student_mark_generate_wizard_form
+#: model:ir.actions.act_window,name:openeducat_primaire_cm.action_op_student_mark_generate_wizard
+#: model:ir.ui.menu,name:openeducat_primaire_cm.menu_op_student_mark_generate
+msgid "Saisir les notes"
+msgstr "Enter Marks"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_classe_form
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_bulletin_generate_wizard_form
+#: model:ir.actions.act_window,name:openeducat_primaire_cm.action_op_bulletin_generate_wizard
+#: model:ir.ui.menu,name:openeducat_primaire_cm.menu_op_bulletin_generate
+msgid "Generer les bulletins"
+msgstr "Generate Report Cards"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_classe_form
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_student_fee_generate_wizard_form
+#: model:ir.actions.act_window,name:openeducat_primaire_cm.action_op_student_fee_generate_wizard
+#: model:ir.ui.menu,name:openeducat_primaire_cm.menu_op_student_fee_generate
+msgid "Generer des frais"
+msgstr "Generate Fees"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_student_mark_generate_wizard_form
+msgid "Preparer la saisie"
+msgstr "Prepare Entry"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_student_mark_generate_wizard_form
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_bulletin_generate_wizard_form
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_student_fee_generate_wizard_form
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_student_fee_form
+msgid "Annuler"
+msgstr "Cancel"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_bulletin_generate_wizard_form
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_student_fee_generate_wizard_form
+msgid "Generer"
+msgstr "Generate"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.menu,name:openeducat_primaire_cm.menu_op_pedagogie
+msgid "Pedagogie"
+msgstr "Pedagogy"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_bulletin_list
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_classe_form
+#: model:ir.actions.act_window,name:openeducat_primaire_cm.action_op_bulletin
+#: model:ir.ui.menu,name:openeducat_primaire_cm.menu_op_bulletin
+msgid "Bulletins"
+msgstr "Report Cards"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_bulletin_form
+msgid "Conduite et appreciation"
+msgstr "Conduct and Remarks"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_bulletin_form
+msgid "Imprimer"
+msgstr "Print"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_fee_type_list
+#: model:ir.actions.act_window,name:openeducat_primaire_cm.action_op_fee_type
+#: model:ir.ui.menu,name:openeducat_primaire_cm.menu_op_fee_type
+msgid "Types de frais"
+msgstr "Fee Types"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_fee_type_form
+msgid "Ex: Scolarite - Trimestre 1"
+msgstr "E.g. Tuition - Term 1"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_student_fee_list
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_student_fee_search
+#: model:ir.actions.act_window,name:openeducat_primaire_cm.action_op_student_fee
+#: model:ir.ui.menu,name:openeducat_primaire_cm.menu_op_student_fee
+msgid "Frais des eleves"
+msgstr "Student Fees"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_student_fee_form
+msgid "Frais eleve"
+msgstr "Student Fee"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.menu,name:openeducat_primaire_cm.menu_op_frais
+msgid "Frais Scolaires"
+msgstr "School Fees"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_student_fee_search
+msgid "Impayes"
+msgstr "Unpaid"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_student_fee_form
+msgid "Comptabiliser"
+msgstr "Post"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_student_fee_form
+msgid "Enregistrer un paiement"
+msgstr "Register Payment"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_student_fee_form
+msgid "Voir facture"
+msgstr "View Invoice"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.view_op_student_form_inherit_simplify
+msgid "Parents / Tuteurs"
+msgstr "Parents / Guardians"
+
+#. module: openeducat_primaire_cm
+#: model:ir.sequence,name:openeducat_primaire_cm.seq_op_student_fee
+msgid "Frais Eleve"
+msgstr "Student Fee Sequence"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.report_bulletin_document
+msgid "Bulletin Trimestriel"
+msgstr "Term Report Card"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.report_bulletin_document
+msgid "Eleve :"
+msgstr "Student:"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.report_bulletin_document
+msgid "Classe :"
+msgstr "Class:"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.report_bulletin_document
+msgid "Annee academique :"
+msgstr "Academic Year:"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.report_bulletin_document
+msgid "Trimestre :"
+msgstr "Term:"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.report_bulletin_document
+msgid "Moyenne generale :"
+msgstr "Overall Average:"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.report_bulletin_document
+msgid "Rang :"
+msgstr "Rank:"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.report_bulletin_document
+msgid "Moyenne de la classe :"
+msgstr "Class Average:"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.report_bulletin_document
+msgid "Appreciation generale :"
+msgstr "Overall Remark:"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.report_bulletin_document
+msgid "Decision :"
+msgstr "Decision:"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.report_bulletin_document
+msgid "Le Maitre / La Maitresse"
+msgstr "Class Teacher"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.report_bulletin_document
+msgid "Le Directeur"
+msgstr "The Headteacher"
+
+#. module: openeducat_primaire_cm
+#: model:ir.ui.view,arch_db:openeducat_primaire_cm.report_bulletin_document
+msgid "Le Parent"
+msgstr "Parent"
+
+# ── New fields added in recent sessions
+# ──────────────────────────────────────
+#. module: openeducat_primaire_cm
+msgid "Dossier annee precedente"
+msgstr "Previous Year Record"
+
+#. module: openeducat_primaire_cm
+msgid ""
+"Dossier de cet eleve pour l'annee academique precedente (cree par la cloture"
+" d'annee : Configuration > Cloturer une annee academique). Ce dossier-ci ne "
+"contient que les infos personnelles et la nouvelle classe - aucune note, "
+"aucun bulletin, aucun frais n'est jamais reporte d'une annee a l'autre. "
+"Basculer sur l'annee academique precedente (en haut a droite) pour consulter"
+" ce dossier tel qu'il etait alors."
+msgstr ""
+"This student's record for the previous academic year (created by the year-"
+"closure wizard: Configuration > Close an Academic Year). This record "
+"contains only personal information and the new class — no marks, report "
+"cards or fees are ever carried over from one year to the next. Switch to the"
+" previous academic year (top right) to view this record as it was at that "
+"time."
+
+#. module: openeducat_primaire_cm
+msgid "Dossier(s) annee(s) suivante(s)"
+msgstr "Next Year Record(s)"
+
+#. module: openeducat_primaire_cm
+msgid "Impaye annee precedente"
+msgstr "Previous Year Unpaid Balance"
+
+#. module: openeducat_primaire_cm
+msgid ""
+"Montant reste a payer sur les frais de l'annee precedente de cet eleve. "
+"Affiche en rouge sur le bouton 'Annee precedente' si des frais sont encore "
+"en suspens."
+msgstr ""
+"Amount remaining to pay on this student's fees from the previous year. Shown"
+" in red on the 'Previous Year' button if any fees are still outstanding."
+
+#. module: openeducat_primaire_cm
+msgid "Statut d'inscription"
+msgstr "Enrollment Status"
+
+#. module: openeducat_primaire_cm
+msgid "Inscrit"
+msgstr "Enrolled"
+
+#. module: openeducat_primaire_cm
+msgid "Non Inscrit"
+msgstr "Not Enrolled"
+
+#. module: openeducat_primaire_cm
+msgid "Statut eleve"
+msgstr "Student Status"
+
+#. module: openeducat_primaire_cm
+msgid "Nouveau"
+msgstr "New"
+
+#. module: openeducat_primaire_cm
+msgid "Ancien"
+msgstr "Returning"
+
+#. module: openeducat_primaire_cm
+msgid "Le matricule doit etre unique pour une meme annee academique !"
+msgstr "The student number must be unique within the same academic year!"
+
+#. module: openeducat_primaire_cm
+msgid "Lieu de naissance"
+msgstr "Place of Birth"
+
+#. module: openeducat_primaire_cm
+msgid "Ecole d'origine"
+msgstr "Previous School"
+
+#. module: openeducat_primaire_cm
+msgid ""
+"Etablissement frequente par l'eleve avant son inscription ici (le cas "
+"echeant)."
+msgstr ""
+"School previously attended by the student before enrolling here (if "
+"applicable)."
+
+#. module: openeducat_primaire_cm
+msgid "Nouveau a l'ecole (manuel)"
+msgstr "New to the school (manual)"
+
+#. module: openeducat_primaire_cm
+msgid "Redoublant"
+msgstr "Repeating Year"
+
+#. module: openeducat_primaire_cm
+msgid "Deficient intellectuel"
+msgstr "Intellectual Disability"
+
+#. module: openeducat_primaire_cm
+msgid "Demissionnaire"
+msgstr "Withdrawn"
+
+#. module: openeducat_primaire_cm
+msgid "Enfant enseignant"
+msgstr "Staff Child"
+
+#. module: openeducat_primaire_cm
+msgid "Observation"
+msgstr "Observation"
+
+#. module: openeducat_primaire_cm
+msgid "Parent 1"
+msgstr "Parent 1"
+
+#. module: openeducat_primaire_cm
+msgid "Telephone Parent 1"
+msgstr "Parent 1 Phone"
+
+#. module: openeducat_primaire_cm
+msgid "Parent 2"
+msgstr "Parent 2"
+
+#. module: openeducat_primaire_cm
+msgid "Telephone Parent 2"
+msgstr "Parent 2 Phone"
+
+#. module: openeducat_primaire_cm
+msgid "Reduction accordee"
+msgstr "Discount Granted"
+
+#. module: openeducat_primaire_cm
+msgid ""
+"Montant fixe deduit de chaque frais genere pour cet eleve (generation "
+"automatique a l'affectation de classe, ou wizard de generation en masse)."
+msgstr ""
+"Fixed amount deducted from each fee generated for this student (automatic at"
+" class assignment or via batch generation wizard)."
+
+#. module: openeducat_primaire_cm
+msgid "Net a payer"
+msgstr "Net Payable"
+
+#. module: openeducat_primaire_cm
+msgid "Deja paye"
+msgstr "Already Paid"
+
+#. module: openeducat_primaire_cm
+msgid "Historique d'inscription"
+msgstr "Enrollment History"
+
+#. module: openeducat_primaire_cm
+msgid ""
+"Seuls les responsables (groupe Manager) peuvent archiver ou reactiver un "
+"eleve."
+msgstr "Only managers (Manager group) can archive or reactivate a student."
+
+#. module: openeducat_primaire_cm
+msgid ""
+"Les eleves ne peuvent pas etre supprimes, uniquement archives (bouton "
+"Actions > Archiver)."
+msgstr "Students cannot be deleted, only archived (Actions > Archive button)."
+
+#. module: openeducat_primaire_cm
+msgid "Parcours complet (toutes annees) - %s"
+msgstr "Full Schooling History (all years) - %s"
+
+#. module: openeducat_primaire_cm
+msgid "Operateur de recherche non supporte pour le statut d'inscription."
+msgstr "Unsupported search operator for enrollment status."
+
+#. module: openeducat_primaire_cm
+msgid "Operateur de recherche non supporte pour le statut eleve."
+msgstr "Unsupported search operator for student status."
+
+#. module: openeducat_primaire_cm
+msgid "Annee precedente"
+msgstr "Previous Year"
+
+#. module: openeducat_primaire_cm
+msgid "Annee suivante"
+msgstr "Next Year"
+
+#. module: openeducat_primaire_cm
+msgid "Parcours complet"
+msgstr "Full History"
+
+#. module: openeducat_primaire_cm
+msgid "Solde"
+msgstr "Paid in Full"
+
+#. module: openeducat_primaire_cm
+msgid "Toutes les annees (inscrits et non inscrits)"
+msgstr "All Years (enrolled and not enrolled)"
+
+#. module: openeducat_primaire_cm
+msgid "Inscrits"
+msgstr "Enrolled"
+
+#. module: openeducat_primaire_cm
+msgid "Non Inscrits"
+msgstr "Not Enrolled"
+
+#. module: openeducat_primaire_cm
+msgid "Anciens eleves"
+msgstr "Returning Students"
+
+#. module: openeducat_primaire_cm
+msgid "Nouveaux eleves"
+msgstr "New Students"
+
+#. module: openeducat_primaire_cm
+msgid "Matricule"
+msgstr "Student Number"
+
+#. module: openeducat_primaire_cm
+msgid "E.E"
+msgstr "S.C"
+
+#. module: openeducat_primaire_cm
+msgid "Commentaire"
+msgstr "Comment"
+
+#. module: openeducat_primaire_cm
+msgid "Historique"
+msgstr "History"
+
+#. module: openeducat_primaire_cm
+msgid ""
+"Classe et annee academique de cet eleve, annee par annee (figees une fois "
+"l'annee terminee). Cliquer sur une ligne pour voir le detail (notes, "
+"bulletins, frais) de cette annee-la."
+msgstr ""
+"This student's class and academic year, year by year (frozen once the year "
+"ends). Click a row to see the details (marks, report cards, fees) for that "
+"year."
+
+# ── op.fee.type new fields
+# ────────────────────────────────────────────────────
+#. module: openeducat_primaire_cm
+msgid "Frais d'inscription"
+msgstr "Registration Fee"
+
+#. module: openeducat_primaire_cm
+msgid ""
+"Un eleve n'est considere 'Inscrit' que s'il a paye un frais de ce type pour "
+"l'annee academique en cours."
+msgstr ""
+"A student is only considered 'Enrolled' if they have paid a fee of this type"
+" for the current academic year."
+
+#. module: openeducat_primaire_cm
+msgid "Frais divers"
+msgstr "Miscellaneous Fees"
+
+#. module: openeducat_primaire_cm
+msgid ""
+"Classe ce type de frais dans la categorie 'Frais divers' sur les etats de "
+"caisse, plutot que dans 'Frais de scolarite'."
+msgstr ""
+"Classifies this fee type in the 'Miscellaneous Fees' category on cash "
+"statements, rather than 'Tuition Fees'."
+
+#. module: openeducat_primaire_cm
+msgid "Date limite / expiration"
+msgstr "Deadline / Expiry Date"
+
+#. module: openeducat_primaire_cm
+msgid ""
+"Date limite de paiement par defaut pour ce type de frais (affichee sur les "
+"recus). A ajuster chaque annee si besoin. Laisser vide pour utiliser la date"
+" de facturation du frais comme echeance par defaut."
+msgstr ""
+"Default payment deadline for this fee type (shown on receipts). Adjust each "
+"year as needed. Leave blank to use the fee invoice date as the default due "
+"date."
+
+#. module: openeducat_primaire_cm
+msgid "Ce type de frais existe deja pour cette societe."
+msgstr "This fee type already exists for this company."
+
+# ── op.student.fee new fields
+# ─────────────────────────────────────────────────
+#. module: openeducat_primaire_cm
+msgid "Inscription"
+msgstr "Enrollment"
+
+#. module: openeducat_primaire_cm
+msgid "Le montant doit etre strictement positif."
+msgstr "The amount must be strictly positive."
+
+#. module: openeducat_primaire_cm
+msgid "Le type de frais doit avoir un compte de produit."
+msgstr "The fee type must have an income account."
+
+#. module: openeducat_primaire_cm
+msgid ""
+"Impossible d'annuler : un paiement est deja enregistre sur la facture. "
+"Annulez d'abord le paiement."
+msgstr ""
+"Cannot cancel: a payment has already been recorded on the invoice. Cancel "
+"the payment first."
+
+#. module: openeducat_primaire_cm
+msgid "Aucune facture associee a ce frais."
+msgstr "No invoice associated with this fee."
+
+#. module: openeducat_primaire_cm
+msgid "Comptabiliser immediatement"
+msgstr "Post Immediately"
+
+#. module: openeducat_primaire_cm
+msgid "Si coche, les frais generes sont aussitot factures et comptabilises."
+msgstr "If checked, the generated fees are immediately invoiced and posted."
+
+# ── op.student.enrollment.history
+# ────────────────────────────────────────────
+#. module: openeducat_primaire_cm
+msgid "Historique d'inscription annuelle d'un eleve"
+msgstr "Annual Enrollment History of a Student"
+
+#. module: openeducat_primaire_cm
+msgid "Date d'inscription"
+msgstr "Enrollment Date"
+
+#. module: openeducat_primaire_cm
+msgid ""
+"Date a laquelle l'eleve a ete inscrit pour cette annee academique. Fixee une"
+" seule fois a la creation ; un changement de classe en cours d'annee ne la "
+"modifie pas."
+msgstr ""
+"Date on which the student was enrolled for this academic year. Set once at "
+"creation; a class change during the year does not modify it."
+
+#. module: openeducat_primaire_cm
+msgid "Nb frais"
+msgstr "No. of Fees"
+
+#. module: openeducat_primaire_cm
+msgid "Un historique existe deja pour cet eleve sur cette annee academique."
+msgstr ""
+"A history entry already exists for this student for this academic year."
+
+#. module: openeducat_primaire_cm
+msgid "Historique des inscriptions"
+msgstr "Enrollment History"
+
+# ── res.company new fields
+# ────────────────────────────────────────────────────
+#. module: openeducat_primaire_cm
+msgid "Delegation regionale"
+msgstr "Regional Delegation"
+
+#. module: openeducat_primaire_cm
+msgid ""
+"Ex: DELEGATION REGIONALE DU LITTORAL. Affiche sur les certificats, "
+"attestations et autres documents officiels."
+msgstr ""
+"E.g. LITTORAL REGIONAL DELEGATION. Shown on certificates, attestations and "
+"other official documents."
+
+#. module: openeducat_primaire_cm
+msgid "Delegation departementale"
+msgstr "Departmental Delegation"
+
+#. module: openeducat_primaire_cm
+msgid "Boite postale (BP)"
+msgstr "P.O. Box"
+
+#. module: openeducat_primaire_cm
+msgid "Autorisation"
+msgstr "Authorisation"
+
+#. module: openeducat_primaire_cm
+msgid ""
+"Numero/reference de l'autorisation d'ouverture ou de fonctionnement de "
+"l'etablissement."
+msgstr ""
+"Number/reference of the establishment's opening or operating authorisation."
+
+#. module: openeducat_primaire_cm
+msgid "Devise de l'ecole (FR)"
+msgstr "School Motto (FR)"
+
+#. module: openeducat_primaire_cm
+msgid "Devise de l'ecole (EN)"
+msgstr "School Motto (EN)"
+
+#. module: openeducat_primaire_cm
+msgid "Generer automatiquement le matricule"
+msgstr "Automatically Generate Student Number"
+
+#. module: openeducat_primaire_cm
+msgid "Prefixe par defaut du matricule"
+msgstr "Default Student Number Prefix"
+
+#. module: openeducat_primaire_cm
+msgid "Modele de fond pour les certificats"
+msgstr "Certificate Background Template"
+
+#. module: openeducat_primaire_cm
+msgid ""
+"Seuls les responsables (groupe Manager) peuvent modifier la fiche de "
+"l'ecole."
+msgstr "Only managers (Manager group) can edit the school profile."

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+
+<t t-name="edutek_management_cm.SisLockScreen">
+<div t-if="lockState.locked" class="sis-lock-overlay">
+
+    <div class="sis-lock-bg"/>
+
+    <!-- ══════════════════════════════════════
+         PHASE 1 : Selection de l'employe
+    ══════════════════════════════════════ -->
+    <div t-if="state.phase === 'select'" class="sis-lock-card">
+
+        <div class="sis-lock-card-header">
+            <i class="fa fa-lock me-2"/>
+            <span>Sélectionner votre profil</span>
+        </div>
+
+        <div class="sis-lock-emp-list">
+            <div t-if="state.loadingEmployees" class="sis-lock-loading">
+                <i class="fa fa-spinner fa-spin"/>
+            </div>
+            <t t-else="">
+                <div t-if="!state.employees.length" class="sis-lock-empty">
+                    Aucun employé n'a encore été créé.<br/>
+                    Demandez à un administrateur de créer votre fiche dans
+                    <strong>Ressources Humaines &gt; Employés</strong>,
+                    puis d'y configurer votre code PIN.
+                </div>
+                <t t-foreach="state.employees" t-as="emp" t-key="emp.id">
+                    <div class="sis-lock-emp-row" t-on-click="() => this.selectEmployee(emp)">
+                        <span class="sis-lock-emp-avatar"
+                              t-attf-style="background-color:{{getColor(emp.id)}}">
+                            <t t-esc="getInitial(emp.name)"/>
+                        </span>
+                        <span class="sis-lock-emp-row-name" t-esc="emp.name"/>
+                        <i class="fa fa-chevron-right sis-lock-emp-row-chevron"/>
+                    </div>
+                </t>
+            </t>
+        </div>
+
+    </div>
+
+    <!-- ══════════════════════════════════════
+         PHASE 2 : Saisie du PIN
+    ══════════════════════════════════════ -->
+    <div t-if="state.phase === 'pin'" class="sis-lock-card sis-lock-card--pin"
+         t-att-class="state.error ? 'sis-lock-card--shake' : ''">
+
+        <div class="sis-lock-card-header sis-lock-card-header--pin">
+            <button class="sis-lock-back-btn" t-on-click="backToSelect" title="Retour">
+                <i class="fa fa-arrow-left"/>
+            </button>
+            <span t-esc="state.selected.name"/>
+        </div>
+
+        <div class="sis-lock-pin-body">
+
+            <span class="sis-lock-emp-avatar sis-lock-emp-avatar--lg"
+                  t-attf-style="background-color:{{getColor(state.selected.id)}}">
+                <t t-esc="getInitial(state.selected.name)"/>
+            </span>
+
+            <div class="sis-lock-error" t-if="state.error">
+                <i class="fa fa-exclamation-circle me-1"/> PIN incorrect
+            </div>
+            <div class="sis-lock-hint" t-else="">
+                Entrez votre code PIN
+            </div>
+
+            <div class="sis-lock-dots">
+                <t t-foreach="pinDots" t-as="filled" t-key="filled_index">
+                    <span class="sis-lock-dot"
+                          t-att-class="filled ? 'sis-lock-dot--filled' : ''"/>
+                </t>
+            </div>
+
+            <div class="sis-lock-keypad">
+                <t t-foreach="[7,8,9,4,5,6,1,2,3]" t-as="d" t-key="d">
+                    <button class="sis-lock-key sis-lock-key--digit"
+                            t-on-click="() => this.pressDigit(d)"
+                            t-esc="d"/>
+                </t>
+                <button class="sis-lock-key sis-lock-key--action"
+                        t-on-click="backspace"
+                        t-att-disabled="!state.pin || state.loading">
+                    <i class="fa fa-backspace"/>
+                </button>
+                <button class="sis-lock-key sis-lock-key--digit"
+                        t-on-click="() => this.pressDigit(0)">0</button>
+                <button class="sis-lock-key sis-lock-key--validate"
+                        t-on-click="validate"
+                        t-att-disabled="!state.pin || state.loading">
+                    <i t-if="state.loading" class="fa fa-spinner fa-spin"/>
+                    <i t-else="" class="fa fa-check"/>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+</t>
+
+</templates>

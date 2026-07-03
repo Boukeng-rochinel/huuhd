@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_op_student_change_classe_wizard_form" model="ir.ui.view">
+        <field name="name">op.student.change.classe.wizard.form</field>
+        <field name="model">op.student.change.classe.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Transfert / Redoublement">
+                <sheet>
+                    <div class="alert alert-warning mb-3" role="alert">
+                        <strong>Attention :</strong> Cette action changera la
+                        classe de l'élève. Les frais brouillons peuvent être
+                        annulés et les frais de la nouvelle classe régénérés
+                        selon vos choix ci-dessous.
+                    </div>
+                    <group string="Élève">
+                        <field name="student_id" readonly="1"/>
+                        <field name="current_classe_id" readonly="1"
+                               string="Classe actuelle"/>
+                        <field name="current_academic_year_id" invisible="1"/>
+                    </group>
+                    <group string="Nouvelle affectation">
+                        <field name="new_classe_id" options="{'no_create': True}"/>
+                        <field name="motif"/>
+                    </group>
+                    <group string="Impact sur les frais">
+                        <group>
+                            <field name="draft_fee_count"
+                                   string="Frais brouillons annulables"
+                                   decoration-warning="draft_fee_count > 0"/>
+                            <field name="posted_fee_count"
+                                   string="Frais comptabilisés (conservés)"
+                                   decoration-info="posted_fee_count > 0"/>
+                        </group>
+                        <group>
+                            <field name="cancel_draft_fees"
+                                   invisible="draft_fee_count == 0"/>
+                            <field name="regenerate_fees"/>
+                        </group>
+                        <div class="text-muted col-12"
+                             invisible="draft_fee_count == 0 and posted_fee_count == 0">
+                            Les frais déjà comptabilisés (facture postée) ne
+                            sont jamais annulés automatiquement, quelle que soit
+                            l'option choisie.
+                        </div>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_confirm" type="object"
+                            string="Confirmer le changement" class="btn-primary"/>
+                    <button string="Annuler" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_op_student_change_classe_wizard" model="ir.actions.act_window">
+        <field name="name">Transfert / Redoublement</field>
+        <field name="res_model">op.student.change.classe.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_op_end_cycle_certificate_list" model="ir.ui.view">
+        <field name="name">op.end.cycle.certificate.list</field>
+        <field name="model">op.end.cycle.certificate</field>
+        <field name="arch" type="xml">
+            <list string="Certificats / attestations de promotion">
+                <field name="name"/>
+                <field name="student_id"/>
+                <field name="classe_origine_id"/>
+                <field name="classe_destination_id" optional="show"/>
+                <field name="cycle_destination" optional="show"/>
+                <field name="is_cycle_end" optional="show"/>
+                <field name="date_delivrance"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_op_end_cycle_certificate_form" model="ir.ui.view">
+        <field name="name">op.end.cycle.certificate.form</field>
+        <field name="model">op.end.cycle.certificate</field>
+        <field name="arch" type="xml">
+            <form string="Certificat / attestation de promotion">
+                <header>
+                    <button name="action_print" string="Imprimer" type="object"
+                            class="btn-primary" invisible="not id"/>
+                    <button name="action_print_2up" string="Imprimer (2 par page)" type="object"
+                            class="btn-secondary" invisible="not id"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="student_id" options="{'no_create': True}"/>
+                            <field name="classe_origine_id" options="{'no_create': True}"/>
+                            <field name="academic_year_id"/>
+                        </group>
+                        <group>
+                            <field name="classe_destination_id" options="{'no_create': True}"/>
+                            <field name="cycle_destination"/>
+                            <field name="is_cycle_end" readonly="1"/>
+                            <field name="mention"/>
+                            <field name="date_delivrance"/>
+                        </group>
+                    </group>
+                    <field name="note" placeholder="Note..."/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="act_open_op_end_cycle_certificate_view" model="ir.actions.act_window">
+        <field name="name">Parchemins de fin de cycle</field>
+        <field name="res_model">op.end.cycle.certificate</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_op_end_cycle_certificate"
+              name="Parchemins de fin de cycle"
+              parent="edutek_core.menu_op_general_main"
+              sequence="50"
+              action="act_open_op_end_cycle_certificate_view"
+              groups="edutek_core.group_op_back_office_admin"/>
+
+</odoo>

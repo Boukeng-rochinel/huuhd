@@ -1,0 +1,116 @@
+// ─── Info modules EduTek ─────────────────────────────────────────────────────
+
+.emi-root {
+    padding: 20px;
+    height: 100%;
+    overflow: auto;
+    background: #f6f7f9;
+}
+
+.emi-header {
+    margin-bottom: 16px;
+
+    h3 { margin: 0 0 4px; font-weight: 600; }
+}
+
+.emi-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    color: #888;
+}
+
+.emi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+}
+
+.emi-card {
+    background: #fff;
+    border: 1px solid #ececec;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.emi-card-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.emi-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.emi-icon--placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eef2f7;
+    color: #9aa5b1;
+    font-size: 18px;
+}
+
+.emi-titles {
+    min-width: 0;
+}
+
+.emi-title {
+    font-weight: 600;
+    font-size: 13.5px;
+    color: #222;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.emi-technical {
+    font-size: 11px;
+    color: #888;
+    font-family: monospace;
+}
+
+.emi-meta {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.emi-badge {
+    display: inline-block;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: #eef2f7;
+    color: #555;
+}
+
+.emi-state--ok { background: #e6f4ea; color: #2e7d32; }
+.emi-state--warn { background: #fff3e0; color: #b8722a; }
+.emi-state--off { background: #f1f1f1; color: #888; }
+
+.emi-summary {
+    font-size: 12.5px;
+    color: #444;
+    margin: 0 0 8px;
+    line-height: 1.4;
+}
+
+.emi-author {
+    font-size: 11.5px;
+    color: #888;
+}
+
+.emi-empty {
+    color: #aaa;
+    padding: 30px;
+    text-align: center;
+}

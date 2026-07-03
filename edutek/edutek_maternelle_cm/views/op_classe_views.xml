@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ══════════════════════════════════════════
+         FORM VIEW : adaptation maternelle
+         (notes/bulletins caches, evaluations/carnets ajoutes
+          pour les niveaux PS / MS / GS)
+    ══════════════════════════════════════════ -->
+    <record id="view_op_classe_form_inherit_maternelle" model="ir.ui.view">
+        <field name="name">op.classe.form.inherit.maternelle</field>
+        <field name="model">op.classe</field>
+        <field name="inherit_id" ref="edutek_primaire_cm.view_op_classe_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Boutons d'entete -->
+            <xpath expr="//button[@name='action_open_mark_generate_wizard']" position="attributes">
+                <attribute name="invisible">not id or level in ('ps','ms','gs')</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_open_bulletin_generate_wizard']" position="attributes">
+                <attribute name="invisible">not id or level in ('ps','ms','gs')</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_open_bulletin_generate_wizard']" position="after">
+                <button name="action_open_skill_generate_wizard" type="object"
+                        string="Evaluer les acquis" class="btn-secondary"
+                        invisible="not id or level not in ('ps','ms','gs')"/>
+                <button name="action_open_carnet_generate_wizard" type="object"
+                        string="Generer les carnets" class="btn-secondary"
+                        invisible="not id or level not in ('ps','ms','gs')"
+                        groups="edutek_core.group_op_back_office_admin"/>
+            </xpath>
+
+            <!-- Stat buttons -->
+            <xpath expr="//button[@name='action_view_marks']" position="attributes">
+                <attribute name="invisible">level in ('ps','ms','gs')</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_view_bulletins']" position="attributes">
+                <attribute name="invisible">level in ('ps','ms','gs')</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_view_bulletins']" position="after">
+                <button class="oe_stat_button" icon="fa-star-o"
+                        type="object" name="action_view_skills"
+                        invisible="level not in ('ps','ms','gs')">
+                    <div class="o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="skill_count" nolabel="1"/>
+                        </span>
+                        <span class="o_stat_text">Evaluations</span>
+                    </div>
+                </button>
+                <button class="oe_stat_button" icon="fa-book"
+                        type="object" name="action_view_carnets"
+                        invisible="level not in ('ps','ms','gs')">
+                    <div class="o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="carnet_count" nolabel="1"/>
+                        </span>
+                        <span class="o_stat_text">Carnets</span>
+                    </div>
+                </button>
+            </xpath>
+
+        </field>
+    </record>
+
+    <!-- Action filtree : Maternelle uniquement -->
+    <record id="action_op_classe_maternelle" model="ir.actions.act_window">
+        <field name="name">Maternelle</field>
+        <field name="res_model">op.classe</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="edutek_primaire_cm.view_op_classe_search"/>
+        <field name="domain">[('level', 'in', ['ps','ms','gs'])]</field>
+    </record>
+
+    <!-- Sous-menu Maternelle (en tete du groupe Classes) -->
+    <menuitem id="menu_op_classe_maternelle"
+              name="Maternelle"
+              parent="edutek_primaire_cm.menu_op_classe_root"
+              action="action_op_classe_maternelle"
+              sequence="10"
+              groups="edutek_core.group_op_faculty"/>
+
+</odoo>

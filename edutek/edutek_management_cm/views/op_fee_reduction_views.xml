@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_op_fee_reduction_list" model="ir.ui.view">
+        <field name="name">op.fee.reduction.list</field>
+        <field name="model">op.fee.reduction</field>
+        <field name="arch" type="xml">
+            <list string="Réductions de scolarité"
+                  decoration-success="state == 'active'"
+                  decoration-muted="state == 'ended'">
+                <field name="student_id"/>
+                <field name="classe_id" optional="show"/>
+                <field name="academic_year_id"/>
+                <field name="reduction_type" string="Type"/>
+                <field name="percentage" optional="show"
+                       invisible="reduction_type != 'pourcentage'"/>
+                <field name="amount" widget="monetary" string="Montant accordé"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="date_debut"/>
+                <field name="date_fin" optional="show"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_op_fee_reduction_form" model="ir.ui.view">
+        <field name="name">op.fee.reduction.form</field>
+        <field name="model">op.fee.reduction</field>
+        <field name="arch" type="xml">
+            <form string="Réduction de scolarité">
+                <header>
+                    <button name="action_activate" type="object"
+                            string="Activer" class="btn-primary"
+                            invisible="state != 'draft'"/>
+                    <button name="action_end" type="object"
+                            string="Terminer"
+                            invisible="state != 'active'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,active,ended"/>
+                </header>
+                <sheet>
+                    <div class="alert alert-info" role="alert"
+                         invisible="state != 'draft'">
+                        En activant cette réduction, le champ
+                        <strong>Réduction accordée</strong> du dossier élève
+                        sera mis à jour avec le montant calculé. La réduction
+                        s'appliquera aux prochains frais générés pour cet élève.
+                    </div>
+                    <group>
+                        <group string="Élève">
+                            <field name="student_id" options="{'no_create': True}"
+                                   readonly="state != 'draft'"/>
+                            <field name="classe_id" readonly="1"/>
+                            <field name="academic_year_id"
+                                   readonly="state != 'draft'"/>
+                        </group>
+                        <group string="Réduction">
+                            <field name="reduction_type" readonly="state != 'draft'"/>
+                            <field name="percentage"
+                                   invisible="reduction_type != 'pourcentage'"
+                                   readonly="state != 'draft'"/>
+                            <field name="amount"
+                                   string="Montant fixe"
+                                   invisible="reduction_type != 'montant'"
+                                   readonly="state != 'draft'"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="date_debut" readonly="state != 'draft'"/>
+                            <field name="date_fin" readonly="state == 'draft'"/>
+                        </group>
+                    </group>
+                    <group string="Motif">
+                        <field name="reason" nolabel="1"
+                               placeholder="Décrivez le motif de la réduction (ex : enfant d'enseignant, fratrie, mérite...)"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_op_fee_reduction_search" model="ir.ui.view">
+        <field name="name">op.fee.reduction.search</field>
+        <field name="model">op.fee.reduction</field>
+        <field name="arch" type="xml">
+            <search string="Réductions de scolarité">
+                <field name="student_id"/>
+                <field name="classe_id"/>
+                <field name="academic_year_id"/>
+                <filter name="filter_active" string="Actives"
+                        domain="[('state', '=', 'active')]"/>
+                <filter name="filter_draft" string="Brouillons"
+                        domain="[('state', '=', 'draft')]"/>
+                <filter name="filter_ended" string="Terminées"
+                        domain="[('state', '=', 'ended')]"/>
+                <group>
+                    <filter name="group_classe" string="Classe"
+                            context="{'group_by': 'classe_id'}"/>
+                    <filter name="group_year" string="Année académique"
+                            context="{'group_by': 'academic_year_id'}"/>
+                    <filter name="group_type" string="Type"
+                            context="{'group_by': 'reduction_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="act_open_op_fee_reduction_view" model="ir.actions.act_window">
+        <field name="name">Réductions de scolarité</field>
+        <field name="res_model">op.fee.reduction</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_op_fee_reduction_search"/>
+        <field name="context">{'search_default_filter_active': 1}</field>
+    </record>
+
+    <menuitem id="menu_op_fee_reduction"
+              name="Réductions de scolarité"
+              parent="edutek_core.menu_op_general_main"
+              sequence="21"
+              action="act_open_op_fee_reduction_view"
+              groups="edutek_management_cm.group_use_fee_reductions"/>
+
+</odoo>

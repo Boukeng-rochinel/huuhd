@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_op_student_registration_list" model="ir.actions.report">
+        <field name="name">Liste des eleves inscrits</field>
+        <field name="model">op.student.registration.list.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">edutek_primaire_cm.report_registration_list</field>
+        <field name="report_file">edutek_primaire_cm.report_registration_list</field>
+        <field name="print_report_name">'Liste des eleves inscrits'</field>
+        <field name="paperformat_id" ref="paperformat_school_document"/>
+    </record>
+
+    <template id="report_registration_list">
+        <t t-call="web.html_container">
+            <div class="page">
+                <div style="display: flex; justify-content: space-between; font-size: 11px;">
+                    <div>
+                        <strong>Garcons :</strong> <span t-esc="gender_counts.get('m', 0)"/><br/>
+                        <strong>Filles :</strong> <span t-esc="gender_counts.get('f', 0)"/>
+                    </div>
+                    <div style="text-align: right;">
+                        <strong>Annee scolaire :</strong> <span t-esc="docs.academic_year_id.name"/><br/>
+                        <strong>Date / Heure :</strong> <span t-esc="now"/>
+                    </div>
+                </div>
+
+                <t t-call="edutek_primaire_cm.report_school_letterhead"/>
+
+                <t t-set="doc_title" t-value="'LISTE DES ELEVES'"/>
+                <t t-call="edutek_primaire_cm.report_school_doc_title"/>
+                <p style="text-align: center;">
+                    INSCRITS ENTRE LE
+                    <strong t-esc="docs.date_from" t-options='{"widget": "date"}'/>
+                    ET
+                    <strong t-esc="docs.date_to" t-options='{"widget": "date"}'/>
+                </p>
+
+                <t t-foreach="groups" t-as="group">
+                    <t t-set="classe" t-value="group[0]"/>
+                    <t t-set="lines" t-value="group[1]"/>
+                    <div style="color: #2a5db0; font-weight: bold; font-size: 13px; margin-top: 16px;" t-esc="classe.display_name"/>
+                    <table style="width: 100%; border-collapse: collapse; font-size: 10px; margin-top: 6px;">
+                        <t t-set="table_headers" t-value="['N°', 'Matricule', 'Nom et prenom', 'G', 'N', 'Date inscription']"/>
+                        <t t-call="edutek_primaire_cm.report_school_table_head"/>
+                        <tbody>
+                            <t t-foreach="lines" t-as="history" t-key="history.id">
+                                <tr t-att-style="'background: #f5f5f5;' if history_index % 2 else ''">
+                                    <td style="border: 1px solid #999; padding: 4px 6px; text-align: center;" t-esc="history_index + 1"/>
+                                    <td style="border: 1px solid #999; padding: 4px 6px;" t-esc="history.student_id.gr_no"/>
+                                    <td style="border: 1px solid #999; padding: 4px 6px;" t-esc="history.student_id.name"/>
+                                    <td style="border: 1px solid #999; padding: 4px 6px; text-align: center;" t-esc="(history.student_id.gender or '').upper()[:1]"/>
+                                    <td style="border: 1px solid #999; padding: 4px 6px; text-align: center;">
+                                        <t t-if="is_new_for_year(history.student_id)">N</t>
+                                    </td>
+                                    <td style="border: 1px solid #999; padding: 4px 6px; text-align: center;" t-esc="history.date_inscription" t-options='{"widget": "date"}'/>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                    <p style="text-align: right; font-size: 10px;">
+                        <strong t-esc="len(lines)"/>
+                    </p>
+                </t>
+
+                <p t-if="not groups" style="text-align: center; color: #6c757d;">
+                    Aucun eleve inscrit sur cette periode.
+                </p>
+
+                <t t-call="edutek_primaire_cm.report_school_footer"/>
+            </div>
+        </t>
+    </template>
+
+</odoo>

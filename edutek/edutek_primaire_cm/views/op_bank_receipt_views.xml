@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ══════════════════════════════════════════
+         REÇUS BANCAIRES — VUES
+    ══════════════════════════════════════════ -->
+
+    <record id="view_op_bank_receipt_list" model="ir.ui.view">
+        <field name="name">op.bank.receipt.list</field>
+        <field name="model">op.bank.receipt</field>
+        <field name="arch" type="xml">
+            <list string="Reçus bancaires"
+                  decoration-muted="state == 'draft'"
+                  decoration-success="state == 'confirmed'">
+                <field name="date"/>
+                <field name="name"/>
+                <field name="journal_id"/>
+                <field name="amount" widget="monetary" sum="Total"/>
+                <field name="amount_used" widget="monetary"/>
+                <field name="amount_remaining" widget="monetary"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_op_bank_receipt_form" model="ir.ui.view">
+        <field name="name">op.bank.receipt.form</field>
+        <field name="model">op.bank.receipt</field>
+        <field name="arch" type="xml">
+            <form string="Reçu bancaire">
+                <header>
+                    <button name="action_run_ocr"
+                            string="Lancer l'OCR"
+                            type="object"
+                            invisible="not image or state != 'draft'"/>
+                    <button name="action_confirm"
+                            string="Valider"
+                            type="object"
+                            class="btn-primary"
+                            invisible="state != 'draft'"/>
+                    <button name="action_reset_draft"
+                            string="Remettre en brouillon"
+                            type="object"
+                            invisible="state != 'confirmed'"
+                            groups="edutek_core.group_op_back_office_admin"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,confirmed"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="state != 'draft'"
+                                   placeholder="Référence du reçu (auto-remplie par OCR)"/></h1>
+                    </div>
+                    <group>
+                        <group string="Informations">
+                            <field name="date" readonly="state != 'draft'"/>
+                            <field name="journal_id" readonly="state != 'draft'"
+                                   options="{'no_create': True}"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                        <group string="Montants">
+                            <field name="amount" readonly="state != 'draft'"
+                                   string="Montant reçu"/>
+                            <field name="amount_used" string="Montant utilisé"/>
+                            <field name="amount_remaining" string="Solde disponible"
+                                   widget="monetary"
+                                   decoration-danger="amount_remaining &lt; 0"
+                                   decoration-success="amount_remaining &gt; 0"/>
+                        </group>
+                    </group>
+
+                    <group string="Image du reçu" col="1">
+                        <field name="image" widget="image"
+                               string=""
+                               options="{'size': [800, 600]}"
+                               readonly="state != 'draft'"/>
+                        <field name="image_filename" invisible="1"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Frais liés" name="fee_ids">
+                            <field name="fee_ids" readonly="1">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="student_id"/>
+                                    <field name="classe_id"/>
+                                    <field name="fee_type_id"/>
+                                    <field name="amount" widget="monetary"/>
+                                    <field name="amount_residual" widget="monetary"/>
+                                    <field name="currency_id" column_invisible="1"/>
+                                    <field name="payment_state" widget="badge"
+                                           decoration-success="payment_state == 'paid'"
+                                           decoration-warning="payment_state == 'partial'"
+                                           decoration-danger="payment_state == 'not_paid'"/>
+                                    <field name="state"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Détail OCR" name="ocr_detail">
+                            <field name="ocr_raw" string="Texte extrait par OCR"
+                                   placeholder="Cliquez sur 'Lancer l'OCR' pour extraire le texte du reçu..."
+                                   readonly="1"
+                                   widget="text"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_op_bank_receipt_search" model="ir.ui.view">
+        <field name="name">op.bank.receipt.search</field>
+        <field name="model">op.bank.receipt</field>
+        <field name="arch" type="xml">
+            <search string="Reçus bancaires">
+                <field name="name"/>
+                <field name="journal_id"/>
+                <filter name="filter_draft" string="Brouillon"
+                        domain="[('state', '=', 'draft')]"/>
+                <filter name="filter_confirmed" string="Confirmé"
+                        domain="[('state', '=', 'confirmed')]"/>
+                <filter name="filter_available" string="Solde disponible"
+                        domain="[('state', '=', 'confirmed'), ('amount_remaining', '&gt;', 0)]"/>
+                <group>
+                    <filter name="group_journal" string="Caisse / Banque"
+                            context="{'group_by': 'journal_id'}"/>
+                    <filter name="group_date" string="Date"
+                            context="{'group_by': 'date:month'}"/>
+                    <filter name="group_state" string="Statut"
+                            context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_op_bank_receipt" model="ir.actions.act_window">
+        <field name="name">Reçus bancaires</field>
+        <field name="res_model">op.bank.receipt</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_op_bank_receipt_search"/>
+        <field name="context">{'search_default_filter_confirmed': 1}</field>
+    </record>
+
+    <!-- ══════════════════════════════════════════
+         MENU
+    ══════════════════════════════════════════ -->
+    <menuitem id="menu_op_bank_receipt"
+              name="Reçus bancaires"
+              parent="menu_op_frais"
+              action="action_op_bank_receipt"
+              sequence="15"
+              groups="edutek_core.group_op_back_office_admin"/>
+
+</odoo>

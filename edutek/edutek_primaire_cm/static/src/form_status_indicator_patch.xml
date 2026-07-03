@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+
+    <t t-inherit="web.FormStatusIndicator" t-inherit-mode="extension">
+
+        <!-- Bouton Enregistrer : toujours visible sur les pages EduTek,
+             semi-transparent quand rien n'est en attente. -->
+        <xpath expr="//button[hasclass('o_form_button_save')]" position="replace">
+            <button
+                type="button"
+                class="o_form_button_save btn btn-light border-0 px-2 py-1 lh-sm fw-semibold"
+                t-att-class="{
+                    'opacity-25': isSisModel and indicatorMode === 'saved',
+                    'text-primary': isSisModel and indicatorMode !== 'saved'
+                }"
+                data-hotkey="s"
+                t-on-click.stop="save"
+                t-att-data-tooltip="isSisModel ? 'Enregistrer les modifications' : 'Save manually'"
+                t-att-aria-label="isSisModel ? 'Enregistrer les modifications' : 'Save manually'"
+                t-ref="save">
+                <i t-if="!isSisModel" class="fa fa-cloud-upload fa-fw"/>
+                <t t-else="">
+                    <i class="fa fa-check fa-fw me-1"/>Enregistrer
+                </t>
+            </button>
+        </xpath>
+
+        <!-- Bouton Annuler : toujours visible sur les pages EduTek,
+             semi-transparent quand rien n'est en attente. -->
+        <xpath expr="//button[hasclass('o_form_button_cancel')]" position="replace">
+            <button
+                type="button"
+                class="o_form_button_cancel btn btn-light border-0 px-2 py-1 lh-sm fw-semibold"
+                t-att-class="{
+                    'opacity-25': isSisModel and indicatorMode === 'saved',
+                    'text-danger': isSisModel and indicatorMode !== 'saved'
+                }"
+                data-hotkey="j"
+                t-on-click.stop="discard"
+                t-att-data-tooltip="isSisModel ? 'Annuler les modifications' : 'Discard all changes'"
+                t-att-aria-label="isSisModel ? 'Annuler les modifications' : 'Discard all changes'">
+                <i t-if="!isSisModel" class="fa fa-times fa-fw"/>
+                <t t-else="">
+                    <i class="fa fa-undo fa-fw me-1"/>Annuler
+                </t>
+            </button>
+        </xpath>
+
+    </t>
+
+</templates>

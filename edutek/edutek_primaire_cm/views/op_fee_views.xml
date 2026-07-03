@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ══════════════════════════════════════════
+         TYPES DE FRAIS
+    ══════════════════════════════════════════ -->
+    <record id="view_op_fee_type_list" model="ir.ui.view">
+        <field name="name">op.fee.type.list</field>
+        <field name="model">op.fee.type</field>
+        <field name="arch" type="xml">
+            <list string="Types de frais" editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="code" optional="show"/>
+                <field name="amount"/>
+                <field name="date_limite"/>
+                <field name="account_id"/>
+                <field name="is_registration_fee" optional="show"/>
+                <field name="is_miscellaneous" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_op_fee_type_form" model="ir.ui.view">
+        <field name="name">op.fee.type.form</field>
+        <field name="model">op.fee.type</field>
+        <field name="arch" type="xml">
+            <form string="Type de frais">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Ex: Scolarite - Periode 1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="amount"/>
+                            <field name="date_limite"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="account_id"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="is_registration_fee"/>
+                            <field name="is_miscellaneous"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_op_fee_type_search" model="ir.ui.view">
+        <field name="name">op.fee.type.search</field>
+        <field name="model">op.fee.type</field>
+        <field name="arch" type="xml">
+            <search string="Types de frais">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="account_id"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_op_fee_type" model="ir.actions.act_window">
+        <field name="name">Types de frais</field>
+        <field name="res_model">op.fee.type</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_op_fee_type_search"/>
+    </record>
+
+    <!-- ══════════════════════════════════════════
+         FRAIS DES ELEVES
+    ══════════════════════════════════════════ -->
+    <record id="view_op_student_fee_kanban" model="ir.ui.view">
+        <field name="name">op.student.fee.kanban</field>
+        <field name="model">op.student.fee</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="amount"/>
+                <field name="amount_residual"/>
+                <field name="currency_id"/>
+                <field name="payment_state"/>
+                <field name="state"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_global_click p-2">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <strong class="o_kanban_record_title">
+                                    <field name="student_id"/>
+                                </strong>
+                                <span t-attf-class="badge {{ record.state.raw_value == 'draft' ? 'text-bg-secondary' : record.state.raw_value == 'cancelled' ? 'text-bg-light' : record.payment_state.raw_value == 'paid' ? 'text-bg-success' : record.payment_state.raw_value == 'partial' ? 'text-bg-warning' : 'text-bg-danger' }}">
+                                    <t t-if="record.state.raw_value == 'draft'">Brouillon</t>
+                                    <t t-elif="record.state.raw_value == 'cancelled'">Annule</t>
+                                    <t t-else=""><field name="payment_state"/></t>
+                                </span>
+                            </div>
+                            <div class="text-muted">
+                                <field name="fee_type_id"/> - <field name="classe_id"/>
+                            </div>
+                            <div class="d-flex justify-content-between mt-1">
+                                <span><field name="amount" widget="monetary"/></span>
+                                <span t-if="record.amount_residual.raw_value" class="text-danger">
+                                    Reste: <field name="amount_residual" widget="monetary"/>
+                                </span>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_op_student_fee_list" model="ir.ui.view">
+        <field name="name">op.student.fee.list</field>
+        <field name="model">op.student.fee</field>
+        <field name="arch" type="xml">
+            <list string="Frais des eleves"
+                  decoration-muted="state == 'cancelled'"
+                  decoration-success="state == 'posted' and payment_state == 'paid'"
+                  decoration-warning="state == 'posted' and payment_state in ('not_paid','partial')">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="student_id"/>
+                <field name="classe_id" optional="show"/>
+                <field name="fee_type_id"/>
+                <field name="academic_term_id" optional="show"/>
+                <field name="amount" widget="monetary" sum="Total"/>
+                <field name="amount_residual" widget="monetary" sum="Reste"/>
+                <field name="currency_id" column_invisible="1"/>
+                <field name="payment_state" optional="show"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_op_student_fee_search" model="ir.ui.view">
+        <field name="name">op.student.fee.search</field>
+        <field name="model">op.student.fee</field>
+        <field name="arch" type="xml">
+            <search string="Frais des eleves">
+                <field name="student_id"/>
+                <field name="classe_id"/>
+                <field name="fee_type_id"/>
+                <field name="academic_year_id"/>
+                <field name="academic_term_id"/>
+                <filter name="filter_unpaid" string="Impayes"
+                        domain="[('state','=','posted'),('payment_state','in',['not_paid','partial'])]"/>
+                <filter name="filter_paid" string="Payes"
+                        domain="[('payment_state','=','paid')]"/>
+                <filter name="filter_draft" string="Brouillons"
+                        domain="[('state','=','draft')]"/>
+                <separator/>
+                <filter name="filter_term1" string="Periode 1"
+                        domain="[('academic_term_id.sequence','=',1)]"/>
+                <filter name="filter_term2" string="Periode 2"
+                        domain="[('academic_term_id.sequence','=',2)]"/>
+                <filter name="filter_term3" string="Periode 3"
+                        domain="[('academic_term_id.sequence','=',3)]"/>
+                <filter name="filter_term4" string="Periode 4"
+                        domain="[('academic_term_id.sequence','=',4)]"/>
+                <filter name="filter_term5" string="Periode 5"
+                        domain="[('academic_term_id.sequence','=',5)]"/>
+                <filter name="filter_term6" string="Periode 6"
+                        domain="[('academic_term_id.sequence','=',6)]"/>
+                <group>
+                    <filter name="group_classe" string="Classe" context="{'group_by': 'classe_id'}"/>
+                    <filter name="group_fee_type" string="Type de frais" context="{'group_by': 'fee_type_id'}"/>
+                    <filter name="group_term" string="Periode" context="{'group_by': 'academic_term_id'}"/>
+                    <filter name="group_year" string="Annee academique" context="{'group_by': 'academic_year_id'}"/>
+                    <filter name="group_state" string="Statut" context="{'group_by': 'state'}"/>
+                    <filter name="group_payment_state" string="Statut paiement" context="{'group_by': 'payment_state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_op_student_fee_form" model="ir.ui.view">
+        <field name="name">op.student.fee.form</field>
+        <field name="model">op.student.fee</field>
+        <field name="arch" type="xml">
+            <form string="Frais eleve">
+                <header>
+                    <button name="action_post" string="Comptabiliser"
+                            type="object" class="btn-primary"
+                            invisible="state != 'draft'"/>
+                    <button name="action_register_payment" string="Enregistrer paiement"
+                            type="object" class="btn-primary"
+                            invisible="state != 'posted' or payment_state == 'paid'"/>
+                    <button name="action_cancel" string="Annuler"
+                            type="object" class="btn-danger"
+                            invisible="state == 'cancelled'"
+                            groups="edutek_core.group_op_back_office_admin"/>
+                    <button name="action_print_receipt" string="Imprimer le recu"
+                            type="object" class="btn-primary"
+                            invisible="state != 'posted' or payment_state == 'not_paid'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,posted"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+
+                    <!-- Bandeau de statut paiement -->
+                    <div class="text-center mb-3">
+                        <span style="font-size: 18px; font-weight: bold; padding: 6px 24px;
+                                     border-radius: 24px; background: #198754; color: #fff;"
+                              invisible="state != 'posted' or payment_state != 'paid'">
+                            &#10003; SOLDE APURE
+                        </span>
+                        <span style="font-size: 18px; font-weight: bold; padding: 6px 24px;
+                                     border-radius: 24px; background: #fd7e14; color: #fff;"
+                              invisible="state != 'posted' or payment_state != 'partial'">
+                            ⚠ PAIEMENT PARTIEL
+                        </span>
+                        <span style="font-size: 18px; font-weight: bold; padding: 6px 24px;
+                                     border-radius: 24px; background: #dc3545; color: #fff;"
+                              invisible="state != 'posted' or payment_state != 'not_paid'">
+                            &#10007; IMPAYE
+                        </span>
+                    </div>
+
+                    <group>
+                        <group string="Eleve">
+                            <field name="student_id" options="{'no_create': True}"
+                                   readonly="state != 'draft'"/>
+                            <field name="classe_id" readonly="1"/>
+                        </group>
+                        <group string="Frais">
+                            <field name="fee_type_id" string="Nature du frais"
+                                   options="{'no_create': True}"
+                                   readonly="state != 'draft'"/>
+                            <field name="academic_year_id" string="Annee scolaire"
+                                   options="{'no_create': True}"
+                                   readonly="state != 'draft'"/>
+                            <field name="academic_term_id" string="Sequence / Trimestre"
+                                   options="{'no_create': True}"
+                                   readonly="state != 'draft'"/>
+                            <field name="date" string="Date de creation"
+                                   readonly="state != 'draft'"/>
+                        </group>
+                    </group>
+                    <group invisible="not move_id">
+                        <group>
+                            <field name="amount" string="Montant du"
+                                   readonly="state != 'draft'"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="journal_id" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="amount_residual" string="Reste a payer"/>
+                            <field name="payment_state" string="Statut"
+                                   widget="badge"
+                                   decoration-success="payment_state == 'paid'"
+                                   decoration-warning="payment_state == 'partial'"
+                                   decoration-danger="payment_state == 'not_paid'"/>
+                        </group>
+                    </group>
+                    <group string="Reçu bancaire"
+                           invisible="state != 'posted' or payment_state == 'paid'">
+                        <group>
+                            <field name="bank_receipt_id"
+                                   options="{'no_create': True}"
+                                   readonly="payment_state == 'paid'"/>
+                        </group>
+                        <group invisible="not bank_receipt_id">
+                            <field name="bank_receipt_amount_remaining"
+                                   widget="monetary"
+                                   decoration-danger="bank_receipt_amount_remaining &lt; amount_residual"/>
+                        </group>
+                    </group>
+                    <group invisible="move_id">
+                        <group>
+                            <field name="amount" string="Montant du"
+                                   readonly="state != 'draft'"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="journal_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <group string="Observations">
+                        <field name="note" nolabel="1"/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_op_student_fee" model="ir.actions.act_window">
+        <field name="name">Frais des eleves</field>
+        <field name="res_model">op.student.fee</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="search_view_id" ref="view_op_student_fee_search"/>
+        <field name="context">{'search_default_group_classe': 1}</field>
+    </record>
+
+    <record id="action_op_student_fee_unpaid" model="ir.actions.act_window">
+        <field name="name">Frais impayes</field>
+        <field name="res_model">op.student.fee</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="search_view_id" ref="view_op_student_fee_search"/>
+        <field name="domain">[('state','=','posted'),('payment_state','in',['not_paid','partial'])]</field>
+        <field name="context">{'search_default_group_classe': 1}</field>
+    </record>
+
+    <!-- ══════════════════════════════════════════
+         WIZARD : Generer des frais
+    ══════════════════════════════════════════ -->
+    <record id="view_op_student_fee_generate_wizard_form" model="ir.ui.view">
+        <field name="name">op.student.fee.generate.wizard.form</field>
+        <field name="model">op.student.fee.generate.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Generer des frais">
+                <p>
+                    Applique ces frais a tous les eleves des classes
+                    selectionnees (laisser le champ Classes vide pour
+                    appliquer a tout un cycle ou a toute l'ecole). Le montant
+                    facture pour chaque type de frais est celui configure sur
+                    la classe de l'eleve (sinon le montant par defaut du type
+                    de frais). Sur un grand effectif, preferer generer cycle
+                    par cycle plutot que toute l'ecole en une seule fois
+                    (risque de timeout).
+                </p>
+                <group>
+                    <field name="academic_year_id" options="{'no_create': True}"/>
+                    <field name="cycle" placeholder="Tous les cycles si vide"/>
+                    <field name="classe_ids" widget="many2many_tags"
+                           options="{'no_create': True}"
+                           placeholder="Toutes les classes du cycle/de l'annee si vide"/>
+                    <field name="fee_type_ids" widget="many2many_tags"
+                           options="{'no_create': True}"/>
+                    <field name="academic_term_id" options="{'no_create': True}"/>
+                    <field name="date"/>
+                    <field name="journal_id" options="{'no_create': True}"/>
+                    <field name="post_immediately"/>
+                </group>
+                <footer>
+                    <button name="action_generate" type="object"
+                            string="Generer" class="btn-primary"/>
+                    <button string="Annuler" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_op_student_fee_generate_wizard" model="ir.actions.act_window">
+        <field name="name">Generer des frais</field>
+        <field name="res_model">op.student.fee.generate.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- ══════════════════════════════════════════
+         MENUS
+    ══════════════════════════════════════════ -->
+    <menuitem id="menu_op_frais"
+              name="Finances"
+              parent="edutek_core.menu_op_school_root"
+              sequence="70"
+              groups="edutek_core.group_op_back_office_admin"/>
+
+    <menuitem id="menu_op_fee_type"
+              name="Types de frais"
+              parent="menu_op_frais"
+              action="action_op_fee_type"
+              sequence="10"/>
+
+    <menuitem id="menu_op_student_fee"
+              name="Frais des eleves"
+              parent="menu_op_frais"
+              action="action_op_student_fee"
+              sequence="20"/>
+
+    <menuitem id="menu_op_student_fee_generate"
+              name="Generer des frais"
+              parent="menu_op_frais"
+              action="action_op_student_fee_generate_wizard"
+              sequence="30"/>
+
+    <menuitem id="menu_op_student_fee_unpaid"
+              name="Frais impayes"
+              parent="menu_op_frais"
+              action="action_op_student_fee_unpaid"
+              sequence="40"/>
+
+</odoo>

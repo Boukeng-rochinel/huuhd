@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_op_scholarship" model="ir.actions.report">
+        <field name="name">Certificat de bourse scolaire</field>
+        <field name="model">op.scholarship</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">edutek_management_cm.report_scholarship_certificate</field>
+        <field name="report_file">edutek_management_cm.report_scholarship_certificate</field>
+        <field name="print_report_name">'Certificat bourse - %s' % (object.student_id.name)</field>
+        <field name="paperformat_id" ref="edutek_primaire_cm.paperformat_school_certificate"/>
+    </record>
+
+    <!-- Moyenne/Rang ne sont pas des champs de op.scholarship (la bourse est
+         une periode active, pas un resultat d'examen ponctuel) : comme sur
+         le formulaire papier qu'il remplace, le certificat les laisse vierges
+         pour que l'administration les complete a la main au moment de la
+         remise, a partir du bulletin du trimestre concerne. -->
+    <template id="report_scholarship_certificate">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="doc_title" t-value="'CERTIFICAT DE BOURSE SCOLAIRE'"/>
+                <t t-call="edutek_primaire_cm.report_school_certificate_frame">
+
+                    <p class="text-center mt-2" style="font-size: 14px;">
+                        L'administration du <strong t-esc="o.company_id.name"/>
+                        est fiere d'octroyer une bourse scolaire a l'eleve :
+                    </p>
+                    <div class="text-center" style="font-style: italic; font-size: 24px; font-weight: 600;
+                                                      letter-spacing: 0.5px; margin: 18px 0;" t-esc="o.student_id.name"/>
+
+                    <table style="width: 100%; font-size: 13px; margin: 14px 0;">
+                        <tr>
+                            <td style="width: 34%;">
+                                <strong>Classe :</strong>
+                                <span style="border-bottom: 1px dotted #555; padding: 0 6px;" t-esc="o.student_id.classe_id.display_name or ''"/>
+                            </td>
+                            <td style="width: 33%;">
+                                <strong>Moyenne :</strong>
+                                <span style="border-bottom: 1px dotted #555; padding: 0 30px;"/> /20
+                            </td>
+                            <td style="width: 33%;">
+                                <strong>Rang :</strong>
+                                <span style="border-bottom: 1px dotted #555; padding: 0 30px;"/>
+                            </td>
+                        </tr>
+                    </table>
+                    <p class="text-center" style="font-size: 13px;">
+                        <strong>Montant de la bourse :</strong>
+                        <t t-if="o.scholarship_type == 'totale'">Bourse totale (100%)</t>
+                        <t t-elif="o.amount">
+                            <t t-esc="'{:,.0f}'.format(o.amount).replace(',', ' ')"/> F CFA
+                        </t>
+                        <t t-elif="o.percentage">
+                            <t t-esc="o.percentage"/> %
+                        </t>
+                        <t t-else="">
+                            <span style="border-bottom: 1px dotted #555; padding: 0 60px;"/>
+                        </t>
+                    </p>
+
+                    <p class="mt-4" style="font-size: 13px;">
+                        En guise d'encouragement, pour l'excellent resultat obtenu au terme de
+                        l'annee scolaire <strong t-esc="o.academic_year_id.name"/>,
+                    </p>
+                    <p style="font-size: 13px;">
+                        Le present certificat lui est delivre pour servir et valoir ce que de
+                        droit lors de la prochaine inscription.
+                    </p>
+
+                    <div class="d-flex justify-content-between mt-5" style="font-size: 12px;">
+                        <div>
+                            Etabli a <t t-esc="o.company_id.city or ''"/>, le
+                            <t t-esc="o.date_debut" t-options='{"widget": "date"}'/>
+                        </div>
+                        <div class="text-center"><strong>L'ADMINISTRATION</strong></div>
+                    </div>
+
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

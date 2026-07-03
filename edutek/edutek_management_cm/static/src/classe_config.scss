@@ -1,0 +1,395 @@
+// ─── Fiche de l'ecole : configuration des classes ──────────────────────────
+
+.cc-root {
+    padding: 16px;
+    height: 100%;
+}
+
+.cc-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    color: #888;
+}
+
+.cc-shell {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+// ─── Onglets ────────────────────────────────────────────────────────────────
+
+.cc-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid #ececec;
+}
+
+.cc-tab {
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #888;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+
+    &:hover { color: #333; }
+
+    &--active {
+        color: #2e7d32;
+        border-bottom-color: #2e7d32;
+    }
+}
+
+.cc-pane {
+    background: #fff;
+    border: 1px solid #ececec;
+    border-radius: 10px;
+    padding: 18px 22px;
+    overflow-y: auto;
+}
+
+.cc-layout {
+    display: flex;
+    gap: 16px;
+    height: calc(100vh - 190px);
+    min-height: 500px;
+}
+
+// ─── Liste des classes (gauche) ─────────────────────────────────────────────
+
+.cc-list-pane {
+    width: 340px;
+    flex-shrink: 0;
+    background: #fff;
+    border: 1px solid #ececec;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.cc-list-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    border-bottom: 1px solid #eee;
+    font-weight: 700;
+    font-size: 13px;
+    color: #333;
+}
+
+.cc-btn-new {
+    background: #2e7d32;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 12px;
+    cursor: pointer;
+
+    &:hover { background: #26692a; }
+}
+
+.cc-btn-danger {
+    background: #fff;
+    color: #c0392b;
+    border: 1px solid #c0392b;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 12px;
+    cursor: pointer;
+
+    &:hover { background: #fdecea; }
+}
+
+.cc-btn-cancel {
+    background: #fff;
+    color: #888;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-left: 4px;
+
+    &:hover { background: #f5f5f5; }
+}
+
+.cc-list {
+    overflow-y: auto;
+    flex: 1;
+}
+
+.cc-list-row {
+    padding: 10px 14px;
+    border-bottom: 1px solid #f4f4f4;
+    border-left: 3px solid transparent;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    &:hover { background: #fafafa; }
+
+    &--active {
+        background: #eef7ee;
+        border-left-color: #2e7d32;
+    }
+}
+
+.cc-list-row-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #222;
+}
+
+.cc-list-row-meta {
+    display: flex;
+    gap: 10px;
+    font-size: 11px;
+    color: #888;
+}
+
+.cc-empty {
+    padding: 30px;
+    text-align: center;
+    color: #aaa;
+    font-size: 13px;
+
+    &--detail {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+}
+
+// ─── Detail de la classe (droite) ───────────────────────────────────────────
+
+.cc-detail-pane {
+    flex: 1;
+    background: #fff;
+    border: 1px solid #ececec;
+    border-radius: 10px;
+    padding: 18px 22px;
+    overflow-y: auto;
+}
+
+.cc-detail-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.cc-detail-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.cc-detail-actions {
+    display: flex;
+    gap: 8px;
+}
+
+// ─── Formulaire (mode edition) ──────────────────────────────────────────────
+
+.cc-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 20px;
+}
+
+.cc-form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    label {
+        font-size: 11px;
+        color: #888;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    input[type="text"], input[type="number"], select {
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        padding: 6px 8px;
+        font-size: 13px;
+        color: #222;
+    }
+
+    .cc-form-hint {
+        font-size: 11px;
+        font-weight: 400;
+        text-transform: none;
+        color: #999;
+    }
+
+    &--check {
+        flex-direction: row;
+        align-items: center;
+        grid-column: span 2;
+
+        label {
+            flex-direction: row;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-transform: none;
+            font-size: 13px;
+            font-weight: 400;
+            color: #444;
+        }
+    }
+}
+
+// ─── Vue lecture ─────────────────────────────────────────────────────────────
+
+.cc-view-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 14px;
+}
+
+.cc-view-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 24px;
+
+    > div {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #f3f3f3;
+    }
+
+    span {
+        font-size: 11px;
+        color: #888;
+        text-transform: uppercase;
+    }
+
+    strong {
+        font-size: 14px;
+        color: #222;
+    }
+}
+
+// ─── Informations de l'ecole / Matricule ───────────────────────────────────
+
+.cc-form--info {
+    max-width: 640px;
+}
+
+.cc-form-row--logo {
+    grid-column: span 2;
+}
+
+.cc-logo-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.cc-logo-preview {
+    max-width: 90px;
+    max-height: 90px;
+    object-fit: contain;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    padding: 4px;
+}
+
+// ─── Frais configures ────────────────────────────────────────────────────────
+
+.cc-fees {
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid #eee;
+}
+
+.cc-fees-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 10px;
+
+    th {
+        text-align: left;
+        color: #888;
+        font-size: 11px;
+        text-transform: uppercase;
+        padding: 4px 6px;
+        border-bottom: 1px solid #eee;
+    }
+
+    td {
+        padding: 6px;
+        border-bottom: 1px solid #f3f3f3;
+    }
+
+    input, select {
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        padding: 5px 8px;
+        font-size: 13px;
+        width: 100%;
+    }
+}
+
+// Lignes cliquables pour edition en ligne (cycles/sections/niveaux/series) :
+// cf. startEditRow/saveEditRow/cancelEditRow dans classe_config.js.
+.cc-row-editable {
+    cursor: pointer;
+
+    &:hover { background: #fafafa; }
+}
+
+.cc-row-editing {
+    background: #f5fbf5;
+
+    td { padding: 4px 6px; }
+}
+
+// Largeurs de colonnes fixes pour les petits referentiels (Nom/Code/Action)
+// et pour le tableau des niveaux (Nom/Code/Cycle/Section/Action) - sans
+// cela, table-layout: auto repartit l'espace de facon inegale entre des
+// colonnes au contenu court.
+.cc-fees-table--ref {
+    th:nth-child(1), td:nth-child(1) { width: 55%; }
+    th:nth-child(2), td:nth-child(2) { width: 30%; }
+    th:nth-child(3), td:nth-child(3) { width: 15%; text-align: right; }
+}
+
+.cc-fees-table--niveaux {
+    th:nth-child(1), td:nth-child(1) { width: 26%; }
+    th:nth-child(2), td:nth-child(2) { width: 16%; }
+    th:nth-child(3), td:nth-child(3) { width: 22%; }
+    th:nth-child(4), td:nth-child(4) { width: 22%; }
+    th:nth-child(5), td:nth-child(5) { width: 14%; text-align: right; }
+}
+
+// ─── Onglet "Modeles de documents" (composant DocTemplates imbrique) ───────
+// .dt-layout vise a remplir la page complete quand DocTemplates est ouvert
+// seul (100vh - 140px) ; ici il partage la page avec les onglets de cc-root,
+// donc on retire la hauteur en plus prise par ce chrome (padding cc-root +
+// barre d'onglets cc-tabs).
+.cc-pane--documents {
+    .dt-layout {
+        height: calc(100vh - 250px);
+    }
+}

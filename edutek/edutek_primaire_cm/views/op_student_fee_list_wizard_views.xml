@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_op_student_fee_list_wizard_form" model="ir.ui.view">
+        <field name="name">op.student.fee.list.wizard.form</field>
+        <field name="model">op.student.fee.list.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Liste des frais">
+                <header>
+                    <button name="action_print_pdf" type="object"
+                            string="Imprimer (PDF)" class="btn-primary"/>
+                    <button name="action_export_xlsx" type="object"
+                            string="Exporter en Excel" class="btn-secondary"/>
+                </header>
+                <sheet>
+                    <div class="row">
+                        <div class="col-12 col-lg-5">
+                            <p class="text-muted">
+                                Imprime ou exporte la liste des frais des
+                                eleves selon les criteres choisis.
+                            </p>
+                            <group string="Filtres">
+                                <field name="academic_year_id" options="{'no_create': True}"/>
+                                <field name="classe_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                                <field name="fee_type_id" options="{'no_create': True}"/>
+                                <field name="academic_term_id" options="{'no_create': True}"/>
+                                <field name="state"/>
+                                <field name="payment_state"/>
+                            </group>
+                            <group string="Periode et responsable">
+                                <field name="date_from"/>
+                                <field name="date_to"/>
+                                <field name="created_by_id" options="{'no_create': True}"/>
+                            </group>
+                        </div>
+                        <div class="col-12 col-lg-7">
+                            <h5>
+                                Apercu
+                                <span class="text-muted">
+                                    (<field name="preview_count" nolabel="1" class="d-inline"/> frais)
+                                </span>
+                            </h5>
+                            <field name="preview_fee_ids" nolabel="1">
+                                <list>
+                                    <field name="date"/>
+                                    <field name="student_id"/>
+                                    <field name="classe_id"/>
+                                    <field name="fee_type_id"/>
+                                    <field name="amount"/>
+                                    <field name="payment_state"/>
+                                </list>
+                            </field>
+                        </div>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_op_student_fee_list_wizard" model="ir.actions.act_window">
+        <field name="name">Liste des frais</field>
+        <field name="res_model">op.student.fee.list.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+    </record>
+
+    <menuitem id="menu_op_student_fee_list_wizard"
+              name="Liste des frais"
+              parent="menu_op_frais"
+              action="action_op_student_fee_list_wizard"
+              sequence="25"
+              groups="edutek_core.group_op_back_office_admin"/>
+
+</odoo>

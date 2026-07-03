@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_op_cash_collection_ledger" model="ir.actions.report">
+        <field name="name">Etat des encaissements (detaille)</field>
+        <field name="model">op.cash.collection.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">edutek_primaire_cm.report_cash_ledger</field>
+        <field name="report_file">edutek_primaire_cm.report_cash_ledger</field>
+        <field name="print_report_name">'Etat des encaissements'</field>
+        <field name="paperformat_id" ref="paperformat_school_document"/>
+    </record>
+
+    <template id="report_cash_ledger">
+        <t t-call="web.html_container">
+            <div class="page">
+                <t t-call="edutek_primaire_cm.report_school_letterhead"/>
+
+                <t t-set="doc_title" t-value="'ETAT DES ENCAISSEMENTS SUR FRAIS EXIGIBLES'"/>
+                <t t-call="edutek_primaire_cm.report_school_doc_title"/>
+                <p style="text-align: center;">
+                    Allant du <strong t-esc="docs.date_from" t-options='{"widget": "date"}'/>
+                    au <strong t-esc="docs.date_to" t-options='{"widget": "date"}'/>
+                </p>
+
+                <table style="width: 100%; border-collapse: collapse; font-size: 9px;">
+                    <t t-set="table_headers" t-value="['Date paie.', 'N° recu', 'Salle', 'Matricule', 'Eleve', 'Montant verse', 'Enreg. le', 'Enreg. par']"/>
+                    <t t-call="edutek_primaire_cm.report_school_table_head"/>
+                    <tbody>
+                        <t t-foreach="rows" t-as="row" t-key="row['payment'].id">
+                            <t t-set="payment" t-value="row['payment']"/>
+                            <t t-set="fee" t-value="row['fee']"/>
+                            <tr t-att-style="'background: #f5f5f5;' if row_index % 2 else ''">
+                                <td style="border: 1px solid #999; padding: 3px 5px;" t-esc="payment.date" t-options='{"widget": "date"}'/>
+                                <td style="border: 1px solid #999; padding: 3px 5px;" t-esc="payment.name"/>
+                                <td style="border: 1px solid #999; padding: 3px 5px;" t-esc="fee.classe_id.display_name or ''"/>
+                                <td style="border: 1px solid #999; padding: 3px 5px;" t-esc="fee.student_id.gr_no"/>
+                                <td style="border: 1px solid #999; padding: 3px 5px;" t-esc="fee.student_id.name"/>
+                                <td style="border: 1px solid #999; padding: 3px 5px; text-align: right;" t-esc="'{:,.0f}'.format(payment.amount).replace(',', ' ')"/>
+                                <td style="border: 1px solid #999; padding: 3px 5px;" t-esc="payment.create_date" t-options='{"widget": "date"}'/>
+                                <td style="border: 1px solid #999; padding: 3px 5px;" t-esc="payment.create_uid.name"/>
+                            </tr>
+                        </t>
+                    </tbody>
+                    <tfoot>
+                        <tr style="background:#eee; font-weight: bold;">
+                            <td colspan="4" style="border: 1px solid #999; padding: 3px 5px; text-align: right;">
+                                Total : <span t-esc="summary.get('total_count', 0)"/>
+                            </td>
+                            <td style="border: 1px solid #999; padding: 3px 5px; text-align: right;">
+                                <t t-esc="'{:,.0f}'.format(summary.get('total_amount', 0)).replace(',', ' ')"/>
+                            </td>
+                            <td colspan="2" style="border: 1px solid #999;"/>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                <table style="width: 100%; border-collapse: collapse; font-size: 10px; margin-top: 16px;">
+                    <tr>
+                        <td style="width: 25%; vertical-align: top; padding-right: 6px;">
+                            <div style="color: #2a5db0; font-weight: bold; margin-bottom: 4px;">Repartition par Cycle/Section</div>
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <t t-foreach="summary.get('by_cycle', {}).items()" t-as="cyc">
+                                    <tr>
+                                        <td style="border: 1px solid #999; padding: 3px 5px;" t-esc="cyc[0]"/>
+                                        <td style="border: 1px solid #999; padding: 3px 5px; text-align: right;" t-esc="'{:,.0f}'.format(cyc[1]).replace(',', ' ')"/>
+                                    </tr>
+                                </t>
+                            </table>
+                        </td>
+                        <td style="width: 33%; vertical-align: top; padding: 0 6px;">
+                            <div style="color: #2a5db0; font-weight: bold; margin-bottom: 4px;">Repartition par frais exigibles</div>
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <t t-foreach="summary.get('by_category', {}).items()" t-as="cat">
+                                    <tr>
+                                        <td style="border: 1px solid #999; padding: 3px 5px;" t-esc="cat[0]"/>
+                                        <td style="border: 1px solid #999; padding: 3px 5px; text-align: right;" t-esc="'{:,.0f}'.format(cat[1]).replace(',', ' ')"/>
+                                    </tr>
+                                </t>
+                            </table>
+                        </td>
+                        <td style="width: 25%; vertical-align: top; padding: 0 6px;">
+                            <div style="color: #2a5db0; font-weight: bold; margin-bottom: 4px;">Repartition par caisse</div>
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <t t-foreach="summary.get('by_journal', {}).items()" t-as="jrn">
+                                    <tr>
+                                        <td style="border: 1px solid #999; padding: 3px 5px;" t-esc="jrn[0]"/>
+                                        <td style="border: 1px solid #999; padding: 3px 5px; text-align: right;" t-esc="'{:,.0f}'.format(jrn[1]).replace(',', ' ')"/>
+                                    </tr>
+                                </t>
+                            </table>
+                        </td>
+                        <td style="width: 17%; vertical-align: top; padding-left: 6px;">
+                            <div style="color: #2a5db0; font-weight: bold; margin-bottom: 4px;">Inscriptions</div>
+                            <div><span t-esc="summary.get('registration_count', 0)"/> recu(s)</div>
+                        </td>
+                    </tr>
+                </table>
+
+                <div style="display: flex; justify-content: space-between; margin-top: 40px;">
+                    <div style="text-decoration: underline;">Signature Responsable</div>
+                    <div style="text-decoration: underline;">Signature Caissier(e)</div>
+                </div>
+
+                <t t-call="edutek_primaire_cm.report_school_footer"/>
+            </div>
+        </t>
+    </template>
+
+</odoo>

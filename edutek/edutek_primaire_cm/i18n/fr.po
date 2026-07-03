@@ -1,0 +1,283 @@
+# Traduction française d'EduTek Primaire CM.
+# Ce fichier corrige les accents sur les termes-clés dont le msgid source
+# est écrit sans accent (convention Odoo pour les chaînes Python).
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: openeducat_primaire_cm
+msgid "Eleve"
+msgstr "Élève"
+
+#. module: openeducat_primaire_cm
+msgid "Eleves"
+msgstr "Élèves"
+
+#. module: openeducat_primaire_cm
+msgid "Ecole d'origine"
+msgstr "École d'origine"
+
+#. module: openeducat_primaire_cm
+msgid "Deficient intellectuel"
+msgstr "Déficient intellectuel"
+
+#. module: openeducat_primaire_cm
+msgid "Demissionnaire"
+msgstr "Démissionnaire"
+
+#. module: openeducat_primaire_cm
+msgid "Reduction accordee"
+msgstr "Réduction accordée"
+
+#. module: openeducat_primaire_cm
+msgid "Deja paye"
+msgstr "Déjà payé"
+
+#. module: openeducat_primaire_cm
+msgid "Reste a payer"
+msgstr "Reste à payer"
+
+#. module: openeducat_primaire_cm
+msgid "Impaye annee precedente"
+msgstr "Impayé année précédente"
+
+#. module: openeducat_primaire_cm
+msgid "Annee precedente"
+msgstr "Année précédente"
+
+#. module: openeducat_primaire_cm
+msgid "Annee suivante"
+msgstr "Année suivante"
+
+#. module: openeducat_primaire_cm
+msgid "Parcours complet"
+msgstr "Parcours complet"
+
+#. module: openeducat_primaire_cm
+msgid "Dossier annee precedente"
+msgstr "Dossier année précédente"
+
+#. module: openeducat_primaire_cm
+msgid "Dossier(s) annee(s) suivante(s)"
+msgstr "Dossier(s) année(s) suivante(s)"
+
+#. module: openeducat_primaire_cm
+msgid "Statut d'inscription"
+msgstr "Statut d'inscription"
+
+#. module: openeducat_primaire_cm
+msgid "Inscrit"
+msgstr "Inscrit"
+
+#. module: openeducat_primaire_cm
+msgid "Non Inscrit"
+msgstr "Non inscrit"
+
+#. module: openeducat_primaire_cm
+msgid "Statut eleve"
+msgstr "Statut élève"
+
+#. module: openeducat_primaire_cm
+msgid "Nouveau"
+msgstr "Nouveau"
+
+#. module: openeducat_primaire_cm
+msgid "Ancien"
+msgstr "Ancien"
+
+#. module: openeducat_primaire_cm
+msgid "Annee academique"
+msgstr "Année académique"
+
+#. module: openeducat_primaire_cm
+msgid "Historique d'inscription"
+msgstr "Historique d'inscription"
+
+#. module: openeducat_primaire_cm
+msgid "Historique des inscriptions"
+msgstr "Historique des inscriptions"
+
+#. module: openeducat_primaire_cm
+msgid "Date d'inscription"
+msgstr "Date d'inscription"
+
+#. module: openeducat_primaire_cm
+msgid "Nb eleves"
+msgstr "Nb élèves"
+
+#. module: openeducat_primaire_cm
+msgid "Nb notes"
+msgstr "Nb notes"
+
+#. module: openeducat_primaire_cm
+msgid "Nb bulletins"
+msgstr "Nb bulletins"
+
+#. module: openeducat_primaire_cm
+msgid "Nb frais"
+msgstr "Nb frais"
+
+#. module: openeducat_primaire_cm
+msgid "Frais d'inscription"
+msgstr "Frais d'inscription"
+
+#. module: openeducat_primaire_cm
+msgid "Frais divers"
+msgstr "Frais divers"
+
+#. module: openeducat_primaire_cm
+msgid "Date limite / expiration"
+msgstr "Date limite / expiration"
+
+#. module: openeducat_primaire_cm
+msgid "Net a payer"
+msgstr "Net à payer"
+
+#. module: openeducat_primaire_cm
+msgid "Frais scolaires"
+msgstr "Frais scolaires"
+
+#. module: openeducat_primaire_cm
+msgid "Frais des eleves"
+msgstr "Frais des élèves"
+
+#. module: openeducat_primaire_cm
+msgid "Generer des frais"
+msgstr "Générer des frais"
+
+#. module: openeducat_primaire_cm
+msgid "Generer les bulletins"
+msgstr "Générer les bulletins"
+
+#. module: openeducat_primaire_cm
+msgid "Saisir les notes"
+msgstr "Saisir les notes"
+
+#. module: openeducat_primaire_cm
+msgid "Pedagogie"
+msgstr "Pédagogie"
+
+#. module: openeducat_primaire_cm
+msgid "Eleve(s)"
+msgstr "Élève(s)"
+
+#. module: openeducat_primaire_cm
+msgid "eleve(s)"
+msgstr "élève(s)"
+
+#. module: openeducat_primaire_cm
+msgid "Annuler"
+msgstr "Annuler"
+
+#. module: openeducat_primaire_cm
+msgid "Generer"
+msgstr "Générer"
+
+#. module: openeducat_primaire_cm
+msgid "Enregistrer un paiement"
+msgstr "Enregistrer un paiement"
+
+#. module: openeducat_primaire_cm
+msgid "Preparer la saisie"
+msgstr "Préparer la saisie"
+
+#. module: openeducat_primaire_cm
+msgid "Apercu"
+msgstr "Aperçu"
+
+#. module: openeducat_primaire_cm
+msgid "Delegation regionale"
+msgstr "Délégation régionale"
+
+#. module: openeducat_primaire_cm
+msgid "Delegation departementale"
+msgstr "Délégation départementale"
+
+#. module: openeducat_primaire_cm
+msgid "Autorisation"
+msgstr "Autorisation"
+
+#. module: openeducat_primaire_cm
+msgid "Devise de l'ecole (FR)"
+msgstr "Devise de l'école (FR)"
+
+#. module: openeducat_primaire_cm
+msgid "Devise de l'ecole (EN)"
+msgstr "Devise de l'école (EN)"
+
+#. module: openeducat_primaire_cm
+msgid "Prefixe par defaut du matricule"
+msgstr "Préfixe par défaut du matricule"
+
+#. module: openeducat_primaire_cm
+msgid "Lieu de naissance"
+msgstr "Lieu de naissance"
+
+#. module: openeducat_primaire_cm
+msgid "Maitre / Maitresse titulaire"
+msgstr "Maître / Maîtresse titulaire"
+
+#. module: openeducat_primaire_cm
+msgid "Matiere"
+msgstr "Matière"
+
+#. module: openeducat_primaire_cm
+msgid "Matieres"
+msgstr "Matières"
+
+#. module: openeducat_primaire_cm
+msgid "Coefficient"
+msgstr "Coefficient"
+
+#. module: openeducat_primaire_cm
+msgid "Moyenne generale"
+msgstr "Moyenne générale"
+
+#. module: openeducat_primaire_cm
+msgid "Moyenne generale :"
+msgstr "Moyenne générale :"
+
+#. module: openeducat_primaire_cm
+msgid "Appreciation generale :"
+msgstr "Appréciation générale :"
+
+#. module: openeducat_primaire_cm
+msgid "Appreciation"
+msgstr "Appréciation"
+
+#. module: openeducat_primaire_cm
+msgid "Decision :"
+msgstr "Décision :"
+
+#. module: openeducat_primaire_cm
+msgid "Conduite et appreciation"
+msgstr "Conduite et appréciation"
+
+#. module: openeducat_primaire_cm
+msgid "Types de frais"
+msgstr "Types de frais"
+
+#. module: openeducat_primaire_cm
+msgid "Recapitulatif"
+msgstr "Récapitulatif"
+
+#. module: openeducat_primaire_cm
+msgid "Periode"
+msgstr "Période"
+
+#. module: openeducat_primaire_cm
+msgid "Debut"
+msgstr "Début"
+
+#. module: openeducat_primaire_cm
+msgid "Echeance"
+msgstr "Échéance"

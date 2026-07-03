@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_op_employee_list_wizard_form" model="ir.ui.view">
+        <field name="name">op.employee.list.wizard.form</field>
+        <field name="model">op.employee.list.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Liste du personnel">
+                <header>
+                    <button name="action_print_pdf" type="object"
+                            string="Imprimer (PDF)" class="btn-primary"/>
+                    <button name="action_export_xlsx" type="object"
+                            string="Exporter en Excel" class="btn-secondary"/>
+                </header>
+                <sheet>
+                    <div class="row">
+                        <div class="col-12 col-lg-5">
+                            <p class="text-muted">
+                                Imprime ou exporte la liste du personnel selon
+                                les criteres choisis.
+                            </p>
+                            <group string="Filtres">
+                                <field name="department_id" options="{'no_create': True}"/>
+                                <field name="staff_type"/>
+                                <field name="include_archived"/>
+                            </group>
+                        </div>
+                        <div class="col-12 col-lg-7">
+                            <h5>
+                                Apercu
+                                <span class="text-muted">
+                                    (<field name="preview_count" nolabel="1" class="d-inline"/> employe(s))
+                                </span>
+                            </h5>
+                            <field name="preview_employee_ids" nolabel="1">
+                                <list>
+                                    <field name="matricule"/>
+                                    <field name="name"/>
+                                    <field name="job_title"/>
+                                    <field name="department_id"/>
+                                </list>
+                            </field>
+                        </div>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_op_employee_list_wizard" model="ir.actions.act_window">
+        <field name="name">Listes du personnel</field>
+        <field name="res_model">op.employee.list.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+    </record>
+
+    <menuitem id="menu_op_employee_list_wizard"
+              name="Listes du personnel"
+              parent="edutek_core.menu_op_report_main"
+              action="action_op_employee_list_wizard"
+              sequence="20"
+              groups="edutek_core.group_op_back_office_admin"/>
+
+</odoo>

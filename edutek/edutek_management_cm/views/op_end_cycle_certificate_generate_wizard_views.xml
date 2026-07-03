@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_op_end_cycle_certificate_generate_wizard_form" model="ir.ui.view">
+        <field name="name">op.end.cycle.certificate.generate.wizard.form</field>
+        <field name="model">op.end.cycle.certificate.generate.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Generer les certificats de promotion">
+                <header>
+                    <button name="action_generate_and_print" string="Generer et imprimer" type="object"
+                            class="btn-primary"/>
+                    <button name="action_generate_and_print_2up" string="Generer et imprimer (2 par page)"
+                            type="object" class="btn-secondary"/>
+                </header>
+                <sheet>
+                    <p class="text-muted">
+                        Cree (ou met a jour) un certificat de promotion pour chaque eleve
+                        selectionne, puis imprime l'ensemble en un seul document.
+                    </p>
+                    <group>
+                        <group>
+                            <field name="classe_origine_id" options="{'no_create': True}"/>
+                            <field name="skip_existing"/>
+                        </group>
+                        <group>
+                            <field name="classe_destination_id" options="{'no_create': True}"/>
+                            <field name="cycle_destination"/>
+                        </group>
+                    </group>
+                    <field name="student_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_op_end_cycle_certificate_generate_wizard" model="ir.actions.act_window">
+        <field name="name">Generer les certificats de promotion</field>
+        <field name="res_model">op.end.cycle.certificate.generate.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_op_end_cycle_certificate_generate_wizard"
+              name="Generer les certificats de promotion"
+              parent="edutek_core.menu_op_general_main"
+              sequence="51"
+              action="action_op_end_cycle_certificate_generate_wizard"
+              groups="edutek_core.group_op_back_office_admin"/>
+
+</odoo>

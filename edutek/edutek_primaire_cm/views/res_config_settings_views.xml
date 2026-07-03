@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form_inherit_cameroun" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.cameroun</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="edutek_core.res_config_settings_view_form_core"/>
+        <field name="arch" type="xml">
+            <div name="edutek_core" position="inside">
+                <h2>Ecole Primaire (Cameroun)</h2>
+                <div class="row mt16 o_settings_container">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="use_ex_aequo_ranking"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="use_ex_aequo_ranking"/>
+                            <div class="text-muted">
+                                Les eleves a moyenne egale partagent le meme rang
+                                (le rang suivant tient compte de l'effectif des
+                                ex-aequo). Si decoche, le rang suit simplement
+                                l'ordre de classement.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="show_photo_on_student_card"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="show_photo_on_student_card"/>
+                            <div class="text-muted">
+                                Affiche la photo de l'eleve sur la carte
+                                scolaire imprimee, lorsqu'elle est disponible.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt16 o_settings_container">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="school_motto" string="Devise de l'ecole"/>
+                            <div class="text-muted">
+                                Affichee sous le nom de l'ecole sur les certificats,
+                                attestations et autres documents officiels.
+                            </div>
+                            <field name="school_motto" placeholder="Discipline - Travail - Reussite"/>
+                            <field name="school_motto_en" placeholder="Discipline - Hardwork - Success"/>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="delegation_regionale" string="Delegation regionale"/>
+                            <field name="delegation_regionale" placeholder="DELEGATION REGIONALE DU LITTORAL"/>
+                            <label for="delegation_departementale" string="Delegation departementale"/>
+                            <field name="delegation_departementale" placeholder="DELEGATION DEPARTEMENTALE DU WOURI"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt16 o_settings_container">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="canon_scan_dir" string="Dossier scanner Canon"/>
+                            <div class="text-muted">
+                                Chemin du dossier réseau où le scanner Canon dépose les images
+                                (ex: /mnt/canon_scans/). Le cron EduTek surveille ce dossier
+                                toutes les minutes et crée automatiquement les reçus bancaires.
+                            </div>
+                            <field name="canon_scan_dir" placeholder="/mnt/canon_scans/"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+
+</odoo>

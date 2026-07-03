@@ -1,0 +1,955 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* edutek_management_cm
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+# ── op.academic.year
+# ──────────────────────────────────────────────────────────
+#. module: edutek_management_cm
+msgid "Annee cloturee"
+msgstr "Year Closed"
+
+#. module: edutek_management_cm
+msgid ""
+"Coche automatiquement par l'assistant de cloture d'annee (Vie scolaire > "
+"Cloturer une annee academique), pour empecher de cloturer deux fois la meme "
+"annee."
+msgstr ""
+"Checked automatically by the year-closure wizard (Academic Life > Close an "
+"Academic Year), to prevent closing the same year twice."
+
+# ── op.classe
+# ─────────────────────────────────────────────────────────────────
+#. module: edutek_management_cm
+msgid "Intitule abrege"
+msgstr "Short Label"
+
+#. module: edutek_management_cm
+msgid "2eme langue"
+msgstr "2nd Language"
+
+#. module: edutek_management_cm
+msgid "Anglais"
+msgstr "English"
+
+#. module: edutek_management_cm
+msgid "Francais"
+msgstr "French"
+
+#. module: edutek_management_cm
+msgid "Espagnol"
+msgstr "Spanish"
+
+#. module: edutek_management_cm
+msgid "Allemand"
+msgstr "German"
+
+#. module: edutek_management_cm
+msgid "Moy. min de passage (par periode)"
+msgstr "Min. average to pass (per term)"
+
+#. module: edutek_management_cm
+msgid "Moy. min de passage (annee)"
+msgstr "Min. average to pass (year)"
+
+#. module: edutek_management_cm
+msgid "Classe avec deux bulletins"
+msgstr "Class with two report cards"
+
+#. module: edutek_management_cm
+msgid "Bulletin sur plusieurs pages"
+msgstr "Multi-page report card"
+
+#. module: edutek_management_cm
+msgid "Determinant de reussite"
+msgstr "Success Criterion"
+
+#. module: edutek_management_cm
+msgid "Resultat annuel"
+msgstr "Annual result"
+
+#. module: edutek_management_cm
+msgid "Moyenne de la derniere periode"
+msgstr "Last term average"
+
+#. module: edutek_management_cm
+msgid "Cumul des periodes"
+msgstr "Cumulative term average"
+
+#. module: edutek_management_cm
+msgid "Type de bulletin"
+msgstr "Report Card Type"
+
+#. module: edutek_management_cm
+msgid "Bulletin par defaut"
+msgstr "Default report card"
+
+#. module: edutek_management_cm
+msgid "Bulletin simplifie"
+msgstr "Simplified report card"
+
+# ── op.admission.application
+# ─────────────────────────────────────────────────
+#. module: edutek_management_cm
+msgid "Candidature / demande d'admission"
+msgstr "Application / Admission Request"
+
+#. module: edutek_management_cm
+msgid "Candidatures"
+msgstr "Applications"
+
+#. module: edutek_management_cm
+msgid "Candidature"
+msgstr "Application"
+
+#. module: edutek_management_cm
+msgid "Nom du candidat"
+msgstr "Applicant Name"
+
+#. module: edutek_management_cm
+msgid "Date de naissance"
+msgstr "Date of Birth"
+
+#. module: edutek_management_cm
+msgid "Sexe"
+msgstr "Gender"
+
+#. module: edutek_management_cm
+msgid "Masculin"
+msgstr "Male"
+
+#. module: edutek_management_cm
+msgid "Feminin"
+msgstr "Female"
+
+#. module: edutek_management_cm
+msgid "Autre"
+msgstr "Other"
+
+#. module: edutek_management_cm
+msgid "Classe souhaitee"
+msgstr "Desired Class"
+
+#. module: edutek_management_cm
+msgid "Nom du parent / tuteur"
+msgstr "Parent / Guardian Name"
+
+#. module: edutek_management_cm
+msgid "Telephone du parent"
+msgstr "Parent Phone"
+
+#. module: edutek_management_cm
+msgid "Email du parent"
+msgstr "Parent Email"
+
+#. module: edutek_management_cm
+msgid "Date de la demande"
+msgstr "Application Date"
+
+#. module: edutek_management_cm
+msgid "Date de decision"
+msgstr "Decision Date"
+
+#. module: edutek_management_cm
+msgid "En attente"
+msgstr "Pending"
+
+#. module: edutek_management_cm
+msgid "Acceptee"
+msgstr "Accepted"
+
+#. module: edutek_management_cm
+msgid "Rejetee"
+msgstr "Rejected"
+
+#. module: edutek_management_cm
+msgid "Eleve cree"
+msgstr "Student Created"
+
+#. module: edutek_management_cm
+msgid ""
+"Renseigne automatiquement lorsque la candidature est convertie en eleve."
+msgstr ""
+"Filled automatically when the application is converted into a student."
+
+#. module: edutek_management_cm
+msgid "Accepter"
+msgstr "Accept"
+
+#. module: edutek_management_cm
+msgid "Rejeter"
+msgstr "Reject"
+
+#. module: edutek_management_cm
+msgid "Creer l'eleve"
+msgstr "Create Student"
+
+#. module: edutek_management_cm
+msgid "Seule une candidature acceptee peut etre convertie en eleve."
+msgstr "Only an accepted application can be converted into a student."
+
+#. module: edutek_management_cm
+msgid "Cette candidature a deja ete convertie en eleve."
+msgstr "This application has already been converted into a student."
+
+# ── op.scholarship
+# ────────────────────────────────────────────────────────────
+#. module: edutek_management_cm
+msgid "Bourse scolaire"
+msgstr "School Scholarship"
+
+#. module: edutek_management_cm
+msgid "Bourses scolaires"
+msgstr "School Scholarships"
+
+#. module: edutek_management_cm
+msgid "Type de bourse"
+msgstr "Scholarship Type"
+
+#. module: edutek_management_cm
+msgid "Totale"
+msgstr "Full"
+
+#. module: edutek_management_cm
+msgid "Partielle"
+msgstr "Partial"
+
+#. module: edutek_management_cm
+msgid "Pourcentage de prise en charge"
+msgstr "Coverage Percentage"
+
+#. module: edutek_management_cm
+msgid "Montant fixe"
+msgstr "Fixed Amount"
+
+#. module: edutek_management_cm
+msgid "Date de debut"
+msgstr "Start Date"
+
+#. module: edutek_management_cm
+msgid "Date de fin"
+msgstr "End Date"
+
+#. module: edutek_management_cm
+msgid "Motif"
+msgstr "Reason"
+
+#. module: edutek_management_cm
+msgid "Brouillon"
+msgstr "Draft"
+
+#. module: edutek_management_cm
+msgid "Active"
+msgstr "Active"
+
+#. module: edutek_management_cm
+msgid "Terminee"
+msgstr "Ended"
+
+#. module: edutek_management_cm
+msgid "Activer"
+msgstr "Activate"
+
+#. module: edutek_management_cm
+msgid "Terminer"
+msgstr "End"
+
+#. module: edutek_management_cm
+msgid "Imprimer le certificat"
+msgstr "Print Certificate"
+
+# ── op.internship
+# ─────────────────────────────────────────────────────────────
+#. module: edutek_management_cm
+msgid "Stage eleve"
+msgstr "Student Internship"
+
+#. module: edutek_management_cm
+msgid "Stages"
+msgstr "Internships"
+
+#. module: edutek_management_cm
+msgid "Stage"
+msgstr "Internship"
+
+#. module: edutek_management_cm
+msgid "Sujet du stage"
+msgstr "Internship Subject"
+
+#. module: edutek_management_cm
+msgid "Structure d'accueil"
+msgstr "Host Organisation"
+
+#. module: edutek_management_cm
+msgid "Superviseur"
+msgstr "Supervisor"
+
+# ── op.exam
+# ───────────────────────────────────────────────────────────────────
+#. module: edutek_management_cm
+msgid "Examen ou concours"
+msgstr "Examination or Competition"
+
+#. module: edutek_management_cm
+msgid "Examens & Concours"
+msgstr "Exams & Competitions"
+
+#. module: edutek_management_cm
+msgid "Examen / Concours"
+msgstr "Exam / Competition"
+
+#. module: edutek_management_cm
+msgid "Intitule"
+msgstr "Title"
+
+#. module: edutek_management_cm
+msgid "Examen"
+msgstr "Examination"
+
+#. module: edutek_management_cm
+msgid "Concours"
+msgstr "Competition"
+
+# ── op.payment.moratorium
+# ─────────────────────────────────────────────────────
+#. module: edutek_management_cm
+msgid "Moratoire de paiement"
+msgstr "Payment Extension"
+
+#. module: edutek_management_cm
+msgid "Moratoires de paiement"
+msgstr "Payment Extensions"
+
+#. module: edutek_management_cm
+msgid "Moratoires"
+msgstr "Payment Extensions"
+
+#. module: edutek_management_cm
+msgid "Frais concerne"
+msgstr "Related Fee"
+
+#. module: edutek_management_cm
+msgid "Montant initial"
+msgstr "Original Amount"
+
+#. module: edutek_management_cm
+msgid "Nouvelle echeance"
+msgstr "New Due Date"
+
+#. module: edutek_management_cm
+msgid "Date de decision"
+msgstr "Decision Date"
+
+#. module: edutek_management_cm
+msgid "Approuve"
+msgstr "Approved"
+
+#. module: edutek_management_cm
+msgid "Cloture"
+msgstr "Closed"
+
+#. module: edutek_management_cm
+msgid "Moratoire en cours"
+msgstr "Active Extension"
+
+#. module: edutek_management_cm
+msgid "Date limite de paiement"
+msgstr "Payment Due Date"
+
+#. module: edutek_management_cm
+msgid ""
+"Echeance du moratoire si un moratoire a ete accorde, sinon la date limite "
+"configuree sur le type de frais, sinon la date du frais."
+msgstr ""
+"Extension due date if one has been granted, otherwise the deadline "
+"configured on the fee type, otherwise the fee date."
+
+#. module: edutek_management_cm
+msgid "Approuver"
+msgstr "Approve"
+
+#. module: edutek_management_cm
+msgid "Cloturer"
+msgstr "Close"
+
+#. module: edutek_management_cm
+msgid "La nouvelle echeance doit etre posterieure a la date du frais initial."
+msgstr "The new due date must be later than the original fee date."
+
+# ── op.end.cycle.certificate
+# ──────────────────────────────────────────────────
+#. module: edutek_management_cm
+msgid "Certificat / attestation de promotion"
+msgstr "Promotion Certificate / Attestation"
+
+#. module: edutek_management_cm
+msgid "Certificats / attestations de promotion"
+msgstr "Promotion Certificates / Attestations"
+
+#. module: edutek_management_cm
+msgid "Parchemins de fin de cycle"
+msgstr "End-of-Cycle Certificates"
+
+#. module: edutek_management_cm
+msgid "Classe d'origine"
+msgstr "Origin Class"
+
+#. module: edutek_management_cm
+msgid "Classe de destination (si connue)"
+msgstr "Destination Class (if known)"
+
+#. module: edutek_management_cm
+msgid ""
+"A renseigner si la classe de l'eleve pour l'annee suivante est deja decidee."
+" Sinon, n'indiquer que le cycle de destination."
+msgstr ""
+"Fill in if the student's class for next year is already decided. Otherwise, "
+"only indicate the destination cycle."
+
+#. module: edutek_management_cm
+msgid "Cycle de destination"
+msgstr "Destination Cycle"
+
+#. module: edutek_management_cm
+msgid "Maternelle"
+msgstr "Nursery"
+
+#. module: edutek_management_cm
+msgid "Primaire"
+msgstr "Primary"
+
+#. module: edutek_management_cm
+msgid "Secondaire"
+msgstr "Secondary"
+
+#. module: edutek_management_cm
+msgid "Fin de cycle"
+msgstr "End of Cycle"
+
+#. module: edutek_management_cm
+msgid ""
+"Coche automatiquement quand la classe d'origine et le cycle de destination "
+"appartiennent a des cycles differents (ex: Maternelle -> Primaire). Change "
+"le libelle imprime sur le document."
+msgstr ""
+"Checked automatically when the origin class and destination cycle belong to "
+"different cycles (e.g. Nursery → Primary). Changes the label printed on the "
+"document."
+
+#. module: edutek_management_cm
+msgid "Mention"
+msgstr "Grade / Distinction"
+
+#. module: edutek_management_cm
+msgid "Passable"
+msgstr "Pass"
+
+#. module: edutek_management_cm
+msgid "Assez Bien"
+msgstr "Satisfactory"
+
+#. module: edutek_management_cm
+msgid "Bien"
+msgstr "Good"
+
+#. module: edutek_management_cm
+msgid "Tres Bien"
+msgstr "Very Good"
+
+#. module: edutek_management_cm
+msgid "Excellent"
+msgstr "Excellent"
+
+#. module: edutek_management_cm
+msgid "Date de delivrance"
+msgstr "Issue Date"
+
+#. module: edutek_management_cm
+msgid "Imprimer (2 par page)"
+msgstr "Print (2 per page)"
+
+# ── op.work.certificate
+# ───────────────────────────────────────────────────────
+#. module: edutek_management_cm
+msgid "Certificat de travail"
+msgstr "Employment Certificate"
+
+#. module: edutek_management_cm
+msgid "Certificats de travail"
+msgstr "Employment Certificates"
+
+#. module: edutek_management_cm
+msgid "Employe"
+msgstr "Employee"
+
+#. module: edutek_management_cm
+msgid "Fonction"
+msgstr "Job Title"
+
+#. module: edutek_management_cm
+msgid "En poste depuis"
+msgstr "In Post Since"
+
+#. module: edutek_management_cm
+msgid "Date d'emission"
+msgstr "Issue Date"
+
+#. module: edutek_management_cm
+msgid "Motif de la demande"
+msgstr "Purpose of Request"
+
+# ── op.student.document
+# ───────────────────────────────────────────────────────
+#. module: edutek_management_cm
+msgid "Piece scolaire fournie par un eleve"
+msgstr "School Document Provided by a Student"
+
+#. module: edutek_management_cm
+msgid "Piece scolaire"
+msgstr "School Document"
+
+#. module: edutek_management_cm
+msgid "Fournie"
+msgstr "Provided"
+
+#. module: edutek_management_cm
+msgid "Date de remise"
+msgstr "Date Provided"
+
+#. module: edutek_management_cm
+msgid "Cette piece scolaire est deja suivie pour cet eleve."
+msgstr "This school document is already tracked for this student."
+
+# ── op.school.document.type
+# ───────────────────────────────────────────────────
+#. module: edutek_management_cm
+msgid "Type de piece scolaire requise"
+msgstr "Required School Document Type"
+
+#. module: edutek_management_cm
+msgid "Pieces scolaires"
+msgstr "School Documents"
+
+# ── op.document.type
+# ──────────────────────────────────────────────────────────
+#. module: edutek_management_cm
+msgid "Type de document ou de courrier"
+msgstr "Document / Message Type"
+
+#. module: edutek_management_cm
+msgid "Type de message / document"
+msgstr "Message / Document Type"
+
+#. module: edutek_management_cm
+msgid "Canal"
+msgstr "Channel"
+
+#. module: edutek_management_cm
+msgid "Email / Lettre"
+msgstr "Email / Letter"
+
+#. module: edutek_management_cm
+msgid "Modele cible"
+msgstr "Target Model"
+
+#. module: edutek_management_cm
+msgid ""
+"Enregistrement sur lequel les champs de fusion du modele sont resolus "
+"(eleve, facture, classe, employe...)."
+msgstr ""
+"Record on which the template merge fields are resolved (student, invoice, "
+"class, employee...)."
+
+#. module: edutek_management_cm
+msgid "Modele technique"
+msgstr "Technical Model"
+
+#. module: edutek_management_cm
+msgid "Modele initial (Francais)"
+msgstr "Default Template (French)"
+
+#. module: edutek_management_cm
+msgid "Modele initial (Anglais)"
+msgstr "Default Template (English)"
+
+#. module: edutek_management_cm
+msgid "Modeles personnalises (email/lettre)"
+msgstr "Custom Templates (email/letter)"
+
+#. module: edutek_management_cm
+msgid "Modeles personnalises (SMS)"
+msgstr "Custom Templates (SMS)"
+
+#. module: edutek_management_cm
+msgid "Nb modeles"
+msgstr "No. of Templates"
+
+#. module: edutek_management_cm
+msgid "Type de document (EduTek)"
+msgstr "Document Type (EduTek)"
+
+# ── hr.employee
+# ───────────────────────────────────────────────────────────────
+#. module: edutek_management_cm
+msgid "Code PIN EduTek"
+msgstr "EduTek PIN Code"
+
+#. module: edutek_management_cm
+msgid "Code PIN pour deverrouiller l'ecran EduTek (4 a 6 chiffres)."
+msgstr "PIN code to unlock the EduTek screen (4 to 6 digits)."
+
+#. module: edutek_management_cm
+msgid "Securite EduTek"
+msgstr "EduTek Security"
+
+#. module: edutek_management_cm
+msgid "4 a 6 chiffres"
+msgstr "4 to 6 digits"
+
+#. module: edutek_management_cm
+msgid "Code PIN utilise pour deverrouiller l'ecran EduTek."
+msgstr "PIN code used to unlock the EduTek screen."
+
+# ── res.company
+# ───────────────────────────────────────────────────────────────
+#. module: edutek_management_cm
+msgid "Nombre de salles de classe"
+msgstr "Number of Classrooms"
+
+#. module: edutek_management_cm
+msgid "Structuration"
+msgstr "Structure"
+
+# ── Wizards
+# ───────────────────────────────────────────────────────────────────
+#. module: edutek_management_cm
+msgid "Cloture d'annee academique (promotion des eleves)"
+msgstr "Academic Year Closure (Student Promotion)"
+
+#. module: edutek_management_cm
+msgid "Cloture d'annee academique"
+msgstr "Academic Year Closure"
+
+#. module: edutek_management_cm
+msgid "Annee a cloturer"
+msgstr "Year to Close"
+
+#. module: edutek_management_cm
+msgid "Nom de l'annee suivante"
+msgstr "Next Year Name"
+
+#. module: edutek_management_cm
+msgid "Debut de l'annee suivante"
+msgstr "Next Year Start Date"
+
+#. module: edutek_management_cm
+msgid "Fin de l'annee suivante"
+msgstr "Next Year End Date"
+
+#. module: edutek_management_cm
+msgid "Confirmer la cloture"
+msgstr "Confirm Closure"
+
+#. module: edutek_management_cm
+msgid "Cloturer une annee academique"
+msgstr "Close an Academic Year"
+
+#. module: edutek_management_cm
+msgid "Le nom de l'annee suivante est obligatoire."
+msgstr "The next year name is required."
+
+#. module: edutek_management_cm
+msgid "Veuillez choisir une annee a cloturer."
+msgstr "Please select a year to close."
+
+#. module: edutek_management_cm
+msgid "quittent l'ecole (fin de parcours)"
+msgstr "leave school (end of schooling)"
+
+#. module: edutek_management_cm
+msgid "%(classe)s : %(count)d eleve(s) -> %(dest)s"
+msgstr "%(classe)s: %(count)d student(s) -> %(dest)s"
+
+#. module: edutek_management_cm
+msgid "(+ %d redoublant(s) maintenu(s) au meme niveau)"
+msgstr "(+ %d repeater(s) kept at the same level)"
+
+#. module: edutek_management_cm
+msgid "Aucune classe active sur cette annee."
+msgstr "No active class for this year."
+
+#. module: edutek_management_cm
+msgid "%s - Redoublants"
+msgstr "%s - Repeaters"
+
+#. module: edutek_management_cm
+msgid "Trimestre %d"
+msgstr "Term %d"
+
+#. module: edutek_management_cm
+msgid "Sequence %d"
+msgstr "Sequence %d"
+
+#. module: edutek_management_cm
+msgid "Classes de l'annee suivante"
+msgstr "Next Year's Classes"
+
+#. module: edutek_management_cm
+msgid "Diagnostic des annees academiques et de l'acces aux classes"
+msgstr "Academic Year and Class Access Diagnostic"
+
+#. module: edutek_management_cm
+msgid "ID de classe a verifier (optionnel)"
+msgstr "Class ID to check (optional)"
+
+#. module: edutek_management_cm
+msgid ""
+"Le numero entre parentheses dans un message d'erreur du type 'Erreur d'acces"
+" ... (op.classe: 32)'."
+msgstr ""
+"The number in parentheses in an error message such as 'Access Error ... "
+"(op.classe: 32)'."
+
+#. module: edutek_management_cm
+msgid "Diagnostic annees academiques / acces aux classes"
+msgstr "Academic Year / Class Access Diagnostic"
+
+#. module: edutek_management_cm
+msgid "Diagnostiquer"
+msgstr "Diagnose"
+
+#. module: edutek_management_cm
+msgid "Generation en masse des certificats de promotion"
+msgstr "Batch Generation of Promotion Certificates"
+
+#. module: edutek_management_cm
+msgid "Reutiliser les certificats existants"
+msgstr "Reuse Existing Certificates"
+
+#. module: edutek_management_cm
+msgid ""
+"Si un certificat existe deja pour un eleve et cette classe d'origine, ses "
+"informations de destination sont mises a jour plutot que d'en creer un "
+"second."
+msgstr ""
+"If a certificate already exists for a student and this origin class, its "
+"destination information is updated rather than creating a second one."
+
+#. module: edutek_management_cm
+msgid "Generer les certificats de promotion"
+msgstr "Generate Promotion Certificates"
+
+#. module: edutek_management_cm
+msgid "Generer et imprimer"
+msgstr "Generate and Print"
+
+#. module: edutek_management_cm
+msgid "Generer et imprimer (2 par page)"
+msgstr "Generate and Print (2 per page)"
+
+#. module: edutek_management_cm
+msgid ""
+"Cree (ou met a jour) un certificat de promotion pour chaque eleve "
+"selectionne, puis imprime l'ensemble en un seul document."
+msgstr ""
+"Creates (or updates) a promotion certificate for each selected student, then"
+" prints the whole set as a single document."
+
+#. module: edutek_management_cm
+msgid "Aucun eleve selectionne."
+msgstr "No student selected."
+
+#. module: edutek_management_cm
+msgid "Reparation des references de classe historiques corrompues"
+msgstr "Repair of Corrupted Historical Class References"
+
+#. module: edutek_management_cm
+msgid "Reparation des references de classe historiques"
+msgstr "Repair Historical Class References"
+
+#. module: edutek_management_cm
+msgid "Reparer l'historique des classes"
+msgstr "Repair Class History"
+
+#. module: edutek_management_cm
+msgid "Analyser (sans rien modifier)"
+msgstr "Analyse (without modifying anything)"
+
+#. module: edutek_management_cm
+msgid "Reparer"
+msgstr "Repair"
+
+#. module: edutek_management_cm
+msgid ""
+"Cette action va corriger en base le champ Classe de tous les "
+"frais/bulletins/notes/carnets/evaluations dont l'historique a ete altere... "
+"Continuer ?"
+msgstr ""
+"This action will correct in the database the Class field of all fees/report "
+"cards/marks/notebooks/assessments whose history has been altered... "
+"Continue?"
+
+#. module: edutek_management_cm
+msgid "%(label)s : %(count)d enregistrement(s) a corriger"
+msgstr "%(label)s: %(count)d record(s) to correct"
+
+#. module: edutek_management_cm
+msgid "%(label)s : %(count)d enregistrement(s) corrige(s)"
+msgstr "%(label)s: %(count)d record(s) corrected"
+
+#. module: edutek_management_cm
+msgid "Aucune incoherence detectee : tout est deja correct."
+msgstr "No inconsistency detected: everything is already correct."
+
+#. module: edutek_management_cm
+msgid "Aucune incoherence detectee : rien a corriger."
+msgstr "No inconsistency detected: nothing to correct."
+
+#. module: edutek_management_cm
+msgid "Carnets (maternelle)"
+msgstr "Notebooks (nursery)"
+
+#. module: edutek_management_cm
+msgid "Evaluations par competences (maternelle)"
+msgstr "Competency Assessments (nursery)"
+
+# ── Menus and views
+# ───────────────────────────────────────────────────────────
+#. module: edutek_management_cm
+msgid "Tableau de bord"
+msgstr "Dashboard"
+
+#. module: edutek_management_cm
+msgid "Fiche de l'ecole"
+msgstr "School Profile"
+
+#. module: edutek_management_cm
+msgid "Etats generaux"
+msgstr "General Register"
+
+#. module: edutek_management_cm
+msgid "Modules EduTek"
+msgstr "EduTek Modules"
+
+#. module: edutek_management_cm
+msgid "Passage d'annee"
+msgstr "Year Transition"
+
+#. module: edutek_management_cm
+msgid "Outils techniques"
+msgstr "Technical Tools"
+
+#. module: edutek_management_cm
+msgid "Structure pedagogique"
+msgstr "Pedagogical Structure"
+
+#. module: edutek_management_cm
+msgid "Etablissement"
+msgstr "School"
+
+#. module: edutek_management_cm
+msgid "Outils"
+msgstr "Tools"
+
+#. module: edutek_management_cm
+msgid "Parametres generaux"
+msgstr "General Settings"
+
+#. module: edutek_management_cm
+msgid "Apercu"
+msgstr "Preview"
+
+#. module: edutek_management_cm
+msgid "Eleve"
+msgstr "Student"
+
+#. module: edutek_management_cm
+msgid "Eleves"
+msgstr "Students"
+
+#. module: edutek_management_cm
+msgid "Classe"
+msgstr "Class"
+
+#. module: edutek_management_cm
+msgid "Annee academique"
+msgstr "Academic Year"
+
+#. module: edutek_management_cm
+msgid "Note"
+msgstr "Note"
+
+#. module: edutek_management_cm
+msgid "Statut"
+msgstr "Status"
+
+#. module: edutek_management_cm
+msgid "Date"
+msgstr "Date"
+
+#. module: edutek_management_cm
+msgid "Type"
+msgstr "Type"
+
+#. module: edutek_management_cm
+msgid "Imprimer"
+msgstr "Print"
+
+#. module: edutek_management_cm
+msgid "Annuler"
+msgstr "Cancel"
+
+#. module: edutek_management_cm
+msgid "Generer"
+msgstr "Generate"
+
+#. module: edutek_management_cm
+msgid "Confirmer"
+msgstr "Confirm"
+
+#. module: edutek_management_cm
+msgid "Enregistrer"
+msgstr "Save"
+
+#. module: edutek_management_cm
+msgid "Fermer"
+msgstr "Close"
+
+#. module: edutek_management_cm
+msgid "Rapport"
+msgstr "Report"
+
+#. module: edutek_management_cm
+msgid "Oui"
+msgstr "Yes"
+
+#. module: edutek_management_cm
+msgid "Non"
+msgstr "No"
+
+#. module: edutek_management_cm
+msgid "Devise"
+msgstr "Currency"
+
+#. module: edutek_management_cm
+msgid "Sequence"
+msgstr "Sequence"
+
+#. module: edutek_management_cm
+msgid "Code"
+msgstr "Code"
+
+#. module: edutek_management_cm
+msgid "Reference"
+msgstr "Reference"

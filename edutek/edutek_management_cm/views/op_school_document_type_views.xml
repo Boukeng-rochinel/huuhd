@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_op_school_document_type_list" model="ir.ui.view">
+        <field name="name">op.school.document.type.list</field>
+        <field name="model">op.school.document.type</field>
+        <field name="arch" type="xml">
+            <list string="Pieces scolaires" editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="act_open_op_school_document_type_view" model="ir.actions.act_window">
+        <field name="name">Pieces scolaires</field>
+        <field name="res_model">op.school.document.type</field>
+        <field name="view_mode">list</field>
+    </record>
+
+    <menuitem id="menu_op_school_document_type"
+              name="Pieces scolaires"
+              parent="edutek_core.menu_op_school_config"
+              sequence="30"
+              action="act_open_op_school_document_type_view"
+              groups="edutek_core.group_op_back_office_admin"/>
+
+</odoo>

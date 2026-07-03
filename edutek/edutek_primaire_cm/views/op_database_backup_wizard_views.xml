@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_op_database_backup_wizard_form" model="ir.ui.view">
+        <field name="name">op.database.backup.wizard.form</field>
+        <field name="model">op.database.backup.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Sauvegarde de la base de donnees">
+                <header>
+                    <button name="action_backup" type="object"
+                            string="Telecharger la sauvegarde" class="btn-primary"/>
+                </header>
+                <sheet>
+                    <p class="text-muted">
+                        Telecharge une sauvegarde complete de la base de donnees,
+                        identique a celle du Gestionnaire de bases de donnees.
+                        Le mot de passe maitre du serveur est requis : il s'agit
+                        d'une operation sensible, la sauvegarde contenant les
+                        donnees de tous les utilisateurs.
+                    </p>
+                    <group>
+                        <field name="master_pwd" password="True"/>
+                        <field name="backup_format"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_op_database_backup_wizard" model="ir.actions.act_window">
+        <field name="name">Sauvegarde de la base de donnees</field>
+        <field name="res_model">op.database.backup.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_op_database_backup_wizard"
+              name="Sauvegarde de la base"
+              parent="edutek_core.menu_op_school_config"
+              action="action_op_database_backup_wizard"
+              sequence="95"
+              groups="edutek_core.group_op_back_office_admin"/>
+
+</odoo>

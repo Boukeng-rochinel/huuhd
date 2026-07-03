@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_op_student_list" model="ir.actions.report">
+        <field name="name">Liste des eleves</field>
+        <field name="model">op.student.list.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">edutek_primaire_cm.report_student_list_document</field>
+        <field name="report_file">edutek_primaire_cm.report_student_list_document</field>
+        <field name="print_report_name">'Liste des eleves'</field>
+        <field name="paperformat_id" ref="paperformat_school_document"/>
+    </record>
+
+    <template id="report_student_list_document">
+        <t t-call="web.html_container">
+            <t t-foreach="groups" t-as="group">
+                <div class="page">
+                    <div style="text-align: right; font-size: 11px;">
+                        <strong>Date / Heure :</strong> <span t-esc="now"/>
+                    </div>
+
+                    <t t-call="edutek_primaire_cm.report_school_letterhead"/>
+
+                    <t t-set="doc_title" t-value="'LISTE DES ELEVES DE %s' % (group['classe'].display_name or 'SANS CLASSE').upper()"/>
+                    <t t-call="edutek_primaire_cm.report_school_doc_title"/>
+
+                    <table style="width: 100%; border-collapse: collapse; font-size: 17px; margin-bottom: 20px;">
+                        <t t-set="table_headers" t-value="['N°'] + [col[1] for col in columns] + (['Photo'] if list_type == 'photos' else [])"/>
+                        <thead>
+                            <tr style="background: #2a5db0; color: #fff;">
+                                <t t-foreach="table_headers" t-as="th_label">
+                                    <th style="border: 1px solid #999; padding: 8px 12px; text-align: center;" t-esc="th_label"/>
+                                </t>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="group['students']" t-as="student" t-key="student.id">
+                                <tr t-att-style="'background: #f5f5f5;' if student_index % 2 else ''">
+                                    <td style="border: 1px solid #999; padding: 8px 12px; text-align: center;" t-esc="student_index + 1"/>
+                                    <t t-foreach="columns" t-as="col">
+                                        <td style="border: 1px solid #999; padding: 8px 12px;">
+                                            <t t-if="col[0] == 'gender'" t-esc="gender_labels.get(student.gender, '')"/>
+                                            <t t-elif="col[0] == 'birth_date'" t-esc="student.birth_date" t-options='{"widget": "date"}'/>
+                                            <t t-else="" t-esc="student[col[0]]"/>
+                                        </td>
+                                    </t>
+                                    <td t-if="list_type == 'photos'" style="border: 1px solid #999; padding: 8px 12px;">
+                                        <img t-if="student.image_128"
+                                             t-att-src="image_data_uri(student.image_128)"
+                                             style="width: 80px; height: 80px; object-fit: cover; border-radius: 3px;"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+
+                    <div style="display: flex; justify-content: space-between; font-size: 17px; margin-bottom: 12px;">
+                        <div>
+                            <strong>Garcons :</strong> <span t-esc="group['males']"/>
+                            <strong style="margin-left: 16px;">Filles :</strong> <span t-esc="group['females']"/>
+                        </div>
+                        <div><strong>TOTAL :</strong> <span t-esc="len(group['students'])"/></div>
+                    </div>
+                    <div style="font-size: 17px; margin-bottom: 20px;">
+                        <strong>Enseignant(e) :</strong> <span t-esc="group['classe'].teacher_id.name or ''"/>
+                    </div>
+
+                    <t t-call="edutek_primaire_cm.report_school_footer"/>
+                </div>
+            </t>
+            <t t-if="not groups">
+                <div class="page">
+                    <t t-call="edutek_primaire_cm.report_school_letterhead"/>
+                    <p style="text-align: center; color: #6c757d; margin-top: 16px;">Aucun eleve ne correspond a ces criteres.</p>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

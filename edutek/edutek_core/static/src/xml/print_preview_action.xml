@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+
+<t t-name="edutek_core.print_preview_action">
+    <Dialog title="title" size="'lg'" footer="false">
+        <div class="o_ppd_root">
+            <div class="o_ppd_toolbar">
+                <button class="btn btn-primary" t-on-click="printDocument" t-att-disabled="state.loading">
+                    <i class="fa fa-print"/> Imprimer
+                </button>
+                <button class="btn btn-secondary" t-on-click="downloadPdf"
+                        t-att-disabled="state.loading or state.downloading">
+                    <i class="fa fa-download"/> Telecharger en PDF
+                </button>
+                <button class="btn btn-link" t-on-click="close">Fermer</button>
+            </div>
+            <div class="o_ppd_body">
+                <div t-if="state.loading" class="o_ppd_loading">
+                    <i class="fa fa-spinner fa-spin fa-2x"/>
+                </div>
+                <iframe t-else="" t-att-src="state.pdfUrl" t-ref="iframe" class="o_ppd_iframe"/>
+            </div>
+        </div>
+    </Dialog>
+</t>
+
+</templates>

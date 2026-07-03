@@ -1,0 +1,245 @@
+// ─── SIS Lock Screen ───────────────────────────────────────────────────────
+
+.sis-lock-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sis-lock-bg {
+    position: absolute;
+    inset: 0;
+    background: rgba(20, 20, 30, 0.5);
+    backdrop-filter: blur(4px);
+}
+
+// ─── Carte blanche commune ──────────────────────────────────────────────────
+
+.sis-lock-card {
+    position: relative;
+    z-index: 1;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 12px;
+    width: 360px;
+    max-height: 82vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+
+    &--shake {
+        animation: sis-shake 0.4s ease-in-out;
+    }
+}
+
+@keyframes sis-shake {
+    0%, 100% { transform: translateX(0); }
+    20%       { transform: translateX(-8px); }
+    40%       { transform: translateX(8px); }
+    60%       { transform: translateX(-6px); }
+    80%       { transform: translateX(6px); }
+}
+
+.sis-lock-card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #2b2b2b;
+    flex-shrink: 0;
+
+    &--pin {
+        position: relative;
+    }
+}
+
+.sis-lock-back-btn {
+    border: none;
+    background: transparent;
+    color: #666;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 4px 6px;
+    margin-right: 4px;
+    border-radius: 6px;
+    transition: background 0.12s;
+
+    &:hover { background: #f0f0f0; color: #333; }
+}
+
+// ─── PHASE 1 : liste employes ────────────────────────────────────────────
+
+.sis-lock-emp-list {
+    overflow-y: auto;
+    flex: 1;
+
+    &::-webkit-scrollbar { width: 6px; }
+    &::-webkit-scrollbar-track { background: transparent; }
+    &::-webkit-scrollbar-thumb { background: #ddd; border-radius: 3px; }
+}
+
+.sis-lock-loading,
+.sis-lock-empty {
+    padding: 40px 20px;
+    text-align: center;
+    color: #999;
+}
+
+.sis-lock-emp-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 18px;
+    border-bottom: 1px solid #f4f4f4;
+    cursor: pointer;
+    transition: background 0.12s;
+
+    &:hover { background: #f7f7f8; }
+    &:last-child { border-bottom: none; }
+}
+
+.sis-lock-emp-row-name {
+    flex: 1;
+    font-size: 14px;
+    color: #2b2b2b;
+    font-weight: 500;
+}
+
+.sis-lock-emp-row-chevron {
+    color: #ccc;
+    font-size: 13px;
+}
+
+// ─── Avatar (initiale coloree) ──────────────────────────────────────────────
+
+.sis-lock-emp-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    flex-shrink: 0;
+
+    &--lg {
+        width: 52px;
+        height: 52px;
+        border-radius: 12px;
+        font-size: 20px;
+        margin: 0 auto 14px;
+    }
+}
+
+// ─── PHASE 2 : saisie PIN ──────────────────────────────────────────────────
+
+.sis-lock-pin-body {
+    padding: 22px 24px 26px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sis-lock-hint {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 16px;
+    min-height: 16px;
+}
+
+.sis-lock-error {
+    font-size: 12px;
+    color: #e53935;
+    margin-bottom: 16px;
+    min-height: 16px;
+    font-weight: 500;
+}
+
+.sis-lock-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.sis-lock-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    border: 2px solid #e0e0e0;
+    background: transparent;
+    transition: background 0.15s, border-color 0.15s;
+
+    &--filled {
+        background: #2b2b2b;
+        border-color: #2b2b2b;
+    }
+}
+
+.sis-lock-keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    width: 100%;
+}
+
+.sis-lock-key {
+    border: none;
+    border-radius: 10px;
+    height: 46px;
+    font-size: 17px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.12s, transform 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:active:not(:disabled) { transform: scale(0.93); }
+    &:disabled { opacity: 0.35; cursor: default; }
+
+    &--digit {
+        background: #f4f4f5;
+        color: #2b2b2b;
+        &:hover:not(:disabled) { background: #e9e9eb; }
+    }
+
+    &--action {
+        background: #f4f4f5;
+        color: #999;
+        font-size: 16px;
+        &:hover:not(:disabled) { background: #e9e9eb; }
+    }
+
+    &--validate {
+        background: #2e7d32;
+        color: #fff;
+        font-size: 16px;
+        &:hover:not(:disabled) { background: #266b29; }
+    }
+}
+
+// ─── Bouton systray ────────────────────────────────────────────────────────
+
+.sis-lock-btn {
+    cursor: pointer;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    color: inherit;
+    opacity: 0.8;
+    transition: opacity 0.15s;
+
+    &:hover { opacity: 1; }
+    .fa { font-size: 16px; }
+}
+

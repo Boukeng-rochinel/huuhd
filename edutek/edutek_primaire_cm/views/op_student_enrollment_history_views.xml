@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ══════════════════════════════════════════
+         LIST VIEW
+    ══════════════════════════════════════════ -->
+    <record id="view_op_student_enrollment_history_list" model="ir.ui.view">
+        <field name="name">op.student.enrollment.history.list</field>
+        <field name="model">op.student.enrollment.history</field>
+        <field name="arch" type="xml">
+            <list string="Historique d'inscription">
+                <field name="academic_year_id"/>
+                <field name="student_id"/>
+                <field name="classe_id"/>
+                <field name="date_inscription"/>
+                <field name="mark_count" optional="show"/>
+                <field name="bulletin_count" optional="show"/>
+                <field name="fee_count" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ══════════════════════════════════════════
+         FORM VIEW
+    ══════════════════════════════════════════ -->
+    <record id="view_op_student_enrollment_history_form" model="ir.ui.view">
+        <field name="name">op.student.enrollment.history.form</field>
+        <field name="model">op.student.enrollment.history</field>
+        <field name="arch" type="xml">
+            <form string="Historique d'inscription">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" icon="fa-pencil-square-o"
+                                type="object" name="action_view_marks">
+                            <div class="o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="mark_count" nolabel="1"/>
+                                </span>
+                                <span class="o_stat_text">Notes</span>
+                            </div>
+                        </button>
+                        <button class="oe_stat_button" icon="fa-graduation-cap"
+                                type="object" name="action_view_bulletins">
+                            <div class="o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="bulletin_count" nolabel="1"/>
+                                </span>
+                                <span class="o_stat_text">Bulletins</span>
+                            </div>
+                        </button>
+                        <button class="oe_stat_button" icon="fa-money"
+                                type="object" name="action_view_fees">
+                            <div class="o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="fee_count" nolabel="1"/>
+                                </span>
+                                <span class="o_stat_text">Frais</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1><field name="student_id" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="academic_year_id" readonly="1"/>
+                            <field name="classe_id" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="date_inscription" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ══════════════════════════════════════════
+         SEARCH VIEW
+    ══════════════════════════════════════════ -->
+    <record id="view_op_student_enrollment_history_search" model="ir.ui.view">
+        <field name="name">op.student.enrollment.history.search</field>
+        <field name="model">op.student.enrollment.history</field>
+        <field name="arch" type="xml">
+            <search string="Historique d'inscription">
+                <field name="student_id"/>
+                <field name="classe_id"/>
+                <field name="academic_year_id"/>
+                <group>
+                    <filter name="group_year" string="Annee academique" context="{'group_by': 'academic_year_id'}"/>
+                    <filter name="group_classe" string="Classe" context="{'group_by': 'classe_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ══════════════════════════════════════════
+         ACTION / MENU
+    ══════════════════════════════════════════ -->
+    <record id="action_op_student_enrollment_history" model="ir.actions.act_window">
+        <field name="name">Historique des inscriptions</field>
+        <field name="res_model">op.student.enrollment.history</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'academic_year_all': 1}</field>
+    </record>
+
+    <menuitem id="menu_op_student_enrollment_history"
+              name="Historique des inscriptions"
+              parent="edutek_core.menu_op_report_main"
+              action="action_op_student_enrollment_history"
+              sequence="35"
+              groups="edutek_core.group_op_faculty,base.group_no_one"/>
+
+</odoo>

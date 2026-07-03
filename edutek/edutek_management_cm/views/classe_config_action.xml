@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_classe_config" model="ir.actions.client">
+        <field name="name">Fiche de l'ecole</field>
+        <field name="tag">edutek_management_cm.classe_config</field>
+    </record>
+
+    <menuitem id="menu_classe_config"
+              name="Fiche de l'ecole"
+              parent="edutek_core.menu_op_school_config"
+              sequence="10"
+              action="action_classe_config"
+              groups="edutek_core.group_op_back_office_admin"/>
+
+</odoo>

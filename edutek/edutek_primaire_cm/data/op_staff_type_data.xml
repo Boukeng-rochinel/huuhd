@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="op_staff_type_non_enseignant" model="op.staff.type">
+        <field name="name">Non enseignant</field>
+        <field name="code">non_enseignant</field>
+        <field name="sequence">10</field>
+    </record>
+    <record id="op_staff_type_enseignant_permanent" model="op.staff.type">
+        <field name="name">Enseignant permanent</field>
+        <field name="code">enseignant_permanent</field>
+        <field name="sequence">20</field>
+    </record>
+    <record id="op_staff_type_enseignant_vacataire" model="op.staff.type">
+        <field name="name">Enseignant vacataire</field>
+        <field name="code">enseignant_vacataire</field>
+        <field name="sequence">30</field>
+    </record>
+
+</odoo>

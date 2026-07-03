@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_op_student_fee_form_inherit_moratorium" model="ir.ui.view">
+        <field name="name">op.student.fee.form.inherit.moratorium</field>
+        <field name="model">op.student.fee</field>
+        <field name="inherit_id" ref="edutek_primaire_cm.view_op_student_fee_form"/>
+        <field name="arch" type="xml">
+            <field name="date" position="after">
+                <field name="due_date" string="Echeance"/>
+                <field name="active_moratorium_id" string="Moratoire accorde"
+                       invisible="not active_moratorium_id"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

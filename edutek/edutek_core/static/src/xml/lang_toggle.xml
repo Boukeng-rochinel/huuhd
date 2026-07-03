@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+<t t-name="edutek_core.LangToggle">
+    <button class="o_nav_entry btn d-flex align-items-center gap-1 px-2"
+            type="button"
+            t-att-title="title"
+            t-on-click="toggle">
+        <i class="fa fa-globe"/>
+        <span class="fw-bold" style="font-size:12px; letter-spacing:0.5px;">
+            <t t-if="isFrench">FR</t>
+            <t t-else="">EN</t>
+        </span>
+    </button>
+</t>
+
+</templates>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ══════════════════════════════════════════
+         Vie scolaire : isole les 2 assistants de
+         transition de fin d'annee (cloture + certificats
+         de promotion vont toujours de pair) et les outils
+         de diagnostic/reparation (deja reserves au mode
+         developpeur individuellement - le sous-menu
+         conteneur reprend la meme restriction pour
+         disparaitre en bloc plutot que de laisser un
+         sous-menu visible mais vide).
+    ══════════════════════════════════════════ -->
+    <menuitem id="menu_op_vie_scolaire_passage"
+              name="Passage d'annee"
+              parent="edutek_core.menu_op_general_main"
+              sequence="60"/>
+
+    <record id="menu_op_academic_year_close_wizard" model="ir.ui.menu">
+        <field name="parent_id" ref="menu_op_vie_scolaire_passage"/>
+        <field name="sequence">10</field>
+    </record>
+    <record id="menu_op_end_cycle_certificate_generate_wizard" model="ir.ui.menu">
+        <field name="parent_id" ref="menu_op_vie_scolaire_passage"/>
+        <field name="sequence">20</field>
+    </record>
+
+    <menuitem id="menu_op_vie_scolaire_outils"
+              name="Outils techniques"
+              parent="edutek_core.menu_op_general_main"
+              sequence="70"
+              groups="edutek_core.group_op_back_office_admin,base.group_no_one"/>
+
+    <record id="menu_op_history_repair_wizard" model="ir.ui.menu">
+        <field name="parent_id" ref="menu_op_vie_scolaire_outils"/>
+        <field name="sequence">10</field>
+    </record>
+    <record id="menu_op_closure_diagnostic_wizard" model="ir.ui.menu">
+        <field name="parent_id" ref="menu_op_vie_scolaire_outils"/>
+        <field name="sequence">20</field>
+    </record>
+
+    <!-- ══════════════════════════════════════════
+         Configuration : 11 elements a plat regroupes en 4
+         categories logiques, "Parametres generaux" et
+         "Modules EduTek" restant en pied de menu (ecrans
+         generiques, consultes rarement).
+    ══════════════════════════════════════════ -->
+    <menuitem id="menu_op_config_annee"
+              name="Annee academique"
+              parent="edutek_core.menu_op_school_config"
+              sequence="10"/>
+
+    <record id="edutek_core.menu_academic_year" model="ir.ui.menu">
+        <field name="parent_id" ref="menu_op_config_annee"/>
+        <field name="sequence">10</field>
+    </record>
+    <record id="edutek_core.menu_academic_term" model="ir.ui.menu">
+        <field name="parent_id" ref="menu_op_config_annee"/>
+        <field name="sequence">20</field>
+    </record>
+
+    <menuitem id="menu_op_config_pedagogie"
+              name="Structure pedagogique"
+              parent="edutek_core.menu_op_school_config"
+              sequence="20"/>
+
+    <record id="edutek_core.menu_op_subject_sub" model="ir.ui.menu">
+        <field name="parent_id" ref="menu_op_config_pedagogie"/>
+        <field name="sequence">10</field>
+    </record>
+    <record id="edutek_core.menu_op_category_sub" model="ir.ui.menu">
+        <field name="parent_id" ref="menu_op_config_pedagogie"/>
+        <field name="sequence">20</field>
+    </record>
+    <record id="menu_op_exam" model="ir.ui.menu">
+        <field name="parent_id" ref="menu_op_config_pedagogie"/>
+        <field name="sequence">30</field>
+    </record>
+
+    <menuitem id="menu_op_config_etablissement"
+              name="Etablissement"
+              parent="edutek_core.menu_op_school_config"
+              sequence="30"/>
+
+    <record id="menu_classe_config" model="ir.ui.menu">
+        <field name="parent_id" ref="menu_op_config_etablissement"/>
+        <field name="sequence">10</field>
+    </record>
+    <record id="menu_op_school_document_type" model="ir.ui.menu">
+        <field name="parent_id" ref="menu_op_config_etablissement"/>
+        <field name="sequence">20</field>
+    </record>
+
+    <menuitem id="menu_op_config_outils"
+              name="Outils"
+              parent="edutek_core.menu_op_school_config"
+              sequence="40"/>
+
+    <record id="edutek_primaire_cm.menu_op_student_import_wizard" model="ir.ui.menu">
+        <field name="parent_id" ref="menu_op_config_outils"/>
+        <field name="sequence">10</field>
+    </record>
+    <record id="edutek_primaire_cm.menu_op_database_backup_wizard" model="ir.ui.menu">
+        <field name="parent_id" ref="menu_op_config_outils"/>
+        <field name="sequence">20</field>
+    </record>
+
+    <record id="edutek_core.menu_edutek_config" model="ir.ui.menu">
+        <field name="name">Parametres generaux</field>
+        <field name="sequence">90</field>
+    </record>
+    <record id="menu_edutek_modules_info" model="ir.ui.menu">
+        <field name="sequence">95</field>
+    </record>
+
+</odoo>

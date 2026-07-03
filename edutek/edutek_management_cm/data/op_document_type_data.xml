@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="doc_type_rappel_scolarite" model="op.document.type">
+        <field name="name">Rappel scolarite</field>
+        <field name="code">rappel_scolarite</field>
+        <field name="sequence">10</field>
+        <field name="model_id" ref="edutek_primaire_cm.model_op_student_fee"/>
+        <field name="default_body_fr"><![CDATA[<p>Cher parent, nous vous rappelons que les frais de [Type de frais] d'un montant de [Montant] restent dus pour [Nom de l'eleve].</p>]]></field>
+        <field name="default_body_en"><![CDATA[<p>Dear parent, this is a reminder that fees of [Fee type] amounting to [Amount] remain due for [Student name].</p>]]></field>
+    </record>
+
+    <record id="doc_type_rappel_scolarite_global" model="op.document.type">
+        <field name="name">Rappel scolarite global</field>
+        <field name="code">rappel_scolarite_global</field>
+        <field name="sequence">20</field>
+        <field name="model_id" ref="edutek_core.model_op_student"/>
+        <field name="default_body_fr"><![CDATA[<p>Cher parent, plusieurs frais scolaires restent dus pour [Nom de l'eleve]. Merci de regulariser la situation dans les plus brefs delais.</p>]]></field>
+        <field name="default_body_en"><![CDATA[<p>Dear parent, several school fees remain outstanding for [Student name]. Please settle the balance as soon as possible.</p>]]></field>
+    </record>
+
+    <record id="doc_type_paiement_frais_exigible" model="op.document.type">
+        <field name="name">Paiement frais exigible</field>
+        <field name="code">paiement_frais_exigible</field>
+        <field name="sequence">30</field>
+        <field name="model_id" ref="edutek_primaire_cm.model_op_student_fee"/>
+        <field name="default_body_fr"><![CDATA[<p>Nous accusons reception du paiement de [Montant] pour [Type de frais] concernant [Nom de l'eleve].</p>]]></field>
+        <field name="default_body_en"><![CDATA[<p>We acknowledge receipt of payment of [Amount] for [Fee type] regarding [Student name].</p>]]></field>
+    </record>
+
+    <record id="doc_type_paiement_frais_optionnel" model="op.document.type">
+        <field name="name">Paiement frais optionnel</field>
+        <field name="code">paiement_frais_optionnel</field>
+        <field name="sequence">40</field>
+        <field name="model_id" ref="edutek_primaire_cm.model_op_student_fee"/>
+        <field name="default_body_fr"><![CDATA[<p>Nous accusons reception du paiement de [Montant] pour le frais optionnel [Type de frais] concernant [Nom de l'eleve].</p>]]></field>
+        <field name="default_body_en"><![CDATA[<p>We acknowledge receipt of payment of [Amount] for the optional fee [Fee type] regarding [Student name].</p>]]></field>
+    </record>
+
+    <record id="doc_type_certificat_scolarite" model="op.document.type">
+        <field name="name">Certificat de scolarite</field>
+        <field name="code">certificat_scolarite</field>
+        <field name="sequence">50</field>
+        <field name="model_id" ref="edutek_core.model_op_student"/>
+        <field name="default_body_fr"><![CDATA[<p>Nous certifions que [Nom de l'eleve] est regulierement inscrit(e) dans notre etablissement au titre de l'annee scolaire en cours.</p>]]></field>
+        <field name="default_body_en"><![CDATA[<p>We certify that [Student name] is duly enrolled at our institution for the current academic year.</p>]]></field>
+    </record>
+
+    <record id="doc_type_tableau_honneur" model="op.document.type">
+        <field name="name">Tableau d'honneur</field>
+        <field name="code">tableau_honneur</field>
+        <field name="sequence">60</field>
+        <field name="model_id" ref="edutek_primaire_cm.model_op_classe"/>
+        <field name="default_body_fr"><![CDATA[<p>Felicitations aux eleves de la classe [Nom de la classe] figurant au tableau d'honneur pour leurs excellents resultats.</p>]]></field>
+        <field name="default_body_en"><![CDATA[<p>Congratulations to the students of class [Class name] on the honor roll for their excellent results.</p>]]></field>
+    </record>
+
+    <record id="doc_type_bourse_scolaire" model="op.document.type">
+        <field name="name">Bourse scolaire</field>
+        <field name="code">bourse_scolaire</field>
+        <field name="sequence">70</field>
+        <field name="model_id" ref="model_op_scholarship"/>
+        <field name="default_body_fr"><![CDATA[<p>Nous avons le plaisir de vous informer que [Nom de l'eleve] beneficie d'une bourse scolaire [Type] pour l'annee en cours.</p>]]></field>
+        <field name="default_body_en"><![CDATA[<p>We are pleased to inform you that [Student name] has been awarded a [Type] school scholarship for the current year.</p>]]></field>
+    </record>
+
+    <record id="doc_type_parchemin_fin_cycle" model="op.document.type">
+        <field name="name">Parchemin fin de cycle</field>
+        <field name="code">parchemin_fin_cycle</field>
+        <field name="sequence">80</field>
+        <field name="model_id" ref="model_op_end_cycle_certificate"/>
+        <field name="default_body_fr"><![CDATA[<p>Le present parchemin atteste que [Nom de l'eleve] a accompli avec succes son cycle [Cycle] dans notre etablissement, avec la mention [Mention].</p>]]></field>
+        <field name="default_body_en"><![CDATA[<p>This diploma certifies that [Student name] has successfully completed their [Cycle] studies at our institution, with [Mention] honors.</p>]]></field>
+    </record>
+
+    <record id="doc_type_moratoire" model="op.document.type">
+        <field name="name">Moratoire</field>
+        <field name="code">moratoire</field>
+        <field name="sequence">90</field>
+        <field name="model_id" ref="model_op_payment_moratorium"/>
+        <field name="default_body_fr"><![CDATA[<p>Un moratoire est accorde a [Nom de l'eleve] pour le frais concerne, avec une nouvelle echeance fixee au [Nouvelle echeance].</p>]]></field>
+        <field name="default_body_en"><![CDATA[<p>A payment extension is granted to [Student name] for the fee concerned, with a new due date of [New due date].</p>]]></field>
+    </record>
+
+    <record id="doc_type_certificat_travail" model="op.document.type">
+        <field name="name">Certificat de travail</field>
+        <field name="code">certificat_travail</field>
+        <field name="sequence">100</field>
+        <field name="model_id" ref="model_op_work_certificate"/>
+        <field name="default_body_fr"><![CDATA[<p>Nous certifions que [Nom de l'employe] a travaille au sein de notre etablissement en qualite de [Fonction].</p>]]></field>
+        <field name="default_body_en"><![CDATA[<p>We certify that [Employee name] has worked at our institution as [Job title].</p>]]></field>
+    </record>
+
+    <record id="doc_type_sms_resultat_scolaire" model="op.document.type">
+        <field name="name">SMS Resultat scolaire</field>
+        <field name="code">sms_resultat_scolaire</field>
+        <field name="sequence">110</field>
+        <field name="channel">sms</field>
+        <field name="model_id" ref="edutek_core.model_op_student"/>
+        <field name="default_body_fr"><![CDATA[<p>[Nom de l'eleve] : vos resultats du trimestre sont disponibles. Contactez l'etablissement pour plus de details.</p>]]></field>
+        <field name="default_body_en"><![CDATA[<p>[Student name]: your term results are available. Please contact the school for details.</p>]]></field>
+    </record>
+
+    <record id="doc_type_note_papier_parents" model="op.document.type">
+        <field name="name">Note papier aux parents</field>
+        <field name="code">note_papier_parents</field>
+        <field name="sequence">120</field>
+        <field name="model_id" ref="edutek_core.model_op_student"/>
+        <field name="default_body_fr"><![CDATA[<p>Note a l'attention des parents de [Nom de l'eleve] :</p>]]></field>
+        <field name="default_body_en"><![CDATA[<p>Note for the attention of the parents of [Student name]:</p>]]></field>
+    </record>
+
+    <record id="doc_type_document_libre" model="op.document.type">
+        <field name="name">Document libre</field>
+        <field name="code">document_libre</field>
+        <field name="sequence">130</field>
+        <field name="model_id" ref="edutek_core.model_op_student"/>
+        <field name="default_body_fr"><![CDATA[<p>(Document libre - redigez le contenu de votre choix.)</p>]]></field>
+        <field name="default_body_en"><![CDATA[<p>(Free document - write your own content.)</p>]]></field>
+    </record>
+
+    <record id="doc_type_attestation_stage" model="op.document.type">
+        <field name="name">Attestation de stage</field>
+        <field name="code">attestation_stage</field>
+        <field name="sequence">140</field>
+        <field name="model_id" ref="model_op_internship"/>
+        <field name="default_body_fr"><![CDATA[<p>Nous attestons que [Nom de l'eleve] a effectue un stage ([Sujet du stage]) au sein de [Structure d'accueil].</p>]]></field>
+        <field name="default_body_en"><![CDATA[<p>We certify that [Student name] has completed an internship ([Internship topic]) at [Host organization].</p>]]></field>
+    </record>
+
+    <record id="doc_type_lettre_acceptation" model="op.document.type">
+        <field name="name">Lettre d'acceptation</field>
+        <field name="code">lettre_acceptation</field>
+        <field name="sequence">150</field>
+        <field name="model_id" ref="model_op_admission_application"/>
+        <field name="default_body_fr"><![CDATA[<p>Nous avons le plaisir de vous informer que [Nom du candidat] est accepte(e) au sein de notre etablissement pour l'annee scolaire a venir, en classe de [Classe souhaitee].</p>]]></field>
+        <field name="default_body_en"><![CDATA[<p>We are pleased to inform you that [Applicant name] has been accepted at our institution for the upcoming academic year, in [Desired class].</p>]]></field>
+    </record>
+
+</odoo>

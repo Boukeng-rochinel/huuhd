@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_op_student_mark_list" model="ir.actions.report">
+        <field name="name">Liste des notes</field>
+        <field name="model">op.student.mark.list.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">edutek_primaire_cm.report_student_mark_list_document</field>
+        <field name="report_file">edutek_primaire_cm.report_student_mark_list_document</field>
+        <field name="print_report_name">'Liste des notes'</field>
+        <field name="paperformat_id" ref="paperformat_school_document"/>
+    </record>
+
+    <template id="report_student_mark_list_document">
+        <t t-call="web.html_container">
+            <div class="page">
+                <div style="text-align: right; font-size: 11px;">
+                    <strong>Date / Heure :</strong> <span t-esc="now"/>
+                </div>
+
+                <t t-call="edutek_primaire_cm.report_school_letterhead"/>
+
+                <t t-set="doc_title" t-value="'LISTE DES NOTES'"/>
+                <t t-call="edutek_primaire_cm.report_school_doc_title"/>
+
+                <table style="width: 100%; border-collapse: collapse; font-size: 17px;">
+                    <t t-set="table_headers" t-value="['N°', 'Classe', 'Eleve', 'Matiere', 'Periode', 'Note', 'Note x Coef']"/>
+                    <t t-call="edutek_primaire_cm.report_school_table_head"/>
+                    <tbody>
+                        <t t-foreach="marks" t-as="mark" t-key="mark.id">
+                            <tr t-att-style="'background: #f5f5f5;' if mark_index % 2 else ''">
+                                <td style="border: 1px solid #999; padding: 4px 6px; text-align: center;" t-esc="mark_index + 1"/>
+                                <td style="border: 1px solid #999; padding: 4px 6px;" t-esc="mark.classe_id.display_name or ''"/>
+                                <td style="border: 1px solid #999; padding: 4px 6px;" t-esc="mark.student_id.name"/>
+                                <td style="border: 1px solid #999; padding: 4px 6px;" t-esc="mark.subject_id.name"/>
+                                <td style="border: 1px solid #999; padding: 4px 6px;" t-esc="mark.academic_term_id.display_name or ''"/>
+                                <td style="border: 1px solid #999; padding: 4px 6px; text-align: center;" t-esc="mark.note"/>
+                                <td style="border: 1px solid #999; padding: 4px 6px; text-align: center;" t-esc="mark.note_x_coef"/>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+
+                <p t-if="not marks" style="text-align: center; color: #6c757d; margin-top: 16px;">
+                    Aucune note ne correspond a ces criteres.
+                </p>
+                <div t-else="" style="margin-top: 12px; font-size: 17px;">
+                    <strong>Nombre de notes :</strong> <span t-esc="len(marks)"/>
+                </div>
+
+                <t t-call="edutek_primaire_cm.report_school_footer"/>
+            </div>
+        </t>
+    </template>
+
+</odoo>
